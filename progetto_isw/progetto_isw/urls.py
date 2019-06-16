@@ -20,5 +20,5 @@ from ProgettoISW import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', views.home),
-    path('homeAlbergatore', views.homeAlbergatore),
+    path('homeAlbergatore/', views.homeAlbergatore),
 ]

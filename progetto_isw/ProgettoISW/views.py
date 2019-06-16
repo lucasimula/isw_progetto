@@ -20,5 +20,3 @@ def homeAlbergatore(request):
 
 
     return render(request, "homeAlbergatore.html", {'prenotazioni': elencoPrenotazioni})
-
-
