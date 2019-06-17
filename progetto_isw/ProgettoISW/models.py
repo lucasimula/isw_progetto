@@ -12,6 +12,7 @@ class Hotel(models.Model):
     albergatore = models.ForeignKey(Albergatore, on_delete=models.CASCADE)
     nome = models.CharField(max_length=100)
     descrizione = models.TextField()
+    citta = models.CharField(max_length=100)
     indirizzo = models.CharField(max_length=100)
 
 

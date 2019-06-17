@@ -14,6 +14,7 @@ class FormLogin(forms.Form):
 class FormAggiungiHotel(forms.Form):
     nome = forms.CharField(label="Nome", required=True, max_length=100)
     descrizione = forms.CharField()
+    citta = forms.CharField(max_length=100)
     indirizzo = forms.CharField(max_length=100)
 
 

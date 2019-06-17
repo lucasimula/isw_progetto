@@ -21,4 +21,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', views.home),
     path('homeAlbergatore/', views.homeAlbergatore),
+    path('listaHotel/', views.listaHotel),
+    path('aggiungiHotel/', views.aggiungiHotel),
+    path('gestioneHotel/', views.gestioneHotel),
+    path('aggiungiCamera/', views.aggiungiCamera),
 ]

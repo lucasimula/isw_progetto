@@ -6,7 +6,9 @@
 </head>
 <body>
     <nav class="navbar navbar-light bg-light justify-content">
-        <button id="lista-hotel" class="btn btn-primary" type="button">Lista Hotel</button>
+        <button id="lista-hotel" class="btn btn-primary" type="button">
+            <a href="/aggiungiHotel/">Lista Hotel</a>
+        </button>
           <a class="navbar-brand" href="#">Sito stile Booking</a>
         <button id="logout" class="btn btn-primary" type="button">Logout</button>
     </nav>
@@ -15,17 +17,19 @@
         <table class="table table-striped table-hover table-success">
             <thead>
                 <tr>
-                      <th scope="col">Nome</th>
-                      <th scope="col">Descrizione</th>
-                      <th scope="col">Indirizzo</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Descrizione</th>
+                    <th scope="col">Città</th>
+                    <th scope="col">Indirizzo</th>
                 </tr>
             </thead>
             <tbody>
                 {% for h in hotel %}
                 <tr>
-                      <th scope="row">{{ h.nome }}</th>
-                      <td>{{ h.descrizione }}</td>
-                      <td>{{ h.indirizzo }}</td>
+                    <th scope="row">{{ h.nome }}</th>
+                    <td>{{ h.descrizione }}</td>
+                    <td>{{ h.citta }}</td>
+                    <td>{{ h.indirizzo }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
