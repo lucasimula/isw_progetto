@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
     <nav class="navbar navbar-light bg-light justify-content">
@@ -14,10 +16,10 @@
         <div class="wrapper">
             <h1 id="page-title">Informazioni Hotel</h1>
             <div class="card border-primary">
-                <div class="card-header">Nome hotel</div>
+                <div class="card-header">{{ hotel.nome }}</div>
                 <div class="card-body text-primary">
-                    <h5 class="card-title">Indirizzo hotel</h5>
-                    <p class="card-text">DESCRIZIONE Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h5 class="card-title">{{ hotel.citta }} - {{ hotel.indirizzo }}</h5>
+                    <p class="card-text">{{ hotel.descrizione }}</p>
                 </div>
             </div>
             <h1 id="page-title">Lista camere</h1>
@@ -25,30 +27,20 @@
                 <thead>
                     <tr>
                           <th scope="col">#</th>
-                          <th scope="col">First</th>
-                          <th scope="col">Last</th>
-                          <th scope="col">Handle</th>
+                          <th scope="col">n° Letti</th>
+                          <th scope="col">Prezzo</th>
+                          <th scope="col">Servizi</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for c in camere %}
                     <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
+                        <th scope="row">{{ c.numero }}</th>
+                        <td>{{ c.nLetti }}</td>
+                        <td>{{ c.prezzo }}</td>
+                        <td>{{ c.servizi }}</td>
                     </tr>
-                    <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                    </tr>
-                    <tr>
-                          <th scope="row">3</th>
-                          <td>Larry</td>
-                          <td>the Bird</td>
-                          <td>@twitter</td>
-                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

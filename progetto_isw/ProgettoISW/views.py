@@ -27,7 +27,7 @@ def listaHotel(request):
     elencoHotel = []
 
     for h in Hotel.objects.all():
-        elencoHotel.append(p)
+        elencoHotel.append(h)
 
     return render(request, "listaHotel.html", {'prenotazioni': elencoHotel})
 
@@ -47,11 +47,18 @@ def aggiungiHotel(request):
 
     else:
         form = FormAggiungiHotel()
-        return render(request, 'aggiungiHotel.html', {'form', form})
+        return render(request, 'aggiungiHotel.html', {'form': form})
 
 
 def gestioneHotel(request):
-    return render(request, 'gestioneHotel.html')
+    hotel = Hotel()
+    elencoCamere = []
+
+    for c in Camera.objects.all():
+        if (c.hotel = hotel):
+            elencoCamere.append(c)
+
+    return render(request, 'gestioneHotel.html', {'hotel': hotel, 'camere': elencoCamere})
 
 
 def aggiungiCamera(request):
