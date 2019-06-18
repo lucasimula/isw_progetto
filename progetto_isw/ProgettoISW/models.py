@@ -5,7 +5,12 @@ from django.db import models
 
 class Albergatore(models.Model):
     nome = models.CharField(max_length=100)
+    cognome = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
+    username = models.CharField(max_length=100)
+    email = models.EmailField(max_length=50)
+    citta = models.CharField(max_length=100)
+    indirizzo = models.CharField(max_length=200)
 
 
 class Hotel(models.Model):

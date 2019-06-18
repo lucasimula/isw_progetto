@@ -2,11 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-
+    <form id="login" action="/login/" method="POST">
+        {% csrf_token %}
+        {{ form }}
+            <h3> Inserisci il tuo username: </h3>
+            <input type="text" id="name" >
+            <h3> Inserisci la password: </h3>
+        <input type="password" id="password">
+        <br><br>
+        <input id="loginButton" type="submit" value="ACCEDI"/>
+    </form>
 </body>
 </html>

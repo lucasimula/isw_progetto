@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <form id="signUp" action="/registrati/" method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            <div >
+                {{ field.errors }}
+                <a>{{ field.label_tag }}</a>
+                {{ field }}
+            </div>
+        {% endfor %}
+        <button type="submit" onclick="popUpFun()">Registrati</button>
+    </form>
+</body>
+</html>
