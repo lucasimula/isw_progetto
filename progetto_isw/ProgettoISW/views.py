@@ -1,7 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import *
 from .forms import *
-
 # Create your views here.
 
 
@@ -57,23 +55,23 @@ def home(request):
 
 
 def homeAlbergatore(request):
-    if 'username' in request.session:
-        albergatore = request.session['username']
+    if 'nomeAlbergatore' in request.session:
+        albergatore = request.session['nomeAlbergatore']
     else:
         redirect('/home/')
 
     elencoPrenotazioni = []
-
+    albergatore =""
     for p in Prenotazione.objects.all():
-        if p.camera.hotel.albergatore.username.__eq__(albergatore):
+        if p.camera.hotel.albergatore.username == albergatore:
             elencoPrenotazioni.append(p)
 
     return render(request, "homeAlbergatore.html", {'prenotazioni': elencoPrenotazioni})
 
 
 def listaHotel(request):
-    if 'username' in request.session:
-        albergatore = request.session['username']
+    if 'nomeAlbergatore' in request.session:
+        albergatore = request.session['nomeAlbergatore']
     else:
         redirect('/home/')
 
