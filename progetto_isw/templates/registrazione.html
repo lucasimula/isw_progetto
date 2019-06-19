@@ -1,7 +1,6 @@
-
 {% extends "base.html" %}
-{% block title %}  Registrati {% endblock %}
-     {% block content %}
+{% block title %}Registrazione{% endblock %}
+{% block content %}
     <form id="signUp" action="/home/" method="POST">
         {% csrf_token %}
         {% for field in form %}
