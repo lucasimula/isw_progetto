@@ -19,8 +19,8 @@ from ProgettoISW import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', views.home),
-    path('/login/', views.login),
-    path('/registrazione/', views.registrazione),
+    path('login/', views.login),
+    path('registrazione/', views.registrazione),
     path('homeAlbergatore/', views.homeAlbergatore),
     path('listaHotel/', views.listaHotel),
     path('aggiungiHotel/', views.aggiungiHotel),
