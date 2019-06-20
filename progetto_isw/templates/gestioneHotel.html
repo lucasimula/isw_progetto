@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-{% load static %}
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/css/style.css">
-</head>
-<body>
+{% extends "base.html" %}
+{% block titolo %} Home Albergatore {% endblock %}
+{% block content %}
     <nav class="navbar navbar-light bg-light justify-content">
         <button id="lista-hotel" class="btn btn-primary" type="button">Lista Hotel</button>
           <a class="navbar-brand" href="#">Sito stile Booking</a>
@@ -15,7 +8,7 @@
     </nav>
     <main>
         <div class="wrapper">
-            <h1 id="page-title">Informazioni Hotel</h1>
+            <h1 id="maintitle">Informazioni Hotel</h1>
             <div class="card border-primary">
                 <div class="card-header">{{ hotel.nome }}</div>
                 <div class="card-body text-primary">
@@ -23,7 +16,7 @@
                     <p class="card-text">{{ hotel.descrizione }}</p>
                 </div>
             </div>
-            <h1 id="page-title">Lista camere</h1>
+            <h1 id="maintitle">Lista camere</h1>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -46,5 +39,4 @@
             </table>
         </div>
     </main>
-</body>
-</html>
+{% endblock %}

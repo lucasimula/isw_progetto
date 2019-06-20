@@ -1,25 +1,18 @@
-<!DOCTYPE html>
-<html lang="it">
-{% load static %}
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
+{% extends "base.html" %}
+{% block titolo %} Home {% endblock %}
+{% block content %}
     <nav class="navbar navbar-light bg-light justify-content">
         <button id="registrati" class="btn btn-primary" type="button">
-            <a href="/home/registrazione/" style="color:white">Registrazione</a>
+            <a href="/registrazione/">Registrazione</a>
         </button>
           <a class="navbar-brand" href="#">Sito stile Booking</a>
         <button id="login" class="btn btn-primary" type="button">
-            <a href="/home/login/" style="color:white">Login</a>
+            <a href="/login/">Login</a>
         </button>
     </nav>
     <main>
         <div class="wrapper">
-            <h1 id="page-title">Lista Hotel</h1>
+            <h1 id="maintitle">Lista Hotel</h1>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -52,5 +45,4 @@
             </table>
         </div>
     </main>
-</body>
-</html>
+{% endblock %}

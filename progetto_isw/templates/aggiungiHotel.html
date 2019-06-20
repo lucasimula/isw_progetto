@@ -1,18 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-{% load static %}
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/css/style.css">
-</head>
-<body>
+{% extends "base.html" %}
+{% block titolo %} Aggiungi Hotel {% endblock %}
+{% block content %}
     <nav class="navbar navbar-light bg-light justify-content">
         <button id="lista-hotel" class="btn btn-primary" type="button">
             <a href="/listaHotel/">Lista Hotel</a>
         </button>
-          <a class="navbar-brand" href="#">Sito stile Booking</a>
+          <a class="navbar-brand" href="#">Aggiungi Hotel</a>
         <button id="logout" class="btn btn-primary" type="button">Logout</button>
     </nav>
     <main>
@@ -38,5 +31,4 @@
             </form>
         </div>
     </main>
-</body>
-</html>
+{% endblock %}

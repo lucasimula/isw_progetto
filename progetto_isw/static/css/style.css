@@ -2,6 +2,14 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: lightgreen;
+}
+
+button a {
+    color: white;
+}
+
 #maintitle {
     font-weight: lighter;
     text-align: center;

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% block title %}Registrazione{% endblock %}
+{% block titolo %}Registrazione{% endblock %}
 {% block content %}
-    <form id="signUp" action="/home/" method="POST">
+    <form id="signUp" action="/registrazione/" method="POST">
         {% csrf_token %}
         {% for field in form %}
             <div >

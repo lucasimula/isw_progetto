@@ -26,7 +26,7 @@ def registrazione(request):
             # Viene salvato l'username come variabile di sessione
             request.session['nomeAlbergatore'] = username
             # L'albergatore appena creato è indirizzato alla sua homepage
-            return redirect('/home/')
+            return redirect('/homeAlbergatore/')
     else:
         registrazioneF = FormRegistrazione()
     return render(request, "registrazione.html/", {"form": registrazioneF})
@@ -44,6 +44,8 @@ def login(request):
             if Albergatore.objects.filter(username=username).exists():
                 # Se esiste viene settato il suo nome come variabile di sessione
                 request.session['nomeAlbergatore'] = username
+
+                return redirect('/homeAlbergatore/')
     else:
         # Se il form non contiene niente
         loginF = FormLogin()
@@ -55,13 +57,14 @@ def home(request):
 
 
 def homeAlbergatore(request):
+    albergatore = ""
+
     if 'nomeAlbergatore' in request.session:
         albergatore = request.session['nomeAlbergatore']
     else:
         redirect('/home/')
 
     elencoPrenotazioni = []
-    albergatore =""
     for p in Prenotazione.objects.all():
         if p.camera.hotel.albergatore.username == albergatore:
             elencoPrenotazioni.append(p)
@@ -70,6 +73,8 @@ def homeAlbergatore(request):
 
 
 def listaHotel(request):
+    albergatore = ""
+
     if 'nomeAlbergatore' in request.session:
         albergatore = request.session['nomeAlbergatore']
     else:
@@ -114,4 +119,18 @@ def gestioneHotel(request):
 
 
 def aggiungiCamera(request):
-    return render(request, 'aggiungiCamera.html')
+    if request.method == 'POST':
+        form = FormAggiungiCamera(request.POST)
+
+        if(form.is_valid()):
+            numero = form.cleaned_data['nome']
+            nLetti = form.cleaned_data['descrizione']
+            prezzo = form.cleaned_data['citta']
+            servizi = form.cleaned_data['indirizzo']
+
+            camera = Camera(numero, nLetti, prezzo, servizi)
+            camera.save()
+
+    else:
+        form = FormAggiungiCamera()
+        return render(request, 'aggiungiCamera.html', {'form': form})
