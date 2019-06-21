@@ -52,6 +52,13 @@ def login(request):
     return render(request, "login.html", {"form": loginF})
 
 
+def logout(request):
+    if 'nomeAlbergatore' in request.session:
+        del request.session['nomeAlbergatore']
+
+    return redirect("/home/")
+
+
 def home(request):
     return render(request, "home.html", {'hotel': Hotel.objects.all()})
 

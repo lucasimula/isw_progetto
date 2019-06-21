@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from ProgettoISW import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', views.home),
     path('login/', views.login),
+    path('logout/', views.logout),
     path('registrazione/', views.registrazione),
     path('homeAlbergatore/', views.homeAlbergatore),
     path('listaHotel/', views.listaHotel),
