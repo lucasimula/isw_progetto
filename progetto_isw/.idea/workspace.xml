@@ -2,27 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24f79b0c-3b46-4b93-86a7-eb43d830f7c5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProgettoISW/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProgettoISW/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProgettoISW/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProgettoISW/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/progetto_isw/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/progetto_isw/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/progetto_isw/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/progetto_isw/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/aggiungiCamera.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/aggiungiCamera.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/aggiungiHotel.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/aggiungiHotel.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/gestioneHotel.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/gestioneHotel.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/homeAlbergatore.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/homeAlbergatore.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/listaHotel.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/listaHotel.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registrazione.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registrazione.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db" type="feb32156:DbDataSourceImpl" />
+      </path>
+    </expand>
+    <select />
   </component>
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" module-name="progetto_isw" is-module-sdk="true">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
@@ -32,10 +40,34 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/aggiungiHotel.html">
+        <entry file="file://$PROJECT_DIR$/ProgettoISW/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
-              <caret line="8" column="81" lean-forward="true" selection-start-line="8" selection-start-column="81" selection-end-line="8" selection-end-column="81" />
+              <caret line="41" column="17" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#45#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ProgettoISW/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="748">
+              <caret line="59" selection-start-line="59" selection-end-line="59" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ProgettoISW/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-170">
+              <caret line="2" column="5" lean-forward="true" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -45,63 +77,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="51">
               <caret line="3" column="35" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/home.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-102">
-              <caret column="25" lean-forward="true" selection-start-column="25" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/progetto_isw/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
-              <folding>
-                <element signature="e#636#668#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ProgettoISW/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" column="45" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
-              <folding>
-                <element signature="e#0#45#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/listaHotel.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="59" lean-forward="true" selection-start-line="9" selection-start-column="59" selection-end-line="9" selection-end-column="59" />
-              <folding>
-                <element signature="e#492#511#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ProgettoISW/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-867">
-              <caret line="12" column="48" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="48" />
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -141,13 +116,13 @@
         <option value="$PROJECT_DIR$/static/css/style.css" />
         <option value="$PROJECT_DIR$/templates/aggiungiHotel.html" />
         <option value="$PROJECT_DIR$/progetto_isw/settings.py" />
-        <option value="$PROJECT_DIR$/ProgettoISW/forms.py" />
         <option value="$PROJECT_DIR$/templates/login.html" />
         <option value="$PROJECT_DIR$/ProgettoISW/views.py" />
-        <option value="$PROJECT_DIR$/progetto_isw/urls.py" />
         <option value="$PROJECT_DIR$/templates/home.html" />
-        <option value="$PROJECT_DIR$/templates/listaHotel.html" />
         <option value="$PROJECT_DIR$/templates/registrazione.html" />
+        <option value="$PROJECT_DIR$/templates/listaHotel.html" />
+        <option value="$PROJECT_DIR$/progetto_isw/urls.py" />
+        <option value="$PROJECT_DIR$/ProgettoISW/forms.py" />
       </list>
     </option>
   </component>
@@ -163,7 +138,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -174,27 +148,13 @@
             <path>
               <item name="progetto_isw" type="b2602c69:ProjectViewProjectNode" />
               <item name="progetto_isw" type="462c0819:PsiDirectoryNode" />
-              <item name="progetto_isw" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="progetto_isw" type="b2602c69:ProjectViewProjectNode" />
-              <item name="progetto_isw" type="462c0819:PsiDirectoryNode" />
               <item name="ProgettoISW" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="progetto_isw" type="b2602c69:ProjectViewProjectNode" />
-              <item name="progetto_isw" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="progetto_isw" type="b2602c69:ProjectViewProjectNode" />
-              <item name="progetto_isw" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -274,7 +234,9 @@
       <workItem from="1560769282097" duration="2301000" />
       <workItem from="1560845177824" duration="2654000" />
       <workItem from="1560952439330" duration="2724000" />
-      <workItem from="1561019717035" duration="4522000" />
+      <workItem from="1561019717035" duration="4695000" />
+      <workItem from="1561026701528" duration="2488000" />
+      <workItem from="1561107792286" duration="1436000" />
     </task>
     <task id="LOCAL-00001" summary="Updated views and forms">
       <created>1560682141563</created>
@@ -311,19 +273,33 @@
       <option name="project" value="LOCAL" />
       <updated>1560954048471</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Modificate viste e templates">
+      <created>1561026548377</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1561026548377</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Rapido fix">
+      <created>1561026635738</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1561026635738</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34659000" />
+    <option name="totallyTimeSpent" value="38756000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.31240544" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3214826" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.33551556" />
@@ -337,13 +313,39 @@
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.3289689" />
       <window_info anchor="bottom" id="Terminal" order="11" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3289689" />
-      <window_info active="true" anchor="bottom" id="manage.py@progetto_isw" order="13" visible="true" weight="0.21440262" />
+      <window_info active="true" anchor="bottom" id="manage.py@progetto_isw" order="13" visible="true" weight="0.21603929" />
+      <window_info anchor="bottom" id="Messages" order="14" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" id="Database" order="4" weight="0.32980332" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31694403" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.33551556" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.3715221" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.3289689" />
+      <window_info anchor="bottom" id="Terminal" order="11" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.3289689" />
+      <window_info anchor="bottom" id="manage.py@progetto_isw" order="13" visible="true" weight="0.21440262" />
+      <window_info anchor="bottom" id="Messages" order="14" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info anchor="right" id="Database" order="4" />
-    </layout>
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -354,7 +356,9 @@
     <MESSAGE value="Aggiunte viste e templates" />
     <MESSAGE value="Aggiunti login e registrazione + varie" />
     <MESSAGE value="Modifiche ai templates" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modifiche ai templates" />
+    <MESSAGE value="Modificate viste e templates" />
+    <MESSAGE value="Rapido fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rapido fix" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/progetto_isw$manage.coverage" NAME="manage Coverage Results" MODIFIED="1560597944062" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -386,13 +390,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ProgettoISW/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="48" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="48" />
         </state>
       </provider>
     </entry>
@@ -459,12 +456,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ProgettoISW/forms.py">
+    <entry file="file://$PROJECT_DIR$/progetto_isw/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-867">
-          <caret line="12" column="48" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="48" />
+        <state relative-caret-position="345">
+          <caret line="21" column="10" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
           <folding>
-            <element signature="e#0#24#0" expanded="true" />
+            <element signature="e#636#668#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/listaHotel.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+          <folding>
+            <element signature="e#492#511#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -476,32 +483,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ProgettoISW/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-170">
+          <caret line="2" column="5" lean-forward="true" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ProgettoISW/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="45" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
+        <state relative-caret-position="136">
+          <caret line="41" column="17" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/progetto_isw/urls.py">
+    <entry file="file://$PROJECT_DIR$/ProgettoISW/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+        <state relative-caret-position="748">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
           <folding>
-            <element signature="e#636#668#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/listaHotel.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="59" lean-forward="true" selection-start-line="9" selection-start-column="59" selection-end-line="9" selection-end-column="59" />
-          <folding>
-            <element signature="e#492#511#0#HTML" expanded="true" />
+            <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>

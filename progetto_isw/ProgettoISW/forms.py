@@ -1,6 +1,6 @@
 from django import forms
 from .models import *
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import make_password, check_password
 
 
 class FormRegistrazione(forms.Form):
@@ -8,7 +8,7 @@ class FormRegistrazione(forms.Form):
     nome = forms.CharField(label="Nome", required=True, max_length=100)
     cognome = forms.CharField(label="Cognome", required=True, max_length=100)
     email = forms.EmailField(label="Email", required=True)
-    citta = forms.CharField(label="Citta")
+    citta = forms.CharField(label="Città")
     indirizzo = forms.CharField(label="Indirizzo")
     username = forms.CharField(label="Username")
     password = forms.CharField(widget=forms.PasswordInput())
@@ -35,7 +35,7 @@ class FormRegistrazione(forms.Form):
 
 
 class FormLogin(forms.Form):
-    nome = forms.CharField(label="Nome", required=True, max_length=100)
+    username = forms.CharField(label="Username", required=True, max_length=100)
     password = forms.CharField(widget=forms.PasswordInput())
 
     def clean_username(self):
@@ -57,7 +57,7 @@ class FormLogin(forms.Form):
             raise forms.ValidationError("Utente non registrato")
 
         # Verifica la corrispondenza tra password inserita e quella salvata nel database
-        if albergatore.check_password(self.cleaned_data['password']):
+        if check_password(self.cleaned_data['password'], albergatore.password):
             password = self.cleaned_data['password']
         else:
             raise forms.ValidationError('Password errata!')
