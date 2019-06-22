@@ -20,8 +20,9 @@ def registrazione(request):
 
             # Si crea l'albergatore
             nuovoAlbergatore = Albergatore(nome=str(nome), cognome=str(cognome),
-                    email=str(email), username=str(username),
-                     password=str(confermaPassword), citta= str(citta), indirizzo = str(indirizzo))
+                                           email=str(email), username=str(username),
+                                           password=str(confermaPassword), citta=str(citta),
+                                           indirizzo=str(indirizzo))
             nuovoAlbergatore.save()
             # Viene salvato l'username come variabile di sessione
             request.session['nomeAlbergatore'] = username
@@ -60,6 +61,9 @@ def logout(request):
 
 
 def home(request):
+    if 'nomeAlbergatore' in request.session:
+        return redirect('/homeAlbergatore/')
+
     return render(request, "home.html", {'hotel': Hotel.objects.all()})
 
 
@@ -90,10 +94,10 @@ def listaHotel(request):
     elencoHotel = []
 
     for h in Hotel.objects.all():
-        if h.albergatore.username.__eq__(albergatore):
+        if h.albergatore.username == albergatore:
             elencoHotel.append(h)
 
-    return render(request, "listaHotel.html", {'prenotazioni': elencoHotel})
+    return render(request, "listaHotel.html", {'hotel': elencoHotel})
 
 
 def aggiungiHotel(request):
@@ -101,14 +105,19 @@ def aggiungiHotel(request):
         form = FormAggiungiHotel(request.POST)
 
         if(form.is_valid()):
-            albergatore = Albergatore(username=request.session['nomeAlbergatore'])
+            username = request.session['nomeAlbergatore']
             nome = form.cleaned_data['nome']
             descrizione = form.cleaned_data['descrizione']
             citta = form.cleaned_data['citta']
             indirizzo = form.cleaned_data['indirizzo']
 
-            hotel = Hotel(albergatore, nome, descrizione, citta, indirizzo)
-            hotel.save()
+            for a in Albergatore.objects.all():
+                if a.username == str(username):
+                    albergatoreFK = a
+                    hotel = Hotel(albergatore=albergatoreFK, nome=str(nome),
+                                  descrizione=str(descrizione), citta=str(citta), indirizzo=str(indirizzo))
+                    hotel.save()
+                    return redirect('/listaHotel/')
 
     else:
         form = FormAggiungiHotel()
@@ -116,14 +125,29 @@ def aggiungiHotel(request):
 
 
 def gestioneHotel(request):
-    hotel = Hotel()
-    elencoCamere = []
+    hotel = None
+    idHotel = request.GET.get('id', None)
 
-    for c in Camera.objects.all():
-        #if (c.hotel = hotel):
-            elencoCamere.append(c)
+    if idHotel is not None:
+        hotel = Hotel.objects.get(pk=idHotel)
+    else:
+        if request.session['idHotel']:
+            idHotel = request.session['idHotel']
+            hotel = Hotel.objects.get(pk=idHotel)
 
-    return render(request, 'gestioneHotel.html', {'hotel': hotel, 'camere': elencoCamere})
+    if hotel is not None:
+        request.session['idHotel'] = idHotel
+
+        elencoCamere = []
+
+        for c in Camera.objects.all():
+            if c.hotel == hotel:
+                elencoCamere.append(c)
+
+        return render(request, 'gestioneHotel.html', {'hotel': hotel, 'camere': elencoCamere})
+
+    else:
+        return redirect('/home/')
 
 
 def aggiungiCamera(request):
@@ -131,14 +155,23 @@ def aggiungiCamera(request):
         form = FormAggiungiCamera(request.POST)
 
         if(form.is_valid()):
-            numero = form.cleaned_data['nome']
-            nLetti = form.cleaned_data['descrizione']
-            prezzo = form.cleaned_data['citta']
-            servizi = form.cleaned_data['indirizzo']
+            idHotel = request.session['idHotel']
+            numero = form.cleaned_data['numero']
+            nLetti = form.cleaned_data['nLetti']
+            prezzo = form.cleaned_data['prezzo']
+            servizi = form.cleaned_data['servizi']
 
-            camera = Camera(numero, nLetti, prezzo, servizi)
-            camera.save()
+            hotel = Hotel(id=idHotel)
+
+            for h in Hotel.objects.all():
+                if h.id == int(idHotel):
+                    hotelFK = h
+                    camera = Camera(hotel=hotelFK, numero=int(numero),
+                                   nLetti=int(nLetti), prezzo=float(prezzo), servizi=str(servizi))
+                    camera.save()
+                    return redirect('/gestioneHotel/', id=idHotel)
 
     else:
+        hotel = Hotel(id=request.GET.get('id', None))
         form = FormAggiungiCamera()
-        return render(request, 'aggiungiCamera.html', {'form': form})
+        return render(request, 'aggiungiCamera.html', {'form': form, 'id': hotel.id})

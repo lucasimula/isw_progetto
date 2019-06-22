@@ -1,8 +1,8 @@
 {% extends "base.html" %}
-{% block titolo %} Home Albergatore {% endblock %}
+{% block titolo %} Gestione Hotel {% endblock %}
 {% block tasto-sinistro %}
     <button id="aggiungi-camera" class="btn btn-primary" type="button">
-            <a href="/aggiungiCamera/">Aggiungi Camera</a>
+            <a href="/aggiungiCamera/?id={{ hotel.id }}">Aggiungi Camera</a>
     </button>
 {% endblock %}
 {% block content %}

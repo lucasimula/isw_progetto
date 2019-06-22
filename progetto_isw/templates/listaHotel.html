@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block titolo %} Home Albergatore {% endblock %}
+{% block titolo %} Lista Hotel {% endblock %}
 {% block tasto-sinistro %}
     <button id="aggiungi-hotel" class="btn btn-primary" type="button">
             <a href="/aggiungiHotel/">Aggiungi Hotel</a>
@@ -20,7 +20,7 @@
             <tbody>
                 {% for h in hotel %}
                 <tr>
-                    <th scope="row">{{ h.nome }}</th>
+                    <th scope="row"><a href="/gestioneHotel/?id={{ h.id }}">{{ h.nome }}</a></th>
                     <td>{{ h.descrizione }}</td>
                     <td>{{ h.citta }}</td>
                     <td>{{ h.indirizzo }}</td>
