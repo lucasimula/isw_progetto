@@ -1,18 +1,14 @@
 {% extends "base.html" %}
 {% block titolo %} Home Albergatore {% endblock %}
-{% block content %}
-    <nav class="navbar navbar-light bg-light justify-content">
-        <button id="lista-hotel" class="btn btn-primary" type="button">
+{% block tasto-sinistro %}
+    <button id="lista-hotel" class="btn btn-primary" type="button">
             <a href="/listaHotel/">Lista Hotel</a>
-        </button>
-          <a class="navbar-brand" href="#">Sito stile Booking</a>
-        <button id="logout" class="btn btn-primary" type="button">
-            <a href="/logout/">Logout</a>
-        </button>
-    </nav>
+    </button>
+{% endblock %}
+{% block content %}
     <main>
         <div id="wrapper">
-            <h1 id="maintitle">Lista Hotel</h1>
+            <h1 id="maintitle">Lista Prenotazioni</h1>
             <table class="table table-striped table-hover table-success">
                 <thead>
                     <tr>

@@ -1,15 +1,11 @@
 {% extends "base.html" %}
 {% block titolo %} Home {% endblock %}
-{% block content %}
-    <nav class="navbar navbar-light bg-light justify-content">
-        <button id="registrati" class="btn btn-primary" type="button">
+{% block tasto-sinistro %}
+    <button id="registrati" class="btn btn-primary" type="button">
             <a href="/registrazione/">Registrazione</a>
-        </button>
-          <a class="navbar-brand" href="#">Sito stile Booking</a>
-        <button id="login" class="btn btn-primary" type="button">
-            <a href="/login/">Login</a>
-        </button>
-    </nav>
+    </button>
+{% endblock %}
+{% block content %}
     <main>
         <div class="wrapper">
             <h1 id="maintitle">Lista Hotel</h1>

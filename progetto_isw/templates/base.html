@@ -8,6 +8,19 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
 </head>
 <body>
+    <nav class="navbar navbar-light bg-light justify-content">
+        {% block tasto-sinistro %}{% endblock %}
+        <a class="navbar-brand" href="/home/">Booking</a>
+        {% if request.session.nomeAlbergatore is not None %}
+            <button id="logout" class="btn btn-primary" type="button">
+                <a href="/logout/">Logout</a>
+            </button>
+        {% else %}
+            <button id="login" class="btn btn-primary" type="button">
+                <a href="/login/">Login</a>
+            </button>
+        {% endif %}
+    </nav>
     {% block content %}{% endblock %}
 </body>
 </html>

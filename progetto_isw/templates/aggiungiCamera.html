@@ -1,4 +1,24 @@
 {% extends "base.html" %}
 {% block titolo %} Home Albergatore {% endblock %}
+{% block tasto-sinistro %}
+    <button id="gestione-hotel" class="btn btn-primary" type="button">
+            <a href="/gestioneHotel/">Gestione Hotel</a>
+    </button>
+{% endblock %}
 {% block content %}
+    <main>
+        <div class="wrapper">
+            <form id="form-aggiungi-camera" action="/aggiungiCamera/" method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        {{ field.errors }}
+                        <a>{{ field.label_tag }}</a>
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <input id="submit" type="submit" value="CONFERMA"/>
+            </form>
+        </div>
+    </main>
 {% endblock %}

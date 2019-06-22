@@ -69,7 +69,7 @@ def homeAlbergatore(request):
     if 'nomeAlbergatore' in request.session:
         albergatore = request.session['nomeAlbergatore']
     else:
-        redirect('/home/')
+        return redirect('/home/')
 
     elencoPrenotazioni = []
     for p in Prenotazione.objects.all():
@@ -85,7 +85,7 @@ def listaHotel(request):
     if 'nomeAlbergatore' in request.session:
         albergatore = request.session['nomeAlbergatore']
     else:
-        redirect('/home/')
+        return redirect('/home/')
 
     elencoHotel = []
 
@@ -101,12 +101,13 @@ def aggiungiHotel(request):
         form = FormAggiungiHotel(request.POST)
 
         if(form.is_valid()):
+            albergatore = Albergatore(username=request.session['nomeAlbergatore'])
             nome = form.cleaned_data['nome']
             descrizione = form.cleaned_data['descrizione']
             citta = form.cleaned_data['citta']
             indirizzo = form.cleaned_data['indirizzo']
 
-            hotel = Hotel(nome, descrizione, citta, indirizzo)
+            hotel = Hotel(albergatore, nome, descrizione, citta, indirizzo)
             hotel.save()
 
     else:

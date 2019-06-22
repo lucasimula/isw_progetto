@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block titolo %} Home Albergatore {% endblock %}
+{% block tasto-sinistro %}
+    <button id="aggiungi-camera" class="btn btn-primary" type="button">
+            <a href="/aggiungiCamera/">Aggiungi Camera</a>
+    </button>
+{% endblock %}
 {% block content %}
-    <nav class="navbar navbar-light bg-light justify-content">
-        <button id="lista-hotel" class="btn btn-primary" type="button">Lista Hotel</button>
-          <a class="navbar-brand" href="#">Sito stile Booking</a>
-        <button id="logout" class="btn btn-primary" type="button">Logout</button>
-    </nav>
     <main>
         <div class="wrapper">
             <h1 id="maintitle">Informazioni Hotel</h1>

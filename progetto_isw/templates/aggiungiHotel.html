@@ -1,33 +1,23 @@
 {% extends "base.html" %}
 {% block titolo %} Aggiungi Hotel {% endblock %}
-{% block content %}
-    <nav class="navbar navbar-light bg-light justify-content">
-        <button id="lista-hotel" class="btn btn-primary" type="button">
+{% block tasto-sinistro %}
+    <button id="lista-hotel" class="btn btn-primary" type="button">
             <a href="/listaHotel/">Lista Hotel</a>
-        </button>
-          <a class="navbar-brand" href="#">Aggiungi Hotel</a>
-        <button id="logout" class="btn btn-primary" type="button">Logout</button>
-    </nav>
+    </button>
+{% endblock %}
+{% block content %}
     <main>
         <div class="wrapper">
-            <form method="post" action="">
-                <div class="form-group">
-                    <label for="nome">Nome</label>
-                    <input type="text" class="form-control" id="nome" placeholder="Nome">
-                </div>
-                <div class="form-group">
-                    <label for="descrizione">Example textarea</label>
-                    <textarea class="form-control" id="descrizione" rows="3"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="citta">Password</label>
-                    <input type="text" class="form-control" id="citta" placeholder="Città">
-                </div>
-                <div class="form-group">
-                    <label for="indirizzo">Password</label>
-                    <input type="text" class="form-control" id="indirizzo" placeholder="Indirizzo">
-                </div>
-                <button type="submit" class="btn btn-primary">Conferma</button>
+            <form id="form-aggiungi-hotel" action="/aggiungiHotel/" method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        {{ field.errors }}
+                        <a>{{ field.label_tag }}</a>
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <input id="submit" type="submit" value="CONFERMA"/>
             </form>
         </div>
     </main>
