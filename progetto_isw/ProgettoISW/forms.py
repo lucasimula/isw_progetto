@@ -35,8 +35,9 @@ class FormRegistrazione(forms.Form):
 
 
 class FormLogin(forms.Form):
-    username = forms.CharField(label="Username", required=True, max_length=100)
-    password = forms.CharField(widget=forms.PasswordInput())
+    username = forms.CharField(label="Username", required=True, max_length=100,
+                               widget=forms.TextInput(attrs={"placeholder": "Nome", "class": "form-control"}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Password", "class": "form-control"}))
 
     def clean_username(self):
         # Viene controllato che l'username sia presente nel DB

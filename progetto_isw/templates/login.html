@@ -1,15 +1,20 @@
 {% extends "base.html" %}
 {% block titolo %} Login {% endblock %}
 {% block content %}
-    <form id="login" action="/login/" method="POST">
-        {% csrf_token %}
-        {% for field in form %}
-            <div class="form-group">
-                {{ field.errors }}
-                <a>{{ field.label_tag }}</a>
-                {{ field }}
-            </div>
-        {% endfor %}
-        <input id="loginButton" type="submit" value="ACCEDI"/>
-    </form>
+    <main>
+        <div class="wrapper-form">
+            <h1 id="maintitle">Login</h1>
+            <form id="login" action="/login/" method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        {{ field.errors }}
+                        <a>{{ field.label_tag }}</a>
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <input id="loginButton" type="submit" value="ACCEDI"/>
+            </form>
+        </div>
+    </main>
 {% endblock %}

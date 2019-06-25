@@ -57,6 +57,9 @@ def logout(request):
     if 'nomeAlbergatore' in request.session:
         del request.session['nomeAlbergatore']
 
+    if 'idHotel' in request.session:
+        del request.session['idHotel']
+
     return redirect("/home/")
 
 

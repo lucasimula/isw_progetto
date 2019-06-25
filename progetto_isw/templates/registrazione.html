@@ -1,15 +1,20 @@
 {% extends "base.html" %}
 {% block titolo %}Registrazione{% endblock %}
 {% block content %}
-    <form id="signUp" action="/registrazione/" method="POST">
-        {% csrf_token %}
-        {% for field in form %}
-            <div class="form-group">
-                {{ field.errors }}
-                <a>{{ field.label_tag }}</a>
-                {{ field }}
-            </div>
-        {% endfor %}
-        <button type="submit" onclick="popUpFun()">Registrati</button>
-    </form>
+    <main>
+        <div class="wrapper-form">
+            <h1 id="maintitle">Login</h1>
+            <form id="signUp" action="/registrazione/" method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        {{ field.errors }}
+                        <a>{{ field.label_tag }}</a>
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <button type="submit" onclick="popUpFun()">Registrati</button>
+            </form>
+        </div>
+    </main>
 {% endblock %}

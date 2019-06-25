@@ -3,7 +3,7 @@
 }
 
 body {
-    background-color: lightgreen;
+    background-color: aliceblue;
 }
 
 button a {
@@ -11,11 +11,23 @@ button a {
 }
 
 #maintitle {
+    margin: 10px 0;
     font-weight: lighter;
     text-align: center;
 }
 
-#wrapper {
+.wrapper {
     width: 70%;
     margin: auto;
+}
+
+.wrapper-form {
+    width: 40%;
+    margin: auto;
+    border: 1px solid lightgrey;
+    padding: 2%;
+}
+
+table {
+    background-color: unset;
 }
