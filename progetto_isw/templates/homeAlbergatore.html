@@ -12,19 +12,21 @@
             <table class="table table-striped table-hover table-success">
                 <thead>
                     <tr>
-                          <th scope="col">Email</th>
-                          <th scope="col">Camera</th>
-                          <th scope="col">Check-In</th>
-                          <th scope="col">Check-Out</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Hotel</th>
+                        <th scope="col">Camera</th>
+                        <th scope="col">Check-In</th>
+                        <th scope="col">Check-Out</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for p in prenotazioni %}
                     <tr>
-                          <th scope="row">{{ p.email }}</th>
-                          <td>{{ p.camera }}</td>
-                          <td>{{ p.checkIn }}</td>
-                          <td>{{ p.checkOut }}</td>
+                        <th scope="row">{{ p.email }}</th>
+                        <td>{{ p.camera.hotel.nome }}</td>
+                        <td>{{ p.camera.numero }}</td>
+                        <td>{{ p.checkIn }}</td>
+                        <td>{{ p.checkOut }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

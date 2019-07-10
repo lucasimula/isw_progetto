@@ -107,7 +107,7 @@ def aggiungiHotel(request):
     if request.method == 'POST':
         form = FormAggiungiHotel(request.POST)
 
-        if(form.is_valid()):
+        if form.is_valid():
             username = request.session['nomeAlbergatore']
             nome = form.cleaned_data['nome']
             descrizione = form.cleaned_data['descrizione']
@@ -157,7 +157,7 @@ def aggiungiCamera(request):
     if request.method == 'POST':
         form = FormAggiungiCamera(request.POST)
 
-        if(form.is_valid()):
+        if form.is_valid():
             idHotel = request.session['idHotel']
             numero = form.cleaned_data['numero']
             nLetti = form.cleaned_data['nLetti']

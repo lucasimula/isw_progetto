@@ -67,17 +67,21 @@ class FormLogin(forms.Form):
 
 
 class FormAggiungiHotel(forms.Form):
-    nome = forms.CharField(label="Nome", required=True, max_length=100)
-    descrizione = forms.CharField()
-    citta = forms.CharField(max_length=100)
-    indirizzo = forms.CharField(max_length=100)
+    nome = forms.CharField(required=True, max_length=100,
+                           widget=forms.TextInput(attrs={"placeholder": "Nome", "class": "form-control"}))
+    descrizione = forms.CharField(required=True,
+                                  widget=forms.TextInput(attrs={"placeholder": "Descrizione", "class": "form-control"}))
+    citta = forms.CharField(label="Città", required=True, max_length=100,
+                            widget=forms.TextInput(attrs={"placeholder": "Città", "class": "form-control"}))
+    indirizzo = forms.CharField(required=True, max_length=100,
+                                widget=forms.TextInput(attrs={"placeholder": "Indirizzo", "class": "form-control"}))
 
 
 class FormAggiungiCamera(forms.Form):
-    numero = forms.IntegerField(required=True)
-    nLetti = forms.IntegerField(required=True)
-    prezzo = forms.FloatField(required=True)
-    servizi = forms.CharField()
+    numero = forms.IntegerField(required=True, widget=forms.TextInput(attrs={"class": "form-control"}))
+    nLetti = forms.IntegerField(required=True, widget=forms.TextInput(attrs={"class": "form-control"}))
+    prezzo = forms.FloatField(required=True, widget=forms.TextInput(attrs={"class": "form-control"}))
+    servizi = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Servizi", "class": "form-control"}))
     
 
 class FormPrenotazione(forms.Form):
