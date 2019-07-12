@@ -28,9 +28,11 @@ class Camera(models.Model):
     prezzo = models.FloatField()
     servizi = models.TextField()
 
-
 class Prenotazione(models.Model):
     email = models.EmailField()
     camera = models.ForeignKey(Camera, on_delete=models.CASCADE)
     checkIn = models.DateField()
     checkOut = models.DateField()
+
+    def __str__(self):
+        return self.email + " " + self.camera.__str__() + " " + str(self.checkIn) + " " + str(self.checkOut)

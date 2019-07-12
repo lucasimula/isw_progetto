@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from ProgettoISW import views
+from progetto_isw.ProgettoISW import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,4 +28,6 @@ urlpatterns = [
     path('aggiungiHotel/', views.aggiungiHotel),
     path('gestioneHotel/', views.gestioneHotel),
     path('aggiungiCamera/', views.aggiungiCamera),
+    path('cercaB/', views.cercaB),
+    path('cercaAl/', views.cercaAl),
 ]

@@ -1,4 +1,6 @@
-from django.shortcuts import render, redirect
+import datetime
+
+from django.shortcuts import render, redirect, render_to_response
 from .forms import *
 # Create your views here.
 
@@ -178,3 +180,56 @@ def aggiungiCamera(request):
         hotel = Hotel(id=request.GET.get('id', None))
         form = FormAggiungiCamera()
         return render(request, 'aggiungiCamera.html', {'form': form, 'id': hotel.id})
+
+
+def cercaB(request):
+    return render(request, "cercaB.html")
+
+
+def cercaAl(request):
+    lista = []
+
+    if request.method == 'GET':
+        cercaCitta = request.GET.get('cercaCitta', None)
+        cercaLetti = request.GET.get('cercaLetti', None)
+        cercaCheckIn = request.GET.get('cercaCheckIn', None)
+        cercaCheckOut = request.GET.get('cercaCheckOut', None)
+
+        if (cercaCheckIn != None and cercaCheckOut != None and cercaCitta != None and cercaLetti != None):
+
+            for ca in Camera.objects.all():
+
+                if (ca.hotel.citta == cercaCitta and str(ca.nLetti) == cercaLetti):
+
+                    for z in Prenotazione.objects.all():
+                        if (ca.numero not in Prenotazione.objects.filter()):
+
+                            listIn = cercaCheckIn.split("-")
+                            listOut = cercaCheckOut.split("-")
+
+                            checkinDT = datetime.date(int(listIn[0]), int(listIn[1]), int(listIn[2]))
+                            checkoutDT = datetime.date(int(listOut[0]), int(listOut[1]), int(listOut[2]))
+
+                            request.session['checkinDT'] = cercaCheckIn
+                            request.session['checkoutDT'] = cercaCheckOut
+
+                            between = Prenotazione.objects.filter(checkIn=checkinDT, checkOut=checkoutDT)
+
+                            if (checkoutDT < checkinDT):
+                                context = {""}
+
+                            # se la data richiesta è occupata si otrna alla search
+                            if (between.exists()):
+                                return render(request, "cercaAl.html")
+                            else:
+                                # si restituisce la lista
+                                tmp = [ca.hotel.nome, ca.nLetti, ca.prezzi, ca.servizi, ca.numero]
+                                if tmp not in lista:
+                                    lista.append(tmp)
+
+    if len(lista) > 0:
+        context = {'lista': lista}
+    else:
+        context = {'lista2': '1'}
+
+    return render(request, "cercaAl.html", context)
