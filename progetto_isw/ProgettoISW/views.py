@@ -222,7 +222,7 @@ def cercaAl(request):
                                 return render(request, "cercaAl.html")
                             else:
                                 # si restituisce la lista
-                                tmp = [ca.hotel.nome, ca.nLetti, ca.prezzi, ca.servizi, ca.numero]
+                                tmp = [ca.hotel.nome, ca.nLetti, ca.prezzo, ca.servizi, ca.numero]
                                 if tmp not in lista:
                                     lista.append(tmp)
 
