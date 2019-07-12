@@ -218,7 +218,6 @@ def cercaAl(request):
                             if (checkoutDT < checkinDT):
                                 context = {""}
 
-                            # se la data richiesta è occupata si otrna alla search
                             if (between.exists()):
                                 return render(request, "cercaAl.html")
                             else:
