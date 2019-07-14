@@ -402,7 +402,7 @@ class TestAggiungiCamera(TestCase):
                      'prezzo': "62.0",
                      'servizi': "Colazione inclusa, Asciugacapelli"}
 
-        form = FormAggiungiCamera(data={form_data})
+        form = FormAggiungiCamera(data=form_data)
 
         self.assertTrue(form.is_valid(), msg=form.errors)
 
@@ -429,7 +429,7 @@ class TestAggiungiCamera(TestCase):
                      'prezzo': "62.0",
                      'servizi': "Colazione inclusa, Asciugacapelli"}
 
-        form = FormAggiungiCamera(data={form_data})
+        form = FormAggiungiCamera(data=form_data)
 
         # Verifica il form
         self.assertTrue(form.is_valid())
