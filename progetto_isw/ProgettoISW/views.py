@@ -50,8 +50,12 @@ def login(request):
 
                 return redirect('/homeAlbergatore/')
     else:
-        # Se il form non contiene niente
-        loginF = FormLogin()
+        # Se l'albergatore è già loggato verrà reindirizzato alla sua home
+        if 'nomeAlbergatore' in request.session:
+            return redirect("/homeAlbergatore/")
+        else:
+            # Se il form non contiene niente
+            loginF = FormLogin()
     return render(request, "login.html", {"form": loginF})
 
 

@@ -62,7 +62,177 @@ class TestCamera(TestCase):
 
 # Test di accettazione
 
-#NB RIVEDERE TUTTI I COMMENTI
+# NB RIVEDERE TUTTI I COMMENTI
+
+class TestRegistrazione(TestCase):
+    """ Classe contenente i TA della user story 1 """
+    def setUp(self):
+        albergatore = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
+                                  username='marcococco', email='marcococco@gmail.com',
+                                  citta='Cagliari', indirizzo='Via Scano 51')
+        albergatore.save()
+
+        self.albergatore = albergatore
+        self.request_factory = RequestFactory()
+        self.middleware = SessionMiddleware()
+
+    def test_campi_mancanti(self):
+        """ Verifica che un form di registrazione incompleto non consenta la registrazione """
+
+        # Ottenimento della request
+        request = self.request_factory.get('/registrazione/', follow=True)
+        self.middleware.process_request(request)
+        # Creazione della sessione
+        request.session.save()
+
+        # Riempimento del form
+        form_data = {'nome': "Enzo",
+                     'cognome': "Scano",
+                     'email': "enzoscano@gmail.com",
+                     'citta': "Cagliari",
+                     'indirizzo': "Via Cocco Ortu 99",
+                     'username': "enzoscano",
+                     'password': "buongiorno",
+                     'confermaPassword': "buongiorno"}
+
+        form = FormRegistrazione(data=form_data)
+
+        # Verifica
+        self.assertTrue(form.is_valid(), msg=form.errors)
+
+    def test_registrazione_avvenuta(self):
+        """ Verifica che un hotel keeper registrato possa accedere alla sua home """
+
+        # Creazione request
+        request = self.request_factory.get('/home/', follow=True)
+        self.middleware.process_request(request)
+        # Creazione sessione
+        request.session.save()
+
+        # Simulazione login
+        request.session['nomeAlbergatore'] = 'marcococco'
+
+        # Esecuzione della vista che gestisce la home dell'albergatore
+        response = homeAlbergatore(request)
+
+        # Verifica l'accesso
+        self.assertEquals(response.status_code, 200)
+
+    def test_registrazione_fallita(self):
+        """ Verifica che un hotel keeper non registrato non possa accedere alla shome"""
+
+        # Creazione request
+        request = self.request_factory.get('/home/', follow=True)
+        self.middleware.process_request(request)
+        # Creazione sessione
+        request.session.save()
+
+        # Simulazione login
+        request.session['nomeAlbergatore'] = 'lorenzopalla'
+
+        # Esecuzione della vista che gestisce la home dell'hotel keeper
+        response = homeAlbergatore(request)
+
+        # Verifica accesso negato e redirect
+        self.assertEquals(response.status_code, 302)
+
+    def test_controllo_stesso_username(self):
+        """ Verifica che sia negata l'iscrizione se l'username specificato esiste già """
+
+        # Lista di appoggio
+        listaAlbergatori = []
+
+        # Creazione request
+        request = self.request_factory.get('/registrazione/', follow=True)
+        self.middleware.process_request(request)
+        # Creazione sessione
+        session = self.client.session
+        session.save()
+
+        # Riempimento del form
+        form_data = {'nome': "Enzo",
+                     'cognome': "Scano",
+                     'email': "enzoscano@gmail.com",
+                     'citta': "Cagliari",
+                     'indirizzo': "Via Cocco Ortu 99",
+                     'username': "marcococco",
+                     'password': "buongiorno",
+                     'confermaPassword': "buongiorno"}
+
+        form = FormRegistrazione(data=form_data)
+
+        # verifica che sia negata la validazione del form
+        self.assertFalse(form.is_valid(), form.errors)
+
+        # Conta gli utenti registrati e verifica che non ne siano stati aggiunti
+        for a in Albergatore.objects.all():
+            listaAlbergatori.append(a)
+
+        self.assertTrue(len(listaAlbergatori), 1)
+
+        # Riempimento del form
+        form_data = {'nome': "Enzo",
+                     'cognome': "Scano",
+                     'email': "enzoscano@gmail.com",
+                     'citta': "Cagliari",
+                     'indirizzo': "Via Cocco Ortu 99",
+                     'username': "enzoscano",
+                     'password': "buongiorno",
+                     'confermaPassword': "buongiorno"}
+
+        form = FormRegistrazione(data=form_data)
+
+        # Conteggio e verifica
+        listaAlbergatori = []
+
+        for a in Albergatore.objects.all():
+            listaAlbergatori.append(a)
+
+        self.assertTrue(len(listaAlbergatori), 1)
+
+
+class TestLogin(TestCase):
+    """ Classe contenente i TA della user story 2 """
+    def setUp(self):
+        albergatore = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
+                                  username='marcococco', email='marcococco@gmail.com',
+                                  citta='Cagliari', indirizzo='Via Scano 51')
+        albergatore.save()
+
+        self.albergatore = albergatore
+        self.request_factory = RequestFactory()
+        self.middleware = SessionMiddleware()
+
+    def test_login(self):
+        """verifica l'accesso di un utente proprietario di un albergo"""
+        # Riempimento form
+        form_data = {'username': "marcococco",
+                     'password': "ciao"}
+
+        loginForm = FormLogin(data=form_data)
+
+        # Verifica
+        self.assertTrue(loginForm.is_valid(), loginForm.errors)
+
+    def test_redirect_utente_loggato(self):
+        """ Verifica che un hotel keeper loggato non abbia accesso alla pagina di login
+        e che venga reindirizzato verso la pagina diversa"""
+
+        # Creazione della request
+        request = self.request_factory.get('/login/', follow=True)
+        self.middleware.process_request(request)
+        # Creazione della sessione
+        request.session.save()
+
+        # Simulaazione hotel keeper loggato
+        request.session['nomeAlbergatore'] = 'marcococco'
+
+        # Esecuzione della vista di login
+        response = login(request)
+
+        # Verifica il redirect
+        self.assertEquals(response.status_code, 302)
+
 
 class TestHomeAlbergatore(TestCase):
     def setUp(self):
