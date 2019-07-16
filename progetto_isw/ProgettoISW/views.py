@@ -1,6 +1,10 @@
 import datetime
 
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, render_to_response
+from django.template.defaultfilters import safe
+from django.urls import reverse
+
 from .forms import *
 # Create your views here.
 
@@ -187,55 +191,72 @@ def aggiungiCamera(request):
 
 
 def cercaB(request):
-    return render(request, "cercaB.html")
+    return render(request, "cercaB.html", {'form': FormRicerca()})
 
 
-def cercaAl(request):
+
+def cercaRS(request):
     lista = []
 
     if request.method == 'GET':
-        cercaCitta = request.GET.get('cercaCitta', None)
-        cercaLetti = request.GET.get('cercaLetti', None)
-        cercaCheckIn = request.GET.get('cercaCheckIn', None)
-        cercaCheckOut = request.GET.get('cercaCheckOut', None)
+        form = FormRicerca(request.GET)
+        if form.is_valid():
+            cercaCitta = form.cleaned_data['cercaCitta']
+            cercaLetti = form.cleaned_data['cercaLetti']
+            cercaCheckIn = request.GET.get('cercaCheckIn', None)
+            cercaCheckOut = request.GET.get('cercaCheckOut', None)
 
-        if (cercaCheckIn != None and cercaCheckOut != None and cercaCitta != None and cercaLetti != None):
+            if (cercaCheckIn != None and cercaCheckOut != None and cercaCitta != None and cercaLetti != None):
 
-            for ca in Camera.objects.all():
+                for ca in Camera.objects.all():
 
-                if (ca.hotel.citta == cercaCitta and str(ca.nLetti) == cercaLetti):
+                    if (ca.hotel.citta == cercaCitta and str(ca.nLetti) == cercaLetti):
 
-                    for z in Prenotazione.objects.all():
-                        if (ca.numero not in Prenotazione.objects.filter()):
+                        for z in Prenotazione.objects.all():
+                            if (ca.numero not in Prenotazione.objects.filter()):
 
-                            listIn = cercaCheckIn.split("-")
-                            listOut = cercaCheckOut.split("-")
+                                listIn = cercaCheckIn.split("-")
+                                listOut = cercaCheckOut.split("-")
 
-                            checkinDT = datetime.date(int(listIn[0]), int(listIn[1]), int(listIn[2]))
-                            checkoutDT = datetime.date(int(listOut[0]), int(listOut[1]), int(listOut[2]))
+                                checkinDT = datetime.date(int(listIn[0]), int(listIn[1]), int(listIn[2]))
+                                checkoutDT = datetime.date(int(listOut[0]), int(listOut[1]), int(listOut[2]))
 
-                            request.session['checkinDT'] = cercaCheckIn
-                            request.session['checkoutDT'] = cercaCheckOut
+                                request.session['checkinDT'] = cercaCheckIn
+                                request.session['checkoutDT'] = cercaCheckOut
 
-                            between = Prenotazione.objects.filter(checkIn=checkinDT, checkOut=checkoutDT)
+                                between = Prenotazione.objects.filter(checkIn=checkinDT, checkOut=checkoutDT)
 
-                            if (checkoutDT < checkinDT):
-                                context = {""}
+                                if (checkoutDT < checkinDT):
+                                    context = {""}
 
-                            if (between.exists()):
-                                return render(request, "cercaAl.html")
-                            else:
-                                # si restituisce la lista
-                                tmp = [ca.hotel.nome, ca.nLetti, ca.prezzo, ca.servizi, ca.id, ca.hotel.citta]
-                                if tmp not in lista:
-                                    lista.append(tmp)
+                                if (between.exists()):
+                                    return render(request, "cercaAl.html")
 
-    if len(lista) > 0:
-        context = {'lista': lista}
+                                else:
+                                    # si restituisce la lista
+
+                                    tmp = [ca.hotel.nome, ca.nLetti, ca.prezzo, ca.servizi, ca.numero]
+                                    print("minchia" + ca.hotel.nome)
+                                    if tmp not in lista:
+                                        lista.append(tmp)
+        if len(lista) > 0:
+            context = {'lista': lista}
+
+
+        else:
+            context = {'lista2': '1'}
+        print("NONSOOOOO" + str(ca.numero))
+        return cercaAl(request, context)
+        #return redirect(request,"/cercaAl", id = context)
+
+def cercaAl(request, id):
+
+    if id is not None:
+
+        return render(request, "cercaAl.html", id)
     else:
-        context = {'lista2': '1'}
-
-    return render(request, "cercaAl.html", context)
+        print("NOOOONE")
+        return redirect('/cercaB/')
 
 def prenotazione(request):
     try:
@@ -254,4 +275,26 @@ def prenotazione(request):
     return render(request, "confermaPrenotazione.html", context)
 
 def confermaPrenotazione(request):
-    return
+    checkinDT = request.session['checkinDT']
+    checkoutDT = request.session['checkoutDT']
+    if request.method == 'GET':
+        emailPrenotazione = request.GET.get('email', None)
+
+    if (emailPrenotazione != None):
+        try:
+            numeroCamera = request.GET.get('numeroCamera', None)
+        except:
+            numeroCamera = None
+
+
+        cameraPrenotata = Camera.objects.get(id=numeroCamera)
+
+        prenot = Prenotazione(email=emailPrenotazione, camera=cameraPrenotata, checkIn=checkinDT, checkOut=checkoutDT)
+        # salva prenotazione
+        prenot.save()
+    return render(request, "home.html", {'hotel': Hotel.objects.all()})
+
+
+
+
+

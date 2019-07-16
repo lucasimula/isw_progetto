@@ -29,6 +29,9 @@ urlpatterns = [
     path('gestioneHotel/', views.gestioneHotel),
     path('aggiungiCamera/', views.aggiungiCamera),
     path('cercaB/', views.cercaB),
+    path('cercaRS/', views.cercaRS),
     path('cercaAl/', views.cercaAl),
+
     path('prenotazione/', views.prenotazione),
+    path('confermaPrenotazione/', views.confermaPrenotazione),
 ]

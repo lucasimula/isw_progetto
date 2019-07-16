@@ -1,32 +1,37 @@
 {% extends "base.html" %}
 {% block titolo %} Cerca {% endblock %}
-     {% block content %}
+{% block content %}
             <div >
                 <h2> Prenota l'alloggio dei tuoi sogni! </h2>
             </div>
 
-                <div >
+
                 <nav>
-                        <form  method="GET" action="/cercaAl/" >
-                        {% csrf_token %}
-                    <input id="cercaCitta" type="text" name="cercaCitta" placeholder="Inserisci citta' " required>
 
-                    Da: <input type = "date" name="cercaCheckIn" value = "CheckIn" placeholder="Check In" required>
+
+                <main>
+                        <div class="wrapper">
+                        <form  method="GET" action="/cercaRS/" >
+                            {% csrf_token %}
+                                {% for field in form %}
+                                    <div class="form-group">
+                                        {{ field.errors }}
+                                        <a>{{ field.label_tag }}</a>
+                                        {{ field }}
+                                    </div>
+                                {% endfor %}
+                            Da: <input type = "date" name="cercaCheckIn" value = "CheckIn" placeholder="Check In" required>
                     A: <input type = "date" name="cercaCheckOut" value = "CheckOut" placeholder="Check Out" required>
+                                <button  id="cercaSub" type="submit">Cerca</button>
+                        </form>
+                    </div>
 
-                    <select name="cercaLetti"  placeholder="Numero letti" required>
-                        <option value=0 selected="selected">Numero letti</option>
-                        <option value=1>1</option>
-                        <option value=2>2</option>
-                        <option value=3>3</option>
-                        <option value=4>4</option>
-                        <option value=5>5</option>
-                        <option value=6>6</option>
+                    </main>
+                    {% endblock %}
 
-                    </select>
-                    <button  id="cercaSub" type="submit">Cerca</button>
-                    </form>
                 </nav>
-                </div>
-    {% block container %}{% endblock %}
-{% endblock %}
+
+
+
+
+

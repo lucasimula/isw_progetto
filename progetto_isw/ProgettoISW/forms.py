@@ -1,4 +1,8 @@
+import datetime
+
 from django import forms
+from numpy.ma import extras
+
 from .models import *
 from django.contrib.auth.hashers import make_password, check_password
 
@@ -84,8 +88,11 @@ class FormAggiungiCamera(forms.Form):
     servizi = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Servizi", "class": "form-control"}))
     
 
-class FormPrenotazione(forms.Form):
-    email = forms.EmailField(required=True)
-    camera = forms.IntegerField(required=True)
-    checkIn = forms.DateField(required=True)
-    checkOut = forms.DateField(required=True)
+class FormRicerca(forms.Form):
+    SCELTA = (('1','1'),('2','2'),('3','3'),('4','4'))
+    cercaCitta = forms.CharField(label="Città", required=True, max_length=100,
+                            widget=forms.TextInput(attrs={"placeholder": "Città", "class": "form-control"}))
+    cercaLetti = forms.ChoiceField(required=True, widget=forms.Select, choices=SCELTA)
+    #cercaCheckIn =  forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+
+   # cercaCheckOut = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))

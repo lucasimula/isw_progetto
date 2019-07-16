@@ -39,7 +39,7 @@
 
                 <div >
                 <nav>
-                        <form  method="GET" action="/confermaPrenotazione/" >
+                        <form  method="GET" action="/confermaPrenotazione/?numeroCamera{{i.4}}" >
                         {% csrf_token %}
                     <input id="email" type="text" name="email" placeholder="Inserisci l'email" required>
 
