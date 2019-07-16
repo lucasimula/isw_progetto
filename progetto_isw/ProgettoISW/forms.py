@@ -93,6 +93,6 @@ class FormRicerca(forms.Form):
     cercaCitta = forms.CharField(label="Città", required=True, max_length=100,
                             widget=forms.TextInput(attrs={"placeholder": "Città", "class": "form-control"}))
     cercaLetti = forms.ChoiceField(required=True, widget=forms.Select, choices=SCELTA)
-    #cercaCheckIn =  forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    cercaCheckIn =  forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
 
-   # cercaCheckOut = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    cercaCheckOut = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))

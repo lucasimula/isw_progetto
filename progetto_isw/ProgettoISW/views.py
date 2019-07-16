@@ -235,7 +235,7 @@ def cercaRS(request):
                                 else:
                                     # si restituisce la lista
 
-                                    tmp = [ca.hotel.nome, ca.nLetti, ca.prezzo, ca.servizi, ca.numero]
+                                    tmp = [ca.hotel.nome, ca.nLetti, ca.prezzo, ca.servizi, ca.id, ca.hotel.citta]
                                     print("minchia" + ca.hotel.nome)
                                     if tmp not in lista:
                                         lista.append(tmp)
