@@ -30,4 +30,5 @@ urlpatterns = [
     path('aggiungiCamera/', views.aggiungiCamera),
     path('cercaB/', views.cercaB),
     path('cercaAl/', views.cercaAl),
+    path('prenotazione/', views.prenotazione),
 ]

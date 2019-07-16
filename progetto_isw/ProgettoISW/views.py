@@ -188,7 +188,20 @@ def aggiungiCamera(request):
 
 def cercaB(request):
     return render(request, "cercaB.html")
+def prenotazione(request):
+    try:
 
+        numeroCamera = request.GET.get('numeroCamera', None)
+    except:
+        numeroCamera = None
+    #viene utilizzato l'id per distinguere le camere in modo univoco
+    cameraDaPrenotare = Camera.objects.get(id=numeroCamera)
+    lista = []
+
+    tmp = [cameraDaPrenotare.hotel.nome, cameraDaPrenotare.nLetti, cameraDaPrenotare.prezzo, cameraDaPrenotare.servizi, cameraDaPrenotare.id, cameraDaPrenotare.hotel.citta]
+    lista.append(tmp)
+    context = {'cameraDaPrenotare': lista}
+    return render(request, "confermaPrenotazione.html", context)
 
 def cercaAl(request):
     lista = []
@@ -226,7 +239,7 @@ def cercaAl(request):
                                 return render(request, "cercaAl.html")
                             else:
                                 # si restituisce la lista
-                                tmp = [ca.hotel.nome, ca.nLetti, ca.prezzo, ca.servizi, ca.numero]
+                                tmp = [ca.hotel.nome, ca.nLetti, ca.prezzo, ca.servizi, ca.id, ca.hotel.citta]
                                 if tmp not in lista:
                                     lista.append(tmp)
 
@@ -236,3 +249,6 @@ def cercaAl(request):
         context = {'lista2': '1'}
 
     return render(request, "cercaAl.html", context)
+
+def confermaPrenotazione(request):
+    return
