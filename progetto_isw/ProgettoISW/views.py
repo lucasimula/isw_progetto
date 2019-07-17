@@ -223,22 +223,34 @@ def cercaRS(request):
 
                                 request.session['checkinDT'] = cercaCheckIn
                                 request.session['checkoutDT'] = cercaCheckOut
+                                dataEsiste=0
+                                listaPrenotazioni = Prenotazione.objects.all()
+                                for item in listaPrenotazioni:
+                                    if(item.camera == ca):
+                                        #viene controllato se la data di checIn o checkOut inserita è compresa in quelle prenotate
+                                        #e viceversa
+                                        if(checkinDT > item.checkIn and checkinDT < item.checkOut):
+                                            dataEsiste= dataEsiste + 1
+                                        if(item.checkIn > checkinDT and item.checkIn < checkoutDT):
+                                            dataEsiste = dataEsiste + 1
 
-                                between = Prenotazione.objects.filter(checkIn=checkinDT, checkOut=checkoutDT)
+                                        if (checkoutDT > item.checkIn and checkoutDT < item.checkOut):
+                                            dataEsiste = dataEsiste + 1
+                                        if (item.checkOut > checkinDT and item.checkOut < checkoutDT):
+                                            dataEsiste = dataEsiste + 1
 
-                                if (checkoutDT < checkinDT):
-                                    context = {""}
-
-                                if (between.exists()):
-                                    return render(request, "cercaAl.html")
-
+                                if(dataEsiste>0):
+                                    return render(request, "cercaB.html", {'form':FormRicerca()})
                                 else:
-                                    # si restituisce la lista
-
                                     tmp = [ca.hotel.nome, ca.nLetti, ca.prezzo, ca.servizi, ca.id, ca.hotel.citta]
 
                                     if tmp not in lista:
                                         lista.append(tmp)
+
+                                if (checkoutDT < checkinDT):
+                                    context = {""}
+
+
         if len(lista) > 0:
             context = {'lista': lista}
 
@@ -296,9 +308,4 @@ def confermaPrenotazione(request):
         return render(request, "home.html", {'hotel': Hotel.objects.all()})
     else:
         return render(request, "cercaB.html", {'form': FormRicerca()})
-
-
-
-
-
 
