@@ -438,7 +438,7 @@ class TestAggiungiHotel(TestCase):
         self.assertTrue(form.is_valid(), msg=form.errors)
 
     def test_hotel_aggiunto(self):
-        """ Verifica che un hotel sia correttamente aggiunto """
+        """ Verifica che un hotel sia stato aggiunto correttamente """
 
         # Lista temporanea
         listaHotel = []
@@ -446,7 +446,7 @@ class TestAggiungiHotel(TestCase):
         # Creazione request
         request = self.request_factory.get('/aggiungiHotel/', follow=True)
         self.middleware.process_request(request)
-        # Simulazione hotel keeper loggato e creazione sessione
+
         key_sessione = self.albergatore.username
         session = self.client.session
         session['nomeAlbergatore'] = key_sessione
@@ -473,7 +473,7 @@ class TestAggiungiHotel(TestCase):
         # Verifica che il form sia valido
         self.assertTrue(form.is_valid())
 
-        # Verifica che la view non abbia restituito errore
+        # Verifica che non abbia restituito errore
         self.assertEquals(response.status_code, 200)
 
         # Invia il form in POST all'url di aggiunta hotel
@@ -627,3 +627,110 @@ class TestAggiungiCamera(TestCase):
                 listaCamere.append(c)
 
         self.assertEqual(len(listaCamere), 2)
+
+class TestCerca(TestCase):
+    """ Classe contenente i TA della user story 8 """
+    def setUp(self):
+        albergatore = Albergatore(nome='Giovanni', cognome='Cocco', password='GiovanniCocco',
+                                  username='gcocco', email='gcocco@gmail.com',
+                                  citta='Cagliari', indirizzo='Via Scano 51')
+        albergatore.save()
+        hotel = Hotel(albergatore=albergatore, nome='La bellezza',
+                      descrizione='Hotel 3 stelle', citta='Sassari', indirizzo='Piazza Italia')
+
+
+        hotel.save()
+
+        cameraDaPrenotare= Camera(numero=50, nLetti=1, prezzo=35, servizi='Wi-fi', hotel=hotel)
+        cameraDaPrenotare.save()
+
+        #albergatore che non ha hotel
+        albergatore2 = Albergatore(nome='Giovanna', cognome='Cicci', password='GiovannaCicci',
+                                  username='gcicci', email='gcicci@gmail.com',
+                                  citta='Cagliari', indirizzo='Via Scano 52')
+        albergatore2.save()
+
+        prenotare = Prenotazione(email='ag@gmail.com', camera=cameraDaPrenotare, checkIn=datetime.date(2019, 8, 28),
+                          checkOut=datetime.date(2019, 8, 31))
+        prenotare.save()
+
+        self.albergatoreConH = albergatore
+
+        self.request_factory = RequestFactory()
+        self.middleware = SessionMiddleware()
+
+
+    def testCercaR(self):
+        """ Verifica che sia possibile effettuare una ricerca"""
+
+        # Creazione request
+        request = self.request_factory.get('/cercaRS/', follow=True)
+
+        # Creazione valori in GET
+        request.GET.__init__(mutable=True)
+
+        request.GET['cercaCitta'] = 'Sassari'
+        request.GET['cercaLetti'] = '1'
+        request.GET['cercaCheckIn'] = '2019-08-18'
+        request.GET['cercaCheckOut'] = '2019-08-22'
+
+        self.middleware.process_request(request)
+
+        # Creazione sessione
+        request.session.save()
+
+        # Invio dei dati alla view che effettua la ricerca
+        response = cercaRS(request)
+
+        # Verifica corrispondenze trovate
+        self.assertContains(response, 'La bellezza')
+
+
+    def testRicercaNonTrovata(self):
+        """ Se la ricerca non viene visualizzata perché non vengono trovate camere per quella città
+        viene visualizzato un messaggio :
+        Spiacenti! Non abbiamo camere disponibili per la città da lei indicata.
+        con un link per tornare alla pagina di ricerca"""
+
+
+        request = self.request_factory.get('/cercaRS/', follow=True)
+
+
+        request.GET.__init__(mutable=True)
+
+        request.GET['cercaCitta'] = 'Gavoi'
+        request.GET['cercaLetti'] = '1'
+        request.GET['cercaCheckIn'] = '2019-08-18'
+        request.GET['cercaCheckOut'] = '2019-08-22'
+
+        self.middleware.process_request(request)
+
+
+        request.session.save()
+
+        # Invio dati alla view che esegue la ricerca
+        response = cercaRS(request)
+
+
+        self.assertContains(response, 'Spiacenti! Non abbiamo camere disponibili per la città da lei indicata.')
+
+        def testRicercaNonTrovataData(self):
+            """ Se la ricerca non viene visualizzata perché non vengono trovate date disponibili"""
+
+            request = self.request_factory.get('/cercaRS/', follow=True)
+
+            request.GET.__init__(mutable=True)
+
+            request.GET['cercaCitta'] = 'Sassari'
+            request.GET['cercaLetti'] = '1'
+            request.GET['cercaCheckIn'] = '2019-08-29'
+            request.GET['cercaCheckOut'] = '2019-08-30'
+
+            self.middleware.process_request(request)
+
+            request.session.save()
+
+            # Invio dati alla view che esegue la ricerca
+            response = cercaRS(request)
+
+            self.assertContains(response, 'Spiacenti! La camera è stata già prenotata')
