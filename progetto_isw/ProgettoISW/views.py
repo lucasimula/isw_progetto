@@ -240,7 +240,7 @@ def cercaRS(request):
                                             dataEsiste = dataEsiste + 1
 
                                 if(dataEsiste>0):
-                                    return render(request, "cercaB.html", {'form':FormRicerca()})
+                                    return render(request, "cercaB.html", {'form':FormRicerca(),'lista2': '1'})
                                 else:
                                     tmp = [ca.hotel.nome, ca.nLetti, ca.prezzo, ca.servizi, ca.id, ca.hotel.citta]
 
@@ -248,7 +248,7 @@ def cercaRS(request):
                                         lista.append(tmp)
 
                                 if (checkoutDT < checkinDT):
-                                    context = {""}
+                                    return render(request, "cercaB.html", {'form':FormRicerca()})
 
 
         if len(lista) > 0:
