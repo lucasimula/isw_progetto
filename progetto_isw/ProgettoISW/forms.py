@@ -96,3 +96,6 @@ class FormRicerca(forms.Form):
     cercaCheckIn =  forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
 
     cercaCheckOut = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+
+class FormConferma(forms.Form):
+    email = forms.EmailField(label="Email", required=True)

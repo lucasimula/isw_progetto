@@ -236,7 +236,7 @@ def cercaRS(request):
                                     # si restituisce la lista
 
                                     tmp = [ca.hotel.nome, ca.nLetti, ca.prezzo, ca.servizi, ca.id, ca.hotel.citta]
-                                    print("minchia" + ca.hotel.nome)
+
                                     if tmp not in lista:
                                         lista.append(tmp)
         if len(lista) > 0:
@@ -245,7 +245,7 @@ def cercaRS(request):
 
         else:
             context = {'lista2': '1'}
-        print("NONSOOOOO" + str(ca.numero))
+
         return cercaAl(request, context)
         #return redirect(request,"/cercaAl", id = context)
 
@@ -255,7 +255,7 @@ def cercaAl(request, id):
 
         return render(request, "cercaAl.html", id)
     else:
-        print("NOOOONE")
+
         return redirect('/cercaB/')
 
 def prenotazione(request):
@@ -272,27 +272,31 @@ def prenotazione(request):
            request.session['checkinDT'], cameraDaPrenotare.hotel.indirizzo, request.session['checkoutDT']]
     lista.append(tmp)
     context = {'cameraDaPrenotare': lista}
-    return render(request, "confermaPrenotazione.html", context)
+    return render(request, "confermaPrenotazione.html", {'form': FormConferma(), 'cameraDaPrenotare': lista})
+
 
 def confermaPrenotazione(request):
     checkinDT = request.session['checkinDT']
     checkoutDT = request.session['checkoutDT']
     if request.method == 'GET':
-        emailPrenotazione = request.GET.get('email', None)
+        form = FormConferma(request.GET)
+    if form.is_valid():
+        emailPrenotazione = form.cleaned_data['email']
 
-    if (emailPrenotazione != None):
-        try:
-            numeroCamera = request.GET.get('numeroCamera', None)
-        except:
-            numeroCamera = None
+        if (emailPrenotazione != None):
+            numeroCamera = request.GET.get('idCam', None)
 
 
-        cameraPrenotata = Camera.objects.get(id=numeroCamera)
+            if(numeroCamera is not None):
+                cameraPrenotata = Camera.objects.get(id=numeroCamera)
 
-        prenot = Prenotazione(email=emailPrenotazione, camera=cameraPrenotata, checkIn=checkinDT, checkOut=checkoutDT)
-        # salva prenotazione
-        prenot.save()
-    return render(request, "home.html", {'hotel': Hotel.objects.all()})
+                prenot = Prenotazione(email=emailPrenotazione, camera=cameraPrenotata, checkIn=checkinDT, checkOut=checkoutDT)
+                # salva prenotazione
+                prenot.save()
+        return render(request, "home.html", {'hotel': Hotel.objects.all()})
+    else:
+        return render(request, "cercaB.html", {'form': FormRicerca()})
+
 
 
 

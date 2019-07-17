@@ -3,7 +3,7 @@
      {% block content %}
 
     {% for i in cameraDaPrenotare %}
-<main>
+
 
 
     <div >
@@ -37,20 +37,27 @@
 
 
 
-                <div >
-                <nav>
-                        <form  method="GET" action="/confermaPrenotazione/?numeroCamera{{i.4}}" >
-                        {% csrf_token %}
-                    <input id="email" type="text" name="email" placeholder="Inserisci l'email" required>
+    <main>
+                        <div class="wrapper">
+                        <form  method="GET" action="/confermaPrenotazione/" >
+                            {% csrf_token %}
+                                {% for field in form %}
+                                    <div class="form-group">
+                                        {{ field.errors }}
+                                        <a>{{ field.label_tag }}</a>
+                                        {{ field }}
+                                    </div>
+                                {% endfor %}
 
+                            <input  id="idCam" type="text" name="idCam" value="{{i.4}}" hidden="hidden"/>
+                                <button  id="cercaSub" type="submit">Conferma</button>
+                        </form>
+                    </div>
 
-                    <button  id="cercaSub" type="submit">Conferma</button>
-                    </form>
-                </nav>
-                </div>
+    </main>
 
-
-</main>
-{%endfor%}
-    {% block container %}{% endblock %}
+{% endfor %}
 {% endblock %}
+
+
+
