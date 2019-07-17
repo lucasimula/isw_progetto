@@ -14,13 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from ProgettoISW import views
-from django.urls import re_path
-
 
 urlpatterns = [
-    re_path(r'^$', views.cercaB), #imposta la pagina principale
+    re_path(r'^$', views.cercaB),
     path('admin/', admin.site.urls),
     path('home/', views.home),
     path('login/', views.login),
