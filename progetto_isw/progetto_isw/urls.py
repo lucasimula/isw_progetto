@@ -16,8 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from ProgettoISW import views
+from django.urls import re_path
+
 
 urlpatterns = [
+    re_path(r'^$', views.cercaB), #imposta la pagina principale
     path('admin/', admin.site.urls),
     path('home/', views.home),
     path('login/', views.login),
