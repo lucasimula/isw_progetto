@@ -89,13 +89,13 @@ class FormAggiungiCamera(forms.Form):
     
 
 class FormRicerca(forms.Form):
-    SCELTA = (('1','1'),('2','2'),('3','3'),('4','4'))
+    SCELTA = (('1','1'),('2','2'),('3','3'),('4','4'),('5','5'))
     cercaCitta = forms.CharField(label="Città", required=True, max_length=100,
                             widget=forms.TextInput(attrs={"placeholder": "Città", "class": "form-control"}))
-    cercaLetti = forms.ChoiceField(required=True, widget=forms.Select, choices=SCELTA)
-    cercaCheckIn =  forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    cercaLetti = forms.ChoiceField(required=True, label="Numero posti letto",widget=forms.Select, choices=SCELTA)
+    cercaCheckIn = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), initial=datetime.date.today(), label="Da:")
 
-    cercaCheckOut = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    cercaCheckOut = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), initial=datetime.date.today(), label="A:")
 
 class FormConferma(forms.Form):
     email = forms.EmailField(label="Email", required=True)
