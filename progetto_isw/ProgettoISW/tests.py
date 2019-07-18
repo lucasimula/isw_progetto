@@ -687,3 +687,65 @@ class TestCerca(TestCase):
 
             self.assertContains(response, 'Spiacenti! La camera è stata già prenotata')
 
+class TestSalva(TestCase):
+
+    def setUp(self):
+        albergatore2 = Albergatore(nome='Giovanni', cognome='Cullu', password='GiovanniCullu',
+                                   username='gCullu', email='gCullu@gmail.com',
+                                   citta='Oristano', indirizzo='Via Scano 53')
+        albergatore2.save()
+
+        hotel1 = Hotel(albergatore=albergatore2, nome='Il fico',
+                      descrizione='Hotel 4 stelle', citta='Oristano', indirizzo='Via Scano')
+
+        hotel1.save()
+
+        cameraDaPrenotare = Camera(numero=50, nLetti=2, prezzo=50, servizi='Wi-fi, Colazione in camera', hotel=hotel1)
+        cameraDaPrenotare.save()
+
+        albergatore3 = Albergatore(nome='Giovanninno', cognome='Collo', password='GiovanniCollo',
+                                   username='gCollo2', email='gCollo2@gmail.com',
+                                   citta='Oristano', indirizzo='Via Scano 54')
+        albergatore3.save()
+
+        prenotare = Prenotazione(email='agl@gmail.com', camera=cameraDaPrenotare, checkIn=datetime.date(2019, 9, 28),
+                                 checkOut=datetime.date(2019, 9, 31))
+        prenotare.save()
+
+
+
+        camera2 = Camera(numero=50, nLetti=2, prezzo=50, servizi='Wi-fi, Colazione in camera', hotel=hotel1)
+        camera2.save()
+
+
+
+        self.hotel = hotel1
+
+        self.camera = camera2
+
+
+        self.albergatoreConH = albergatore2
+        self.request_factory = RequestFactory()
+        self.middleware = SessionMiddleware()
+
+    def testResult(self):
+        # Riempimento form
+        form_prenotazione = {'Email': 'pippopluto@gmail.com'}
+
+        data = self.session
+        data.update({
+            "checkinDT": '2020-09-05',
+            "checkoutDT": '2020-09-06',
+        })
+        data.save()
+
+        # Invio form alla pagina
+        self.client.post('/prenotazione/?numeroCamera=4', form_prenotazione)
+
+
+
+        contaLePrenotazioni = Prenotazione.objects.filter().count()
+        self.assertEqual(contaLePrenotazioni, 1)
+
+
+
