@@ -10,9 +10,6 @@ button a {
     color: white;
 }
 
-#cercaSub{
-    color : red;
-}
 
 #maintitle {
     margin: 10px 0;
@@ -21,7 +18,7 @@ button a {
 }
 
 
-wrapper.bs {
+.bs {
   background-color: white;
   color: black;
   border: 2px solid #008CBA;
