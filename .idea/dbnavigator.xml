@@ -23,19 +23,15 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="289d588b-2d1b-49f6-a95b-edf19701770e">
-        <schema name="" object-types="view, table" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="289d588b-2d1b-49f6-a95b-edf19701770e">
-      <console name="Connection" type="STANDARD" schema="" session="Main">alter table ProgettoISW_albergatore
+      <console name="Connection" type="STANDARD" schema="" session="Main"><![CDATA[alter table ProgettoISW_albergatore
 add column 
-indirizzo varchar(500)</console>
-      <console name="Connection 1" type="STANDARD" schema="" session="Main">alter table ProgettoISW_albergatore 
-add column cognome varchar(128)</console>
+indirizzo varchar(500)]]></console>
+      <console name="Connection 1" type="STANDARD" schema="" session="Main"><![CDATA[alter table ProgettoISW_albergatore 
+add column cognome varchar(128)]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
@@ -291,8 +287,10 @@ add column cognome varchar(128)</console>
           <content-type name="DTD" enabled="true" />
           <content-type name="HTML" enabled="true" />
           <content-type name="XHTML" enabled="true" />
+          <content-type name="CSS" enabled="true" />
           <content-type name="SQL" enabled="true" />
           <content-type name="PL/SQL" enabled="true" />
+          <content-type name="JavaScript" enabled="true" />
           <content-type name="YAML" enabled="true" />
           <content-type name="Bash" enabled="true" />
         </content-types>
