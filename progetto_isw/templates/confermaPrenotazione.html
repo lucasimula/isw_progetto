@@ -1,17 +1,12 @@
 {% extends "base.html" %}
 {% block titolo %} Conferma Prenotazione {% endblock %}
-     {% block content %}
-
+    {% block content %}
     {% for i in cameraDaPrenotare %}
-
-
-
-    <div >
+    <div>
             <h2> Riepilogo prenotazione </h2>
             </div>
                 <p>Hai selezionato una stanza nell'hotel {{i.0}} in {{i.7}} <br> dal {{i.6}} al {{i.8}} con i seguenti dati:
                 </p>
-
     <table class="table table-striped table-hover table-success">
             <thead>
                 <tr>
@@ -34,28 +29,22 @@
 
             </tbody>
     </table>
-
-
-
     <main>
-                        <div class="wrapper">
-                        <form  method="GET" action="/confermaPrenotazione/" >
-                            {% csrf_token %}
-                                {% for field in form %}
-                                    <div class="form-group">
-                                        {{ field.errors }}
-                                        <a>{{ field.label_tag }}</a>
-                                        {{ field }}
-                                    </div>
-                                {% endfor %}
-
-                            <input  id="idCam" type="text" name="idCam" value="{{i.4}}" hidden="hidden"/>
-                                <button  id="cercaSub" type="submit">Conferma</button>
-                        </form>
+        <div class="wrapper">
+            <form  method="GET" action="/confermaPrenotazione/" >
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        {{ field.errors }}
+                            <a>{{ field.label_tag }}</a>
+                        {{ field }}
                     </div>
-
+                {% endfor %}
+                <input id="idCam" type="text" name="idCam" value="{{i.4}}" hidden="hidden"/>
+                <button id="cercaSub" type="submit">Conferma</button>
+            </form>
+        </div>
     </main>
-
 {% endfor %}
 {% endblock %}
 

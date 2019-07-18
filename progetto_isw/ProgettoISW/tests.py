@@ -687,3 +687,44 @@ class TestCerca(TestCase):
 
             self.assertContains(response, 'Spiacenti! La camera è stata già prenotata')
 
+
+class TestSalva(TestCase):
+    def setUp(self):
+        albergatore = Albergatore(nome='Giovanni', cognome='Cullu', password='GiovanniCullu',
+                                   username='gCullu', email='gCullu@gmail.com',
+                                   citta='Oristano', indirizzo='Via Scano 53')
+        albergatore.save()
+
+        hotel = Hotel(albergatore=albergatore, nome='Il fico',
+                      descrizione='Hotel 4 stelle', citta='Oristano', indirizzo='Via Scano')
+        hotel.save()
+
+        camera = Camera(numero=50, nLetti=2, prezzo=50, servizi='Wi-fi, Colazione in camera', hotel=hotel)
+        camera.save()
+
+        prenotazione = Prenotazione(email='agl@gmail.com', camera=camera, checkIn=datetime.date(2019, 9, 28),
+                                 checkOut=datetime.date(2019, 9, 30))
+        prenotazione.save()
+
+        self.albergatore = albergatore
+        self.hotel = hotel
+        self.camera = camera
+        self.request_factory = RequestFactory()
+        self.middleware = SessionMiddleware()
+
+    def testResult(self):
+        # Riempimento form
+        form_prenotazione = {'email': 'pippopluto@gmail.com'}
+
+        data = self.client.session
+        data.update({
+            "checkinDT": '2020-09-05',
+            "checkoutDT": '2020-09-06',
+        })
+        data.save()
+
+        # Invio form alla pagina
+        self.client.post('/prenotazione/?numeroCamera=' + str(self.camera.id), form_prenotazione, follow=True)
+
+        contaLePrenotazioni = Prenotazione.objects.filter().count()
+        self.assertEqual(contaLePrenotazioni, 2)
