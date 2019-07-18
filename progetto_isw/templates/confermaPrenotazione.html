@@ -30,13 +30,12 @@
             </tbody>
     </table>
     <main>
-        <div class="wrapper">
-            <form  method="GET" action="/confermaPrenotazione/" style="text-align: center">
+        <div class="wrapper ">
+            <form  method="GET" action="/confermaPrenotazione/" class="form-inline centrato" style="text-align: center">
                 {% csrf_token %}
                 {% for field in form %}
-                    <div class="form-group">
+                    <div>
                         {{ field.errors }}
-                            <a>{{ field.label_tag }}</a>
                         {{ field }}
                     </div>
                 {% endfor %}

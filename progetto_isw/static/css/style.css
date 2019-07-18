@@ -10,6 +10,14 @@ body {
     background-color: aliceblue;
 }
 
+.centrareBene{
+   width: 300px;
+}
+
+.centrato{
+    margin-left:550px;
+
+}
 button a {
     color: white;
 }

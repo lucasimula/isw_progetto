@@ -116,6 +116,6 @@ class FormRicerca(forms.Form):
     cercaCheckOut.widget.attrs.update({'class': 'margin form-control  '})
 
 class FormConferma(forms.Form):
-    email = forms.EmailField(label="Email", required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(required=True, widget=forms.TextInput(attrs={'class': 'form-control centrareBene margin', 'placeholder':'Email'}))
 
 
