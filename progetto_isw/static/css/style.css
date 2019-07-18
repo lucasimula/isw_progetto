@@ -11,6 +11,15 @@ button a {
 }
 
 
+.whiteBack{
+    background-color: white;
+}
+
+.margin{
+    margin-left: 10px;
+    margin-right:10px;
+}
+
 #maintitle {
     margin: 10px 0;
     font-weight: lighter;
