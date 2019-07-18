@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7b637ea0-72ab-435d-a788-f0764a8c59c7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProgettoISW/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProgettoISW/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProgettoISW/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProgettoISW/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProgettoISW/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProgettoISW/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,12 +29,18 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ProgettoISW/tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="214" column="63" selection-start-line="214" selection-start-column="63" selection-end-line="214" selection-end-column="63" />
+            <state relative-caret-position="217">
+              <caret line="271" column="61" selection-start-line="271" selection-start-column="61" selection-end-line="271" selection-end-column="61" />
               <folding>
                 <element signature="e#0#64#0" expanded="true" />
+                <element signature="e#232#1378#0" />
                 <element signature="e#262#1378#0" />
                 <element signature="e#1413#2949#0" />
+                <element signature="e#7596#9096#0" />
+                <element signature="e#11337#13611#0" />
+                <element signature="e#15184#19241#0" />
+                <element signature="e#19283#21002#0" />
+                <element signature="e#21099#24472#0" />
               </folding>
             </state>
           </provider>
@@ -42,17 +49,19 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ProgettoISW/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="28">
-              <caret line="62" column="53" selection-start-line="62" selection-start-column="53" selection-end-line="62" selection-end-column="53" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ProgettoISW/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1318">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="818">
+              <caret line="94" selection-start-line="94" selection-end-line="94" />
+              <folding>
+                <element signature="e#3801#4176#0" />
+                <element signature="e#4211#5099#0" />
+                <element signature="e#5134#5763#0" />
+                <element signature="e#5799#6764#0" />
+                <element signature="e#6792#6854#0" />
+                <element signature="e#6884#10078#0" />
+                <element signature="e#10111#10228#0" />
+                <element signature="e#10261#10967#0" />
+                <element signature="e#11009#11813#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -81,10 +90,10 @@
         <option value="$PROJECT_DIR$/templates/registrazione.html" />
         <option value="$PROJECT_DIR$/progetto_isw/urls.py" />
         <option value="$PROJECT_DIR$/progetto_isw/settings.py" />
-        <option value="$PROJECT_DIR$/templates/homeAlbergatore.html" />
-        <option value="$PROJECT_DIR$/ProgettoISW/views.py" />
-        <option value="$PROJECT_DIR$/ProgettoISW/tests.py" />
         <option value="$PROJECT_DIR$/ProgettoISW/forms.py" />
+        <option value="$PROJECT_DIR$/ProgettoISW/views.py" />
+        <option value="$PROJECT_DIR$/templates/homeAlbergatore.html" />
+        <option value="$PROJECT_DIR$/ProgettoISW/tests.py" />
       </list>
     </option>
   </component>
@@ -112,6 +121,11 @@
               <item name="progetto_isw" type="b2602c69:ProjectViewProjectNode" />
               <item name="progetto_isw" type="462c0819:PsiDirectoryNode" />
               <item name="ProgettoISW" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="progetto_isw" type="b2602c69:ProjectViewProjectNode" />
+              <item name="progetto_isw" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -275,7 +289,7 @@
       <workItem from="1563184922009" duration="783000" />
       <workItem from="1563284978044" duration="1191000" />
       <workItem from="1563375389056" duration="49000" />
-      <workItem from="1563438221265" duration="217000" />
+      <workItem from="1563438221265" duration="2675000" />
     </task>
     <task id="LOCAL-00001" summary="Migliorate alcune viste e aggiunti primi test">
       <created>1561477394298</created>
@@ -305,43 +319,64 @@
       <option name="project" value="LOCAL" />
       <updated>1563129805442</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Rimosso import errato">
+      <created>1563438465108</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1563438465108</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Rimossi test sotto commento">
+      <created>1563439323872</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1563439323872</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Corretto test aggiungi camera">
+      <created>1563439921789</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1563439921789</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Test__ - 2019.07.14 at 17h 01m 42s.xml">
+    <history-entry file="Test__ - 2019.07.18 at 10h 25m 44s.xml">
       <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
     </history-entry>
-    <history-entry file="Test__ - 2019.07.14 at 17h 06m 30s.xml">
+    <history-entry file="Test__ - 2019.07.18 at 10h 26m 48s.xml">
       <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
     </history-entry>
-    <history-entry file="Test__ - 2019.07.14 at 17h 11m 46s.xml">
+    <history-entry file="Test__ - 2019.07.18 at 10h 27m 18s.xml">
       <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
     </history-entry>
-    <history-entry file="Test__ - 2019.07.14 at 17h 14m 02s.xml">
+    <history-entry file="Test__ - 2019.07.18 at 10h 29m 28s.xml">
       <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
     </history-entry>
-    <history-entry file="Test__ - 2019.07.14 at 17h 54m 03s.xml">
+    <history-entry file="Test__ - 2019.07.18 at 10h 43m 23s.xml">
       <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
     </history-entry>
-    <history-entry file="Test__ProgettoISW_tests_TestRegistrazione_test_registrazione_fallita - 2019.07.14 at 17h 55m 34s.xml">
-      <configuration name="Test: ProgettoISW.tests.TestRegistrazione.test_registrazione_fallita" configurationId="DjangoTestsConfigurationType" />
+    <history-entry file="Test__ - 2019.07.18 at 10h 46m 27s.xml">
+      <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
     </history-entry>
-    <history-entry file="Test__ProgettoISW_tests_TestLogin - 2019.07.14 at 18h 01m 31s.xml">
-      <configuration name="Test: ProgettoISW.tests.TestLogin" configurationId="DjangoTestsConfigurationType" />
+    <history-entry file="Test__ - 2019.07.18 at 10h 51m 11s.xml">
+      <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
     </history-entry>
-    <history-entry file="Test__ProgettoISW_tests_TestLogin_test_login - 2019.07.14 at 18h 02m 40s.xml">
-      <configuration name="Test: ProgettoISW.tests.TestLogin.test_login" configurationId="DjangoTestsConfigurationType" />
+    <history-entry file="Test__ - 2019.07.18 at 11h 01m 08s.xml">
+      <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
     </history-entry>
-    <history-entry file="Test__ProgettoISW_tests_TestLogin - 2019.07.14 at 18h 02m 49s.xml">
-      <configuration name="Test: ProgettoISW.tests.TestLogin" configurationId="DjangoTestsConfigurationType" />
+    <history-entry file="Test__ - 2019.07.18 at 11h 03m 27s.xml">
+      <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
     </history-entry>
-    <history-entry file="Test__ProgettoISW_tests_TestLogin_test_redirect_utente_loggato - 2019.07.14 at 18h 03m 35s.xml">
-      <configuration name="Test: ProgettoISW.tests.TestLogin.test_redirect_utente_loggato" configurationId="DjangoTestsConfigurationType" />
+    <history-entry file="Test__ - 2019.07.18 at 11h 05m 26s.xml">
+      <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26331000" />
+    <option name="totallyTimeSpent" value="29006000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -352,7 +387,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.5613748" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.07364976" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -363,7 +398,7 @@
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.3289689" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3289689" />
-      <window_info anchor="bottom" id="manage.py@progetto_isw" order="13" weight="0.23076923" />
+      <window_info anchor="bottom" id="manage.py@progetto_isw" order="13" weight="0.38625205" />
       <window_info anchor="bottom" id="Messages" order="14" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -380,13 +415,16 @@
     <MESSAGE value="Aggiunti test di accettazione (non tutti funzionanti)" />
     <MESSAGE value="Fixato uno dei due test" />
     <MESSAGE value="Aggiunti test login e registrazione" />
-    <option name="LAST_COMMIT_MESSAGE" value="Aggiunti test login e registrazione" />
+    <MESSAGE value="Rimosso import errato" />
+    <MESSAGE value="Rimossi test sotto commento" />
+    <MESSAGE value="Corretto test aggiungi camera" />
+    <option name="LAST_COMMIT_MESSAGE" value="Corretto test aggiungi camera" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/progetto_isw$Test__ProgettoISW_tests_TestRegistrazione_test_registrazione_fallita.coverage" NAME="Test: ProgettoISW.tests.TestRegistrazione.test_registrazione_fallita Coverage Results" MODIFIED="1563119732878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/progetto_isw$Test__ProgettoISW_tests_TestLogin_test_login.coverage" NAME="Test: ProgettoISW.tests.TestLogin.test_login Coverage Results" MODIFIED="1563120158080" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/progetto_isw$Test__ProgettoISW_tests_TestLogin.coverage" NAME="Test: ProgettoISW.tests.TestLogin Coverage Results" MODIFIED="1563120167846" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/progetto_isw$Test__.coverage" NAME="Test:  Coverage Results" MODIFIED="1563438435584" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/progetto_isw$Test__.coverage" NAME="Test:  Coverage Results" MODIFIED="1563440942676" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/progetto_isw$Test__ProgettoISW_tests_TestLogin_test_redirect_utente_loggato.coverage" NAME="Test: ProgettoISW.tests.TestLogin.test_redirect_utente_loggato Coverage Results" MODIFIED="1563120214027" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="editorHistoryManager">
@@ -461,10 +499,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/homeAlbergatore.html">
+    <entry file="file://$PROJECT_DIR$/ProgettoISW/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
+        <state relative-caret-position="408">
+          <caret line="63" column="21" selection-start-line="63" selection-start-column="21" selection-end-line="63" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -475,28 +516,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ProgettoISW/views.py">
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/django/template/base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="62" column="53" selection-start-line="62" selection-start-column="53" selection-end-line="62" selection-end-column="53" />
+        <state relative-caret-position="80">
+          <caret line="444" selection-start-line="444" selection-end-line="444" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ProgettoISW/forms.py">
+    <entry file="file://$PROJECT_DIR$/templates/homeAlbergatore.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1318">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="119">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ProgettoISW/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="818">
+          <caret line="94" selection-start-line="94" selection-end-line="94" />
+          <folding>
+            <element signature="e#3801#4176#0" />
+            <element signature="e#4211#5099#0" />
+            <element signature="e#5134#5763#0" />
+            <element signature="e#5799#6764#0" />
+            <element signature="e#6792#6854#0" />
+            <element signature="e#6884#10078#0" />
+            <element signature="e#10111#10228#0" />
+            <element signature="e#10261#10967#0" />
+            <element signature="e#11009#11813#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ProgettoISW/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="214" column="63" selection-start-line="214" selection-start-column="63" selection-end-line="214" selection-end-column="63" />
+        <state relative-caret-position="217">
+          <caret line="271" column="61" selection-start-line="271" selection-start-column="61" selection-end-line="271" selection-end-column="61" />
           <folding>
             <element signature="e#0#64#0" expanded="true" />
+            <element signature="e#232#1378#0" />
             <element signature="e#262#1378#0" />
             <element signature="e#1413#2949#0" />
+            <element signature="e#7596#9096#0" />
+            <element signature="e#11337#13611#0" />
+            <element signature="e#15184#19241#0" />
+            <element signature="e#19283#21002#0" />
+            <element signature="e#21099#24472#0" />
           </folding>
         </state>
       </provider>

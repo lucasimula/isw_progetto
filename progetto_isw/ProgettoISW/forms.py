@@ -5,7 +5,6 @@ from django import forms
 from .models import *
 from django.contrib.auth.hashers import make_password, check_password
 
-
 class FormRegistrazione(forms.Form):
     # Variabili da inserire
     nome = forms.CharField(label="Nome", required=True, max_length=100)
@@ -62,8 +61,15 @@ class FormLogin(forms.Form):
 
         # Verifica la corrispondenza tra password inserita e quella salvata nel database
         if check_password(self.cleaned_data['password'], albergatore.password):
-            password = self.cleaned_data['password']
+            passwordCorretta = True
+        else:#assegno un valore True nel caso la password non criptata sia uguale a quella sul DB (non criptata)
+            if(str(self.cleaned_data["password"])==albergatore.password):
+                passwordCorretta = True
+
+        if   passwordCorretta:
+            password = albergatore.password
         else:
+
             raise forms.ValidationError('Password errata!')
 
         return password
