@@ -411,8 +411,7 @@ class TestAggiungiHotel(TestCase):
 
         self.assertEqual(len(listaHotel), 2)
 
-        # Esecuzione della vista che gestisce l'aggiunta di hotel
-        response = aggiungiHotel(request)
+
 
         # Riempimento form
         form_data = {'nome': "Caesar's Hotel",
@@ -425,8 +424,6 @@ class TestAggiungiHotel(TestCase):
         # Verifica che il form sia valido
         self.assertTrue(form.is_valid())
 
-        # Verifica che non abbia restituito errore
-        self.assertEquals(response.status_code, 200)
 
         # Invia il form in POST all'url di aggiunta hotel
         self.client.post('/aggiungiHotel/', form_data)
