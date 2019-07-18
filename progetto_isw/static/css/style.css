@@ -70,7 +70,7 @@ button a {
 .wrapper-form {
     width: 40%;
     margin: auto;
-    border: 1px solid lightgrey;
+    border: transparent;
     padding: 2%;
 }
 
