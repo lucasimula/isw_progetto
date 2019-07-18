@@ -81,15 +81,13 @@ def home(request):
 
 
 def homeAlbergatore(request):
-    albergatore = ""
-
     if 'nomeAlbergatore' in request.session:
         for a in Albergatore.objects.all():
             if a.username == request.session['nomeAlbergatore']:
-
+                albergatore = a
                 elencoPrenotazioni = []
                 for p in Prenotazione.objects.all():
-                    if p.camera.hotel.albergatore.username == albergatore:
+                    if p.camera.hotel.albergatore.username == albergatore.username:
                         elencoPrenotazioni.append(p)
 
                 return render(request, "homeAlbergatore.html", {'prenotazioni': elencoPrenotazioni})
