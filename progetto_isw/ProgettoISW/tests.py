@@ -745,7 +745,7 @@ class TestSalva(TestCase):
 
 
         contaLePrenotazioni = Prenotazione.objects.filter().count()
-        self.assertEqual(contaLePrenotazioni, 1)
+        self.assertEqual(contaLePrenotazioni, 2)
 
 
 
