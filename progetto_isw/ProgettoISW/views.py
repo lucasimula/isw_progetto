@@ -77,7 +77,7 @@ def home(request):
     if 'nomeAlbergatore' in request.session:
         return redirect('/homeAlbergatore/')
 
-    return render(request, "home.html", {'hotel': Hotel.objects.all()})
+    return redirect('/home/')
 
 
 def homeAlbergatore(request):
