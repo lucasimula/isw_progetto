@@ -5,7 +5,7 @@
     <div style="text-align: center">
             <h2> Riepilogo prenotazione </h2>
             </div>
-                <p>Hai selezionato una stanza nell'hotel {{i.0}} in {{i.7}} <br> dal {{i.6}} al {{i.8}} con i seguenti dati:
+                <p style="text-align: center">Hai selezionato una stanza nell'hotel {{i.0}} in {{i.7}} <br> dal {{i.6}} al {{i.8}} con i seguenti dati:
                 </p>
     <table class="table table-striped table-hover back">
             <thead>
@@ -31,7 +31,7 @@
     </table>
     <main>
         <div class="wrapper">
-            <form  method="GET" action="/confermaPrenotazione/" >
+            <form  method="GET" action="/confermaPrenotazione/" style="text-align: center">
                 {% csrf_token %}
                 {% for field in form %}
                     <div class="form-group">
