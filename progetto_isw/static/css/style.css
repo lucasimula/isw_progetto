@@ -10,7 +10,12 @@ button a {
     color: white;
 }
 
-
+.whiteText{
+    color:white;
+}
+.whiteText:hover{
+    color:white;
+}
 .whiteBack{
     background-color: white;
     height: calc(1.5em + 0.75rem + 2px);
