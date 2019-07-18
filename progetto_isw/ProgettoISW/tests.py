@@ -695,3 +695,4 @@ class TestCerca(TestCase):
             response = cercaRS(request)
 
             self.assertContains(response, 'Spiacenti! La camera è stata già prenotata')
+
