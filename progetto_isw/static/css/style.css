@@ -31,7 +31,10 @@ wrapper.bs {
   background-color: #008CBA;
   color: white;
 }
-
+.backgrondWhite{
+    background-color: white;
+    margin-left: 10px;
+}
 
 .wrapper {
     width: 70%;
