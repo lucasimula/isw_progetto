@@ -4,6 +4,7 @@ from .models import *
 from .views import *
 import datetime
 
+
 # Create your tests here.
 
 
@@ -120,7 +121,7 @@ class TestRegistrazione(TestCase):
         self.assertEquals(response.status_code, 200)
 
     def test_registrazione_fallita(self):
-        """ Verifica che un hotel keeper non registrato non possa accedere alla shome"""
+        """ Verifica che un hotel keeper non registrato non possa accedere alla home"""
 
         # Creazione request
         request = self.request_factory.get('/home/', follow=True)
@@ -195,11 +196,10 @@ class TestRegistrazione(TestCase):
 class TestLogin(TestCase):
     """ Classe contenente i TA della user story 2 """
     def setUp(self):
-        albergatore = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
-                                  username='marcococco', email='marcococco@gmail.com',
-                                  citta='Cagliari', indirizzo='Via Scano 51')
+        albergatore = Albergatore(nome='Alba', cognome='Rossi', password='albachiara',
+                                  username='albachiara', email='albachiaraRossi@gmail.com',
+                                  citta='Cagliari', indirizzo='via Luce 10')
         albergatore.save()
-
         self.albergatore = albergatore
         self.request_factory = RequestFactory()
         self.middleware = SessionMiddleware()
@@ -207,11 +207,9 @@ class TestLogin(TestCase):
     def test_login(self):
         """verifica l'accesso di un utente proprietario di un albergo"""
         # Riempimento form
-        form_data = {'username': "marcococco",
-                     'password': "ciao"}
+        form_data = {'username': 'albachiara', 'password': 'albachiara'}
 
         loginForm = FormLogin(data=form_data)
-
         # Verifica
         self.assertTrue(loginForm.is_valid(), loginForm.errors)
 
