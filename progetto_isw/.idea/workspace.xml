@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7b637ea0-72ab-435d-a788-f0764a8c59c7" name="Default Changelist" comment="">
+    <list default="true" id="7b637ea0-72ab-435d-a788-f0764a8c59c7" name="Default Changelist" comment="Corretto test visualizzazione prenotazione">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProgettoISW/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProgettoISW/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
@@ -16,38 +16,27 @@
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ProgettoISW/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
+    <leaf>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ProgettoISW/tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="259" column="8" selection-start-line="259" selection-start-column="8" selection-end-line="259" selection-end-column="8" />
+            <state relative-caret-position="395">
+              <caret line="582" column="1" selection-start-line="582" selection-start-column="1" selection-end-line="582" selection-end-column="1" />
               <folding>
                 <element signature="e#0#64#0" expanded="true" />
+                <element signature="e#3049#7563#0" />
+                <element signature="e#3572#4421#0" />
+                <element signature="e#4474#5040#0" />
+                <element signature="e#5092#5680#0" />
+                <element signature="e#5736#7563#0" />
                 <element signature="e#7597#9089#0" />
-                <element signature="e#11337#13611#0" />
-                <element signature="e#15184#19241#0" />
-                <element signature="e#19283#21002#0" />
-                <element signature="e#21099#24472#0" />
+                <element signature="e#9133#10913#0" />
+                <element signature="e#10952#13226#0" />
+                <element signature="e#13268#17325#0" />
+                <element signature="e#17367#19086#0" />
+                <element signature="e#19129#22486#0" />
+                <element signature="e#22520#26272#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/homeAlbergatore.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
             </state>
           </provider>
         </entry>
@@ -55,8 +44,23 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ProgettoISW/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="83" selection-start-line="83" selection-end-line="83" />
+            <state relative-caret-position="180">
+              <caret line="282" selection-start-line="282" selection-end-line="282" />
+              <folding>
+                <element signature="e#290#1850#0" />
+                <element signature="e#1877#2898#0" />
+                <element signature="e#2926#3121#0" />
+                <element signature="e#3147#3305#0" />
+                <element signature="e#3342#3934#0" />
+                <element signature="e#3966#4341#0" />
+                <element signature="e#4376#5271#0" />
+                <element signature="e#5387#6099#0" />
+                <element signature="e#6140#7188#0" />
+                <element signature="e#7047#10241#0" />
+                <element signature="e#10274#10391#0" />
+                <element signature="e#10424#11130#0" />
+                <element signature="e#11172#11976#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -115,22 +119,7 @@
             <path>
               <item name="progetto_isw" type="b2602c69:ProjectViewProjectNode" />
               <item name="progetto_isw" type="462c0819:PsiDirectoryNode" />
-              <item name="progetto_isw" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="progetto_isw" type="b2602c69:ProjectViewProjectNode" />
-              <item name="progetto_isw" type="462c0819:PsiDirectoryNode" />
               <item name="ProgettoISW" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="progetto_isw" type="b2602c69:ProjectViewProjectNode" />
-              <item name="progetto_isw" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="progetto_isw" type="b2602c69:ProjectViewProjectNode" />
-              <item name="progetto_isw" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -294,7 +283,8 @@
       <workItem from="1563184922009" duration="783000" />
       <workItem from="1563284978044" duration="1191000" />
       <workItem from="1563375389056" duration="49000" />
-      <workItem from="1563438221265" duration="4026000" />
+      <workItem from="1563438221265" duration="4242000" />
+      <workItem from="1563442517796" duration="913000" />
     </task>
     <task id="LOCAL-00001" summary="Migliorate alcune viste e aggiunti primi test">
       <created>1561477394298</created>
@@ -352,16 +342,17 @@
       <option name="project" value="LOCAL" />
       <updated>1563441028037</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Corretto test visualizzazione prenotazione">
+      <created>1563442329903</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1563442329903</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Test__ - 2019.07.18 at 10h 29m 28s.xml">
-      <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
-    </history-entry>
-    <history-entry file="Test__ - 2019.07.18 at 10h 43m 23s.xml">
-      <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
-    </history-entry>
     <history-entry file="Test__ - 2019.07.18 at 10h 46m 27s.xml">
       <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
     </history-entry>
@@ -386,31 +377,37 @@
     <history-entry file="Test__ - 2019.07.18 at 11h 28m 17s.xml">
       <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
     </history-entry>
+    <history-entry file="Test__ - 2019.07.18 at 11h 31m 47s.xml">
+      <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__ - 2019.07.18 at 11h 32m 57s.xml">
+      <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30357000" />
+    <option name="totallyTimeSpent" value="31486000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19515885" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18683812" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.09492635" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.29296234" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.24549918" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.2913257" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.3289689" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3289689" />
-      <window_info active="true" anchor="bottom" id="manage.py@progetto_isw" order="13" visible="true" weight="0.055646483" />
+      <window_info anchor="bottom" id="manage.py@progetto_isw" order="13" visible="true" weight="0.28805238" />
       <window_info anchor="bottom" id="Messages" order="14" weight="0.3289689" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -431,13 +428,14 @@
     <MESSAGE value="Rimossi test sotto commento" />
     <MESSAGE value="Corretto test aggiungi camera" />
     <MESSAGE value="Corretti altri test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Corretti altri test" />
+    <MESSAGE value="Corretto test visualizzazione prenotazione" />
+    <option name="LAST_COMMIT_MESSAGE" value="Corretto test visualizzazione prenotazione" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/progetto_isw$Test__ProgettoISW_tests_TestRegistrazione_test_registrazione_fallita.coverage" NAME="Test: ProgettoISW.tests.TestRegistrazione.test_registrazione_fallita Coverage Results" MODIFIED="1563119732878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/progetto_isw$Test__ProgettoISW_tests_TestLogin_test_login.coverage" NAME="Test: ProgettoISW.tests.TestLogin.test_login Coverage Results" MODIFIED="1563120158080" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/progetto_isw$Test__ProgettoISW_tests_TestLogin.coverage" NAME="Test: ProgettoISW.tests.TestLogin Coverage Results" MODIFIED="1563120167846" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/progetto_isw$Test__.coverage" NAME="Test:  Coverage Results" MODIFIED="1563442304610" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/progetto_isw$Test__.coverage" NAME="Test:  Coverage Results" MODIFIED="1563442374996" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/progetto_isw$Test__ProgettoISW_tests_TestLogin_test_redirect_utente_loggato.coverage" NAME="Test: ProgettoISW.tests.TestLogin.test_redirect_utente_loggato Coverage Results" MODIFIED="1563120214027" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="editorHistoryManager">
@@ -515,13 +513,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ProgettoISW/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/django/template/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
@@ -546,25 +537,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ProgettoISW/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ProgettoISW/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="259" column="8" selection-start-line="259" selection-start-column="8" selection-end-line="259" selection-end-column="8" />
+        <state relative-caret-position="395">
+          <caret line="582" column="1" selection-start-line="582" selection-start-column="1" selection-end-line="582" selection-end-column="1" />
           <folding>
             <element signature="e#0#64#0" expanded="true" />
+            <element signature="e#3049#7563#0" />
+            <element signature="e#3572#4421#0" />
+            <element signature="e#4474#5040#0" />
+            <element signature="e#5092#5680#0" />
+            <element signature="e#5736#7563#0" />
             <element signature="e#7597#9089#0" />
-            <element signature="e#11337#13611#0" />
-            <element signature="e#15184#19241#0" />
-            <element signature="e#19283#21002#0" />
-            <element signature="e#21099#24472#0" />
+            <element signature="e#9133#10913#0" />
+            <element signature="e#10952#13226#0" />
+            <element signature="e#13268#17325#0" />
+            <element signature="e#17367#19086#0" />
+            <element signature="e#19129#22486#0" />
+            <element signature="e#22520#26272#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ProgettoISW/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="83" selection-start-line="83" selection-end-line="83" />
+        <state relative-caret-position="180">
+          <caret line="282" selection-start-line="282" selection-end-line="282" />
+          <folding>
+            <element signature="e#290#1850#0" />
+            <element signature="e#1877#2898#0" />
+            <element signature="e#2926#3121#0" />
+            <element signature="e#3147#3305#0" />
+            <element signature="e#3342#3934#0" />
+            <element signature="e#3966#4341#0" />
+            <element signature="e#4376#5271#0" />
+            <element signature="e#5387#6099#0" />
+            <element signature="e#6140#7188#0" />
+            <element signature="e#7047#10241#0" />
+            <element signature="e#10274#10391#0" />
+            <element signature="e#10424#11130#0" />
+            <element signature="e#11172#11976#0" />
+          </folding>
         </state>
       </provider>
     </entry>

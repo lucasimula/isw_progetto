@@ -96,6 +96,7 @@ def homeAlbergatore(request):
     else:
         return redirect('/home/')
 
+
 def listaHotel(request):
     albergatore = ""
 
@@ -114,6 +115,9 @@ def listaHotel(request):
 
 
 def aggiungiHotel(request):
+    if 'nomeAlbergatore' not in request.session:
+        return redirect('/home/')
+
     if request.method == 'POST':
         form = FormAggiungiHotel(request.POST)
 
@@ -138,6 +142,9 @@ def aggiungiHotel(request):
 
 
 def gestioneHotel(request):
+    if 'nomeAlbergatore' not in request.session:
+        return redirect('/home/')
+
     hotel = None
     idHotel = request.GET.get('id', None)
 
@@ -164,6 +171,9 @@ def gestioneHotel(request):
 
 
 def aggiungiCamera(request):
+    if 'nomeAlbergatore' not in request.session:
+        return redirect('/home/')
+
     if request.method == 'POST':
         form = FormAggiungiCamera(request.POST)
 
@@ -260,6 +270,7 @@ def cercaRS(request):
         return cercaAl(request, context)
         #return redirect(request,"/cercaAl", id = context)
 
+
 def cercaAl(request, id):
 
     if id is not None:
@@ -268,6 +279,7 @@ def cercaAl(request, id):
     else:
 
         return redirect('/cercaB/')
+
 
 def prenotazione(request):
     try:
@@ -304,7 +316,7 @@ def confermaPrenotazione(request):
                 prenot = Prenotazione(email=emailPrenotazione, camera=cameraPrenotata, checkIn=checkinDT, checkOut=checkoutDT)
                 # salva prenotazione
                 prenot.save()
-        return render(request, "home.html", {'hotel': Hotel.objects.all()})
+        return redirect('/home/')
     else:
         return render(request, "cercaB.html", {'form': FormRicerca()})
 
