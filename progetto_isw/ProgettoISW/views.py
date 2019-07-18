@@ -283,7 +283,6 @@ def cercaAl(request, id):
 
 def prenotazione(request):
     try:
-
         numeroCamera = request.GET.get('numeroCamera', None)
     except:
         numeroCamera = None
@@ -309,7 +308,6 @@ def confermaPrenotazione(request):
         request.session['emailPrenotazione'] = emailPrenotazione
         if (emailPrenotazione != None):
             numeroCamera = request.session['idCam']
-
 
             if(numeroCamera is not None):
                 cameraPrenotata = Camera.objects.get(id=numeroCamera)

@@ -5,6 +5,7 @@ from django import forms
 from .models import *
 from django.contrib.auth.hashers import make_password, check_password
 
+
 class FormRegistrazione(forms.Form):
     # Variabili da inserire
     nome = forms.CharField(label="Nome", required=True, max_length=100)
@@ -29,7 +30,7 @@ class FormRegistrazione(forms.Form):
         # Override del metodo clean_data del campo confermaPassword, si controlla che password e confermaPassword siano uguali
 
         if self.cleaned_data["confermaPassword"] != self.cleaned_data["password"]:
-             raise forms.ValidationError('La password non è stata confermata correttamente')
+            raise forms.ValidationError('La password non è stata confermata correttamente')
         # La password viene criptata per essere salvata
         passwordCriptata = make_password(password=self.cleaned_data["password"])
 
@@ -53,7 +54,7 @@ class FormLogin(forms.Form):
         # Si controlla la correttezza della password
         try:
             # Se l'username è registrato si salva l'albergatore con quell'username
-            if Albergatore.objects.filter(username=self.cleaned_data["username"]).exists() :
+            if Albergatore.objects.filter(username=self.cleaned_data["username"]).exists():
                 albergatore = Albergatore.objects.get(username=self.cleaned_data["username"])
 
         except:
@@ -62,11 +63,11 @@ class FormLogin(forms.Form):
         # Verifica la corrispondenza tra password inserita e quella salvata nel database
         if check_password(self.cleaned_data['password'], albergatore.password):
             passwordCorretta = True
-        else:#assegno un valore True nel caso la password non criptata sia uguale a quella sul DB (non criptata)
-            if(str(self.cleaned_data["password"])==albergatore.password):
+        else: # assegno un valore True nel caso la password non criptata sia uguale a quella sul DB (non criptata)
+            if (str(self.cleaned_data["password"]) == albergatore.password):
                 passwordCorretta = True
 
-        if   passwordCorretta:
+        if passwordCorretta:
             password = albergatore.password
         else:
 
@@ -94,13 +95,15 @@ class FormAggiungiCamera(forms.Form):
     
 
 class FormRicerca(forms.Form):
-    SCELTA = (('1','1'),('2','2'),('3','3'),('4','4'),('5','5'))
+    SCELTA = (('1', '1'),('2', '2'),('3', '3'),('4', '4'),('5', '5'))
     cercaCitta = forms.CharField(label="Città", required=True, max_length=100,
-                            widget=forms.TextInput(attrs={"placeholder": "Città", "class": "form-control"}))
-    cercaLetti = forms.ChoiceField(required=True, label="Numero posti letto",widget=forms.Select, choices=SCELTA)
+                                 widget=forms.TextInput(attrs={"placeholder": "Città", "class": "form-control"}))
+    cercaLetti = forms.ChoiceField(required=True, label="Numero posti letto", widget=forms.Select, choices=SCELTA)
     cercaCheckIn = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), initial=datetime.date.today(), label="Da:")
 
     cercaCheckOut = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), initial=datetime.date.today(), label="A:")
 
+
 class FormConferma(forms.Form):
     email = forms.EmailField(label="Email", required=True)
+
