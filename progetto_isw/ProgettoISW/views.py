@@ -84,17 +84,19 @@ def homeAlbergatore(request):
     albergatore = ""
 
     if 'nomeAlbergatore' in request.session:
-        albergatore = request.session['nomeAlbergatore']
+        for a in Albergatore.objects.all():
+            if a.username == request.session['nomeAlbergatore']:
+
+                elencoPrenotazioni = []
+                for p in Prenotazione.objects.all():
+                    if p.camera.hotel.albergatore.username == albergatore:
+                        elencoPrenotazioni.append(p)
+
+                return render(request, "homeAlbergatore.html", {'prenotazioni': elencoPrenotazioni})
+
+        return redirect('/home/')
     else:
         return redirect('/home/')
-
-    elencoPrenotazioni = []
-    for p in Prenotazione.objects.all():
-        if p.camera.hotel.albergatore.username == albergatore:
-            elencoPrenotazioni.append(p)
-
-    return render(request, "homeAlbergatore.html", {'prenotazioni': elencoPrenotazioni})
-
 
 def listaHotel(request):
     albergatore = ""
