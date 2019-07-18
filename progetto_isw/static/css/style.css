@@ -1,5 +1,14 @@
+* {
+    box-sizing: border-box;
+}
 
+body {
+    background-color: aliceblue;
+}
 
+button a {
+    color: white;
+}
 
 
 .whiteBack{
@@ -29,13 +38,41 @@
 }
 
 
+.bs {
+  background-color: white;
+  color: black;
+  border: 2px solid #008CBA;
+}
+
+.bs:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
 
 .wrapper {
     width: 70%;
     margin: auto;
 }
 
+.booki{
+    color: #fff;
+    font-family: 'Righteous', cursive;
+    font-size: 40px;
+    font-weight: normal;
+    line-height: 40px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 0 #000;
+    margin: auto;
+    text-align: center;
+}
 
+.wrapper-form {
+    width: 40%;
+    margin: auto;
+    border: 1px solid lightgrey;
+    padding: 2%;
+}
 
 table {
     background-color: unset;
