@@ -98,13 +98,13 @@ class FormRicerca(forms.Form):
     SCELTA = (('0','Numero posti letto'),('1', '1'),('2', '2'),('3', '3'),('4', '4'),('5', '5'))
     cercaCitta = forms.CharField(label='', required=True, max_length=100,
                                  widget=forms.TextInput(attrs={"placeholder": "Città","class": "form-control"}))
-    cercaCitta.widget.attrs.update({'class': 'margin'})
+    cercaCitta.widget.attrs.update({'class': 'margin form-control'})
     cercaLetti = forms.ChoiceField(required=True, label="", widget=forms.Select, choices=SCELTA)
     cercaLetti.widget.attrs.update({'class':'btn btn-default dropdown-toggle whiteBack margin'})
     cercaCheckIn = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), initial=datetime.date.today(), label="Da:")
-    cercaCheckIn.widget.attrs.update({'class': 'margin'})
+    cercaCheckIn.widget.attrs.update({'class': 'margin form-control '})
     cercaCheckOut = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), initial=datetime.date.today(), label="A:")
-    cercaCheckOut.widget.attrs.update({'class': 'margin'})
+    cercaCheckOut.widget.attrs.update({'class': 'margin form-control  '})
 
 class FormConferma(forms.Form):
     email = forms.EmailField(label="Email", required=True)
