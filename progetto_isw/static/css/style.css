@@ -10,7 +10,12 @@ button a {
     color: white;
 }
 
-
+.whiteText{
+    color:white;
+}
+.whiteText:hover{
+    color:white;
+}
 .whiteBack{
     background-color: white;
     height: calc(1.5em + 0.75rem + 2px);
@@ -67,13 +72,21 @@ button a {
 }
 
 .booki{
-
+    color: #fff;
+    font-family: 'Righteous', cursive;
+    font-size: 40px;
+    font-weight: normal;
+    line-height: 40px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 0 #000;
+    margin: auto;
+    text-align: center;
 }
 
 .wrapper-form {
     width: 40%;
     margin: auto;
-    border: 1px solid lightgrey;
+    border: transparent;
     padding: 2%;
 }
 
