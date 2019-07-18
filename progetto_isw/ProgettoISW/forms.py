@@ -1,7 +1,6 @@
 import datetime
 
 from django import forms
-from numpy.ma import extras
 
 from .models import *
 from django.contrib.auth.hashers import make_password, check_password

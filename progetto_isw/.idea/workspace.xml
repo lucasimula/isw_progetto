@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7b637ea0-72ab-435d-a788-f0764a8c59c7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProgettoISW/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProgettoISW/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProgettoISW/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProgettoISW/forms.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,11 +15,11 @@
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ProgettoISW/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-337">
+            <state relative-caret-position="85">
               <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
             </state>
           </provider>
@@ -28,10 +28,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ProgettoISW/tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="446" column="10" selection-start-line="446" selection-start-column="10" selection-end-line="446" selection-end-column="10" />
+            <state relative-caret-position="121">
+              <caret line="214" column="63" selection-start-line="214" selection-start-column="63" selection-end-line="214" selection-end-column="63" />
               <folding>
                 <element signature="e#0#64#0" expanded="true" />
+                <element signature="e#262#1378#0" />
+                <element signature="e#1413#2949#0" />
               </folding>
             </state>
           </provider>
@@ -40,8 +42,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ProgettoISW/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="162" selection-start-line="162" selection-end-line="162" />
+            <state relative-caret-position="28">
+              <caret line="62" column="53" selection-start-line="62" selection-start-column="53" selection-end-line="62" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -49,11 +51,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ProgettoISW/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="37">
-              <caret line="75" column="46" selection-start-line="75" selection-start-column="46" selection-end-line="75" selection-end-column="46" />
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-1318">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
@@ -64,6 +63,7 @@
     <findStrings>
       <find>session</find>
       <find>.00</find>
+      <find>test</find>
     </findStrings>
     <replaceStrings>
       <replace>descrizione</replace>
@@ -81,10 +81,10 @@
         <option value="$PROJECT_DIR$/templates/registrazione.html" />
         <option value="$PROJECT_DIR$/progetto_isw/urls.py" />
         <option value="$PROJECT_DIR$/progetto_isw/settings.py" />
-        <option value="$PROJECT_DIR$/ProgettoISW/forms.py" />
         <option value="$PROJECT_DIR$/templates/homeAlbergatore.html" />
         <option value="$PROJECT_DIR$/ProgettoISW/views.py" />
         <option value="$PROJECT_DIR$/ProgettoISW/tests.py" />
+        <option value="$PROJECT_DIR$/ProgettoISW/forms.py" />
       </list>
     </option>
   </component>
@@ -139,7 +139,87 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Django tests.Test: ProgettoISW.tests.TestLogin.test_redirect_utente_loggato">
+    <configuration name="Test: ProgettoISW.tests.TestLogin" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="progetto_isw" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="ProgettoISW.tests.TestLogin" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test: ProgettoISW.tests.TestLogin.test_login" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="progetto_isw" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="ProgettoISW.tests.TestLogin.test_login" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test: ProgettoISW.tests.TestLogin.test_redirect_utente_loggato" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="progetto_isw" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="ProgettoISW.tests.TestLogin.test_redirect_utente_loggato" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test: ProgettoISW.tests.TestRegistrazione.test_registrazione_fallita" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="progetto_isw" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="ProgettoISW.tests.TestRegistrazione.test_registrazione_fallita" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="progetto_isw" type="Python.DjangoServer" factoryName="Django server">
       <module name="progetto_isw" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -163,6 +243,14 @@
       <option name="customRunCommand" value="" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Django tests.Test: ProgettoISW.tests.TestLogin.test_redirect_utente_loggato" />
+        <item itemvalue="Django tests.Test: ProgettoISW.tests.TestLogin" />
+        <item itemvalue="Django tests.Test: ProgettoISW.tests.TestLogin.test_login" />
+        <item itemvalue="Django tests.Test: ProgettoISW.tests.TestRegistrazione.test_registrazione_fallita" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -183,7 +271,11 @@
       <workItem from="1562760405927" duration="4316000" />
       <workItem from="1562957282744" duration="1190000" />
       <workItem from="1563097556505" duration="23000" />
-      <workItem from="1563114197111" duration="2248000" />
+      <workItem from="1563114197111" duration="4979000" />
+      <workItem from="1563184922009" duration="783000" />
+      <workItem from="1563284978044" duration="1191000" />
+      <workItem from="1563375389056" duration="49000" />
+      <workItem from="1563438221265" duration="217000" />
     </task>
     <task id="LOCAL-00001" summary="Migliorate alcune viste e aggiunti primi test">
       <created>1561477394298</created>
@@ -199,28 +291,24 @@
       <option name="project" value="LOCAL" />
       <updated>1562764752789</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Fixato uno dei due test">
+      <created>1563117290441</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1563117290441</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Aggiunti test login e registrazione">
+      <created>1563129805442</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1563129805442</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Test__ - 2019.07.10 at 15h 09m 55s.xml">
-      <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
-    </history-entry>
-    <history-entry file="Test__ - 2019.07.10 at 15h 15m 28s.xml">
-      <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
-    </history-entry>
-    <history-entry file="Test__ - 2019.07.10 at 15h 15m 50s.xml">
-      <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
-    </history-entry>
-    <history-entry file="Test__ - 2019.07.14 at 16h 34m 18s.xml">
-      <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
-    </history-entry>
-    <history-entry file="Test__ - 2019.07.14 at 17h 00m 57s.xml">
-      <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
-    </history-entry>
-    <history-entry file="Test__ - 2019.07.14 at 17h 01m 30s.xml">
-      <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
-    </history-entry>
     <history-entry file="Test__ - 2019.07.14 at 17h 01m 42s.xml">
       <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
     </history-entry>
@@ -233,21 +321,38 @@
     <history-entry file="Test__ - 2019.07.14 at 17h 14m 02s.xml">
       <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
     </history-entry>
+    <history-entry file="Test__ - 2019.07.14 at 17h 54m 03s.xml">
+      <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__ProgettoISW_tests_TestRegistrazione_test_registrazione_fallita - 2019.07.14 at 17h 55m 34s.xml">
+      <configuration name="Test: ProgettoISW.tests.TestRegistrazione.test_registrazione_fallita" configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__ProgettoISW_tests_TestLogin - 2019.07.14 at 18h 01m 31s.xml">
+      <configuration name="Test: ProgettoISW.tests.TestLogin" configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__ProgettoISW_tests_TestLogin_test_login - 2019.07.14 at 18h 02m 40s.xml">
+      <configuration name="Test: ProgettoISW.tests.TestLogin.test_login" configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__ProgettoISW_tests_TestLogin - 2019.07.14 at 18h 02m 49s.xml">
+      <configuration name="Test: ProgettoISW.tests.TestLogin" configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__ProgettoISW_tests_TestLogin_test_redirect_utente_loggato - 2019.07.14 at 18h 03m 35s.xml">
+      <configuration name="Test: ProgettoISW.tests.TestLogin.test_redirect_utente_loggato" configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21577000" />
+    <option name="totallyTimeSpent" value="26331000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18305598" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19515885" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.19476268" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.5613748" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -259,6 +364,7 @@
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.3289689" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3289689" />
       <window_info anchor="bottom" id="manage.py@progetto_isw" order="13" weight="0.23076923" />
+      <window_info anchor="bottom" id="Messages" order="14" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -272,10 +378,16 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Migliorate alcune viste e aggiunti primi test" />
     <MESSAGE value="Aggiunti test di accettazione (non tutti funzionanti)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Aggiunti test di accettazione (non tutti funzionanti)" />
+    <MESSAGE value="Fixato uno dei due test" />
+    <MESSAGE value="Aggiunti test login e registrazione" />
+    <option name="LAST_COMMIT_MESSAGE" value="Aggiunti test login e registrazione" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/progetto_isw$Test__.coverage" NAME="Test:  Coverage Results" MODIFIED="1563117240159" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/progetto_isw$Test__ProgettoISW_tests_TestRegistrazione_test_registrazione_fallita.coverage" NAME="Test: ProgettoISW.tests.TestRegistrazione.test_registrazione_fallita Coverage Results" MODIFIED="1563119732878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/progetto_isw$Test__ProgettoISW_tests_TestLogin_test_login.coverage" NAME="Test: ProgettoISW.tests.TestLogin.test_login Coverage Results" MODIFIED="1563120158080" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/progetto_isw$Test__ProgettoISW_tests_TestLogin.coverage" NAME="Test: ProgettoISW.tests.TestLogin Coverage Results" MODIFIED="1563120167846" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/progetto_isw$Test__.coverage" NAME="Test:  Coverage Results" MODIFIED="1563438435584" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/progetto_isw$Test__ProgettoISW_tests_TestLogin_test_redirect_utente_loggato.coverage" NAME="Test: ProgettoISW.tests.TestLogin.test_redirect_utente_loggato Coverage Results" MODIFIED="1563120214027" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/templates/login.html">
@@ -358,34 +470,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ProgettoISW/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-337">
+        <state relative-caret-position="85">
           <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ProgettoISW/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="75" column="46" selection-start-line="75" selection-start-column="46" selection-end-line="75" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ProgettoISW/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="162" selection-start-line="162" selection-end-line="162" />
+        <state relative-caret-position="28">
+          <caret line="62" column="53" selection-start-line="62" selection-start-column="53" selection-end-line="62" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ProgettoISW/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1318">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ProgettoISW/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="446" column="10" selection-start-line="446" selection-start-column="10" selection-end-line="446" selection-end-column="10" />
+        <state relative-caret-position="121">
+          <caret line="214" column="63" selection-start-line="214" selection-start-column="63" selection-end-line="214" selection-end-column="63" />
           <folding>
             <element signature="e#0#64#0" expanded="true" />
+            <element signature="e#262#1378#0" />
+            <element signature="e#1413#2949#0" />
           </folding>
         </state>
       </provider>
