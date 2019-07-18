@@ -51,14 +51,15 @@ button a {
 .back,
 .back > th,
 .back > td {
-  background-color: #0090e6;
+  background-color: #c7f0fa;
+
 }
 
 .back th,
 .back td,
 .back thead th,
 .back tbody + tbody {
-  border-color: #0029d1;
+  border-color: #86d1d1;
 }
 .bs:hover {
   background-color: #008CBA;
