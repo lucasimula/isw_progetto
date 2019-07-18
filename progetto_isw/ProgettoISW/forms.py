@@ -8,23 +8,23 @@ from django.contrib.auth.hashers import make_password, check_password
 
 class FormRegistrazione(forms.Form):
     # Variabili da inserire
-    nome = forms.CharField(label="Nome", required=True, max_length=100)
-    nome.widget.attrs.update({'class': 'margin form-control'})
+    nome = forms.CharField(label="Nome", required=True, max_length=100, )
+    nome.widget.attrs.update({'class': 'margin form-control', "placeholder": "Nome"})
     cognome = forms.CharField(label="Cognome", required=True, max_length=100)
-    cognome.widget.attrs.update({'class': 'margin form-control'})
+    cognome.widget.attrs.update({'class': 'margin form-control', "placeholder": "Cognome"})
     email = forms.EmailField(label="Email", required=True)
-    email.widget.attrs.update({'class': 'margin form-control'})
+    email.widget.attrs.update({'class': 'margin form-control', "placeholder": "Email"})
     citta = forms.CharField(label="Città")
-    citta.widget.attrs.update({'class': 'margin form-control'})
+    citta.widget.attrs.update({'class': 'margin form-control', "placeholder": "Città"})
     indirizzo = forms.CharField(label="Indirizzo")
-    indirizzo.widget.attrs.update({'class': 'margin form-control'})
+    indirizzo.widget.attrs.update({'class': 'margin form-control', "placeholder": "Indirizzo"})
 
     username = forms.CharField(label="Username", required=True)
-    username.widget.attrs.update({'class': 'margin form-control'})
+    username.widget.attrs.update({'class': 'margin form-control', "placeholder": "Username"})
     password = forms.CharField(widget=forms.PasswordInput(), label="Password", required=True)
-    password.widget.attrs.update({'class': 'margin form-control'})
+    password.widget.attrs.update({'class': 'margin form-control', "placeholder": "Password"})
     confermaPassword = forms.CharField(widget=forms.PasswordInput(), label="Conferma Password", required=True)
-    confermaPassword.widget.attrs.update({'class': 'margin form-control'})
+    confermaPassword.widget.attrs.update({'class': 'margin form-control', "placeholder": "Conferma Password"})
 
     def clean_username(self):
         # Override del metodo clean_data del campo username si controlla che l'username sia disponibile
