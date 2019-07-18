@@ -709,7 +709,7 @@ class TestSalva(TestCase):
         albergatore3.save()
 
         prenotare = Prenotazione(email='agl@gmail.com', camera=cameraDaPrenotare, checkIn=datetime.date(2019, 9, 28),
-                                 checkOut=datetime.date(2019, 9, 31))
+                                 checkOut=datetime.date(2019, 9, 30))
         prenotare.save()
 
 
@@ -730,17 +730,18 @@ class TestSalva(TestCase):
 
     def testResult(self):
         # Riempimento form
-        form_prenotazione = {'Email': 'pippopluto@gmail.com'}
+        form_prenotazione = {'email': 'pippopluto@gmail.com'}
 
         data = self.session
         data.update({
             "checkinDT": '2020-09-05',
             "checkoutDT": '2020-09-06',
+            "idCam": str(self.camera.id)
         })
         data.save()
 
         # Invio form alla pagina
-        self.client.post('/prenotazione/?numeroCamera=4', form_prenotazione)
+        self.client.post('/confermaPrenotazione/', form_prenotazione)
 
 
 

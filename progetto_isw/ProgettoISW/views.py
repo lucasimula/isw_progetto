@@ -296,7 +296,7 @@ def prenotazione(request):
     lista.append(tmp)
     context = {'cameraDaPrenotare': lista}
     request.session['idCam'] = cameraDaPrenotare.id
-    return render(request, "confermaPrenotazione.html", {'form': FormConferma(), 'cameraDaPrenotare': lista})
+    return redirect(request, "confermaPrenotazione.html", {'form': FormConferma(), 'cameraDaPrenotare': lista})
 
 
 def confermaPrenotazione(request):
@@ -306,7 +306,7 @@ def confermaPrenotazione(request):
         form = FormConferma(request.GET)
     if form.is_valid():
         emailPrenotazione = form.cleaned_data['email']
-
+        request.session['emailPrenotazione'] = emailPrenotazione
         if (emailPrenotazione != None):
             numeroCamera = request.session['idCam']
 
