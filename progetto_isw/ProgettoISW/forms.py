@@ -96,7 +96,7 @@ class FormAggiungiCamera(forms.Form):
 
 class FormRicerca(forms.Form):
     SCELTA = (('0','Numero posti letto'),('1', '1'),('2', '2'),('3', '3'),('4', '4'),('5', '5'))
-    cercaCitta = forms.CharField(label="Città", required=True, max_length=100,
+    cercaCitta = forms.CharField(label='', required=True, max_length=100,
                                  widget=forms.TextInput(attrs={"placeholder": "Città","class": "form-control"}))
     cercaCitta.widget.attrs.update({'class': 'margin'})
     cercaLetti = forms.ChoiceField(required=True, label="", widget=forms.Select, choices=SCELTA)
