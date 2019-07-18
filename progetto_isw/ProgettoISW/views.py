@@ -194,7 +194,6 @@ def cercaB(request):
     return render(request, "cercaB.html", {'form': FormRicerca()})
 
 
-
 def cercaRS(request):
     lista = []
 

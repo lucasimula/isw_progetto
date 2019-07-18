@@ -492,8 +492,6 @@ class TestGestioneHotel(TestCase):
         self.assertContains(response, '4')
         self.assertContains(response, '125.0')
 
-# QUESTI ULTIMI DUE DI AGGIUNGI CAMERA NON FUNZIONANO
-
 
 class TestAggiungiCamera(TestCase):
     def setUp(self):
@@ -551,8 +549,8 @@ class TestAggiungiCamera(TestCase):
         key_sessione1 = str(self.albergatore.username)
         key_sessione2 = str(self.hotel.id)
         session = self.client.session
-        request.session['nomeAlbergatore'] = key_sessione1
-        request.session['idHotel'] = key_sessione2
+        session['nomeAlbergatore'] = key_sessione1
+        session['idHotel'] = key_sessione2
         session.save()
 
         form_data = {'numero': "202",
