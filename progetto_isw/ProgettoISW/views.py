@@ -201,6 +201,7 @@ def aggiungiCamera(request):
 
 
 def cercaB(request):
+    request.session.flush();
     return render(request, "cercaB.html", {'form': FormRicerca()})
 
 
@@ -221,43 +222,44 @@ def cercaRS(request):
 
                     if (ca.hotel.citta == cercaCitta and str(ca.nLetti) == cercaLetti):
 
-                        for z in Prenotazione.objects.all():
-                            if (ca.numero not in Prenotazione.objects.filter()):
+                        listIn = cercaCheckIn.split("-")
+                        listOut = cercaCheckOut.split("-")
 
-                                listIn = cercaCheckIn.split("-")
-                                listOut = cercaCheckOut.split("-")
+                        checkinDT = datetime.date(int(listIn[0]), int(listIn[1]), int(listIn[2]))
+                        checkoutDT = datetime.date(int(listOut[0]), int(listOut[1]), int(listOut[2]))
 
-                                checkinDT = datetime.date(int(listIn[0]), int(listIn[1]), int(listIn[2]))
-                                checkoutDT = datetime.date(int(listOut[0]), int(listOut[1]), int(listOut[2]))
+                        request.session['checkinDT'] = cercaCheckIn
+                        request.session['checkoutDT'] = cercaCheckOut
 
-                                request.session['checkinDT'] = cercaCheckIn
-                                request.session['checkoutDT'] = cercaCheckOut
-                                dataEsiste=0
-                                listaPrenotazioni = Prenotazione.objects.all()
-                                for item in listaPrenotazioni:
-                                    if(item.camera == ca):
-                                        #viene controllato se la data di checIn o checkOut inserita è compresa in quelle prenotate
-                                        #e viceversa
-                                        if(checkinDT > item.checkIn and checkinDT < item.checkOut):
-                                            dataEsiste= dataEsiste + 1
-                                        if(item.checkIn > checkinDT and item.checkIn < checkoutDT):
-                                            dataEsiste = dataEsiste + 1
 
-                                        if (checkoutDT > item.checkIn and checkoutDT < item.checkOut):
-                                            dataEsiste = dataEsiste + 1
-                                        if (item.checkOut > checkinDT and item.checkOut < checkoutDT):
-                                            dataEsiste = dataEsiste + 1
+                        dataEsiste=0
 
-                                if(dataEsiste>0):
-                                    return render(request, "cercaB.html", {'form':FormRicerca(),'lista2': '1'})
-                                else:
-                                    tmp = [ca.hotel.nome, ca.nLetti, ca.prezzo, ca.servizi, ca.id, ca.hotel.citta]
+                        for item in Prenotazione.objects.all():
+                            if(item.camera.id == ca.id):
+                                #viene controllato se la data di checIn o checkOut inserita è compresa in quelle prenotate
+                                #e viceversa
+                                if(checkinDT >=item.checkIn and checkinDT <=item.checkOut):
+                                    dataEsiste= dataEsiste + 1
+                                if(item.checkIn >= checkinDT and item.checkIn <=checkoutDT):
+                                    dataEsiste = dataEsiste + 1
 
-                                    if tmp not in lista:
-                                        lista.append(tmp)
+                                if (checkoutDT >=item.checkIn and checkoutDT <= item.checkOut):
+                                    dataEsiste = dataEsiste + 1
+                                if (item.checkOut >= checkinDT and item.checkOut <= checkoutDT):
+                                    dataEsiste = dataEsiste + 1
 
-                                if (checkoutDT < checkinDT):
-                                    return render(request, "cercaB.html", {'form':FormRicerca()})
+                        if(dataEsiste>0):
+
+                            return render(request, "cercaB.html", {'form':FormRicerca(),'lista2': '1'})
+                        else:
+
+                            tmp = [ca.hotel.nome, ca.nLetti, ca.prezzo, ca.servizi, ca.id, ca.hotel.citta]
+
+                            if tmp not in lista:
+                                lista.append(tmp)
+
+                        if (checkoutDT < checkinDT):
+                            return render(request, "cercaB.html", {'form':FormRicerca()})
 
 
         if len(lista) > 0:

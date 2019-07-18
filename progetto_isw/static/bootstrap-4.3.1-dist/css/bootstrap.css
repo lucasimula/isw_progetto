@@ -1615,23 +1615,23 @@ pre code {
 .table-success,
 .table-success > th,
 .table-success > td {
-  background-color: #c3e6cb;
+  background-color: #007be6;
 }
 
 .table-success th,
 .table-success td,
 .table-success thead th,
 .table-success tbody + tbody {
-  border-color: #8fd19e;
+  border-color: #008bd1;
 }
 
 .table-hover .table-success:hover {
-  background-color: #b1dfbb;
+  background-color: #df32cc;
 }
 
 .table-hover .table-success:hover > td,
 .table-hover .table-success:hover > th {
-  background-color: #b1dfbb;
+  background-color: #df1b00;
 }
 
 .table-info,
