@@ -9,13 +9,22 @@ from django.contrib.auth.hashers import make_password, check_password
 class FormRegistrazione(forms.Form):
     # Variabili da inserire
     nome = forms.CharField(label="Nome", required=True, max_length=100)
+    nome.widget.attrs.update({'class': 'margin form-control'})
     cognome = forms.CharField(label="Cognome", required=True, max_length=100)
+    cognome.widget.attrs.update({'class': 'margin form-control'})
     email = forms.EmailField(label="Email", required=True)
+    email.widget.attrs.update({'class': 'margin form-control'})
     citta = forms.CharField(label="Città")
+    citta.widget.attrs.update({'class': 'margin form-control'})
     indirizzo = forms.CharField(label="Indirizzo")
+    indirizzo.widget.attrs.update({'class': 'margin form-control'})
+
     username = forms.CharField(label="Username", required=True)
+    username.widget.attrs.update({'class': 'margin form-control'})
     password = forms.CharField(widget=forms.PasswordInput(), label="Password", required=True)
+    password.widget.attrs.update({'class': 'margin form-control'})
     confermaPassword = forms.CharField(widget=forms.PasswordInput(), label="Conferma Password", required=True)
+    confermaPassword.widget.attrs.update({'class': 'margin form-control'})
 
     def clean_username(self):
         # Override del metodo clean_data del campo username si controlla che l'username sia disponibile
@@ -107,5 +116,6 @@ class FormRicerca(forms.Form):
     cercaCheckOut.widget.attrs.update({'class': 'margin form-control  '})
 
 class FormConferma(forms.Form):
-    email = forms.EmailField(label="Email", required=True)
+    email = forms.EmailField(label="Email", required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
+
 

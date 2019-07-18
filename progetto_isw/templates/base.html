@@ -13,11 +13,11 @@
         <a class="navbar-brand booki" href="/home/">Booking</a>
         {% if request.session.nomeAlbergatore is not None %}
             <button id="logout" type="button">
-                <a href="/logout/">Logout</a>
+                <a href="/logout/" class="btn btn-primary">Logout</a>
             </button>
         {% else %}
             <button id="login"  type="button">
-                <a href="/login/">Login</a>
+                <a href="/login/" class="btn btn-primary" >Login</a>
             </button>
         {% endif %}
     </nav>

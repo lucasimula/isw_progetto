@@ -1,14 +1,5 @@
-* {
-    box-sizing: border-box;
-}
 
-body {
-    background-color: aliceblue;
-}
 
-button a {
-    color: white;
-}
 
 
 .whiteBack{
@@ -38,33 +29,13 @@ button a {
 }
 
 
-.bs {
-  background-color: white;
-  color: black;
-  border: 2px solid #008CBA;
-}
-
-.bs:hover {
-  background-color: #008CBA;
-  color: white;
-}
-
 
 .wrapper {
     width: 70%;
     margin: auto;
 }
 
-.booki{
 
-}
-
-.wrapper-form {
-    width: 40%;
-    margin: auto;
-    border: 1px solid lightgrey;
-    padding: 2%;
-}
 
 table {
     background-color: unset;
