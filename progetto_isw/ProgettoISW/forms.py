@@ -50,7 +50,6 @@ class FormLogin(forms.Form):
     username = forms.CharField(label="Username", required=True, max_length=100,
                                widget=forms.TextInput(attrs={"placeholder": "Nome", "class": "form-control"}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Password", "class": "form-control"}))
-    passwordCorretta = False
     def clean_username(self):
         # Viene controllato che l'username sia presente nel DB
         username = self.cleaned_data["username"]
@@ -61,6 +60,7 @@ class FormLogin(forms.Form):
 
     def clean_password(self):
         # Si controlla la correttezza della password
+        passwordCorretta =False
         try:
             # Se l'username è registrato si salva l'albergatore con quell'username
             if Albergatore.objects.filter(username=self.cleaned_data["username"]).exists():
