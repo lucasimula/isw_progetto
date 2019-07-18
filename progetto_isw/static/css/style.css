@@ -10,11 +10,28 @@ button a {
     color: white;
 }
 
+#cercaSub{
+    color : red;
+}
+
 #maintitle {
     margin: 10px 0;
     font-weight: lighter;
     text-align: center;
 }
+
+
+.bs {
+  background-color: white;
+  color: black;
+  border: 2px solid #008CBA;
+}
+
+.bs:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
 
 .wrapper {
     width: 70%;

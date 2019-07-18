@@ -1,37 +1,41 @@
 {% extends "base.html" %}
 {% block titolo %} Cerca {% endblock %}
 {% block content %}
-            {% for i in lista2 %}
-            <div >
+{% load staticfiles %}
+        {% for i in lista2 %}
+            <div style="text-align:center;">
                 <br><br>
                 <h4 >Spiacenti! La camera è stata già prenotata </h4>
-
-
             </div>
         {%endfor%}
-            <div >
+<html>
+            <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+            <!-- 'titolo' della pagina -->
+            <div style="text-align:center;">
                 <h2> Prenota l'alloggio dei tuoi sogni! </h2>
             </div>
 
-
-                <nav>
+                <!-- form principale tranne testo del campo in cui inserire la città, esclusa anche la navbar in alto con il btn login -->
+                <nav style="text-align:center;">
 
 
                 <main>
                         <div class="wrapper">
-                        <form  method="GET" action="/cercaRS/" >
-                            {% csrf_token %}
-                                {% for field in form %}
-                                    <div class="form-group">
-                                        {{ field.errors }}
-                                        <a>{{ field.label_tag }}</a>
-                                        {{ field }}
-                                    </div>
-                                {% endfor %}
+                            <form  method="GET" action="/cercaRS/" >
+                                {% csrf_token %}
+                                    {% for field in form %}
+                                        <div class="form-group">
+                                            {{ field.errors }}
+                                            <a>{{ field.label_tag }}</a>
+                                            {{ field }}
+                                        </div>
+                                    {% endfor %}
 
-                                <button  id="cercaSub" type="submit">Cerca</button>
-                        </form>
-                    </div>
+                                    <button  id="cercaSub" class="bs" type="submit">Cerca</button>
+                            </form>
+                        </div>
 
                     </main>
                     {% endblock %}
@@ -42,3 +46,4 @@
 
 
 
+</html>
