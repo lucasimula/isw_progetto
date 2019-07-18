@@ -6,6 +6,7 @@ import datetime
 
 # Create your tests here.
 
+
 class TestHotel(TestCase):
     def test_hotel(self):
         albergatore = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
@@ -282,26 +283,6 @@ class TestHomeAlbergatore(TestCase):
         # Verifica che la pagina contenga la prenotazione
         self.assertContains(response, 'lorenzomilia@gmail.com')
         self.assertContains(response, 'Holiday Inn')
-    '''
-    def test_hotelKeeperNoBookingsMessage(self):
-        """ Verifica che un hotel keeper senza prenotazioni visualizzi il messaggio relativo """
-
-        # Creazione della requqest
-        request = self.request_factory.get('/home/')
-        self.middleware.process_request(request)
-        # Creazione della sessione
-        request.session.save()
-
-        # Simulazione albergatore loggato
-        request.session['usr'] = self.userWithoutBookings.username
-        request.session['usrType'] = 'hotelKeeper'
-
-        # Esecuzione della view che gestisce la home dell'albergatore
-        response = hotelKeeperHome(request)
-
-        # Verifica della visualizzazione del messaggio
-        self.assertContains(response, "You have not reservations in your hotels!")
-        '''
 
 
 class TestListaHotel(TestCase):
@@ -357,27 +338,6 @@ class TestListaHotel(TestCase):
         # Verifica che gli hotel vengano visualizzati
         self.assertContains(response, 'Holiday Inn')
         self.assertContains(response, 'T Hotel')
-
-    '''
-    def test_EmptyHotelListVisualization(self):
-        """ Verifica che un hotel keeper senza hotel visualizzi il messaggio relativo """
-
-        # Creazione request
-        request = self.request_factory.get('/hotels/')
-        self.middleware.process_request(request)
-        # Creazione sessione
-        request.session.save()
-
-        # Simulazione hotel keeper loggato
-        request.session['usr'] = self.userWithoutHotels.username
-        request.session['usrType'] = 'hotelKeeper'
-
-        # Esecuzione della vista che gestisce la lista hotel
-        response = hotelsList(request)
-
-        # Verifica della visualizzaazione del messaggio
-        self.assertContains(response, "You have not registered any hotel!")
-        '''
 
 
 class TestAggiungiHotel(TestCase):
@@ -533,6 +493,7 @@ class TestGestioneHotel(TestCase):
         self.assertContains(response, '125.0')
 
 # QUESTI ULTIMI DUE DI AGGIUNGI CAMERA NON FUNZIONANO
+
 
 class TestAggiungiCamera(TestCase):
     def setUp(self):
