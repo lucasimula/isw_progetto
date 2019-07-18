@@ -52,7 +52,19 @@ button a {
   color: black;
   border: 2px solid #008CBA;
 }
+.back,
+.back > th,
+.back > td {
+  background-color: #c7f0fa;
 
+}
+
+.back th,
+.back td,
+.back thead th,
+.back tbody + tbody {
+  border-color: #86d1d1;
+}
 .bs:hover {
   background-color: #008CBA;
   color: white;
@@ -83,6 +95,3 @@ button a {
     padding: 2%;
 }
 
-table {
-    background-color: unset;
-}
