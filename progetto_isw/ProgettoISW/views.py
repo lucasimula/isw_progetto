@@ -316,7 +316,7 @@ def confermaPrenotazione(request):
                 prenot = Prenotazione(email=emailPrenotazione, camera=cameraPrenotata, checkIn=checkinDT, checkOut=checkoutDT)
                 # salva prenotazione
                 prenot.save()
-        return render(request, "home.html", {'hotel': Hotel.objects.all()})
+        return redirect('/home/')
     else:
         return render(request, "cercaB.html", {'form': FormRicerca()})
 

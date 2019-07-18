@@ -20,7 +20,7 @@ from ProgettoISW import views
 urlpatterns = [
     re_path(r'^$', views.cercaB),
     path('admin/', admin.site.urls),
-    path('home/', views.home),
+    path('home/', views.cercaB),
     path('login/', views.login),
     path('logout/', views.logout),
     path('registrazione/', views.registrazione),
