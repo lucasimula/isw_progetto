@@ -13,9 +13,9 @@ class FormRegistrazione(forms.Form):
     email = forms.EmailField(label="Email", required=True)
     citta = forms.CharField(label="Città")
     indirizzo = forms.CharField(label="Indirizzo")
-    username = forms.CharField(label="Username")
-    password = forms.CharField(widget=forms.PasswordInput())
-    confermaPassword = forms.CharField(widget=forms.PasswordInput())
+    username = forms.CharField(label="Username", required=True)
+    password = forms.CharField(widget=forms.PasswordInput(), label="Password", required=True)
+    confermaPassword = forms.CharField(widget=forms.PasswordInput(), label="Conferma Password", required=True)
 
     def clean_username(self):
         # Override del metodo clean_data del campo username si controlla che l'username sia disponibile
@@ -97,7 +97,7 @@ class FormAggiungiCamera(forms.Form):
 class FormRicerca(forms.Form):
     SCELTA = (('1', '1'),('2', '2'),('3', '3'),('4', '4'),('5', '5'))
     cercaCitta = forms.CharField(label="Città", required=True, max_length=100,
-                                 widget=forms.TextInput(attrs={"placeholder": "Città", "class": "form-control"}))
+                                 widget=forms.TextInput(attrs={"placeholder": "Città","class": "form-control"}))
     cercaLetti = forms.ChoiceField(required=True, label="Numero posti letto", widget=forms.Select, choices=SCELTA)
     cercaCheckIn = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), initial=datetime.date.today(), label="Da:")
 
