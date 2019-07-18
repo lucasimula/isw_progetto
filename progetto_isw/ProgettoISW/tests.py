@@ -235,12 +235,12 @@ class TestLogin(TestCase):
 
 class TestHomeAlbergatore(TestCase):
     def setUp(self):
-        albergatore1 = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
+        albergatore = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
                                    username='marcococco', email='marcococco@gmail.com',
                                    citta='Cagliari', indirizzo='Via Scano 51')
-        albergatore1.save()
+        albergatore.save()
 
-        hotel = Hotel(albergatore=albergatore1, nome='Holiday Inn',
+        hotel = Hotel(albergatore=albergatore, nome='Holiday Inn',
                       descrizione='Bello e profumato', citta='Cagliari',
                       indirizzo='Viale Umberto Ticca')
         hotel.save()
@@ -249,17 +249,11 @@ class TestHomeAlbergatore(TestCase):
                         prezzo='125.0', servizi='Bagno privato, Asciugacapelli')
         camera.save()
 
-        albergatore2 = Albergatore(nome='Enzo', cognome='Scano', password='buongiorno',
-                                   username='enzoscano', email='enzoscano@gmail.com',
-                                   citta='Cagliari', indirizzo='Via Cocco Ortu 99')
-        albergatore2.save()
-
         prenotazione = Prenotazione(email='lorenzomilia@gmail.com', camera=camera,
                                     checkIn=datetime.date(2019, 7, 3), checkOut=datetime.date(2018, 7, 21))
         prenotazione.save()
 
-        self.albergatoreConPrenotazioni = albergatore1
-        self.albergatoreSenzaPrenotazioni = albergatore2
+        self.albergatore = albergatore
         self.request_factory = RequestFactory()
         self.middleware = SessionMiddleware()
 
@@ -273,7 +267,7 @@ class TestHomeAlbergatore(TestCase):
         request.session.save()
 
         # Simulazione hotel keeper loggato
-        request.session['nomeAlbergatore'] = self.albergatoreConPrenotazioni.username
+        request.session['nomeAlbergatore'] = self.albergatore.username
 
         # Esecuzione della view che gestisce la home dell'albergatore
         response = homeAlbergatore(request)
@@ -585,6 +579,7 @@ class TestAggiungiCamera(TestCase):
 
         self.assertEqual(len(listaCamere), 2)
 
+
 class TestCerca(TestCase):
     """ Classe contenente i TA della user story 8 """
     def setUp(self):
@@ -691,3 +686,4 @@ class TestCerca(TestCase):
             response = cercaRS(request)
 
             self.assertContains(response, 'Spiacenti! La camera è stata già prenotata')
+
