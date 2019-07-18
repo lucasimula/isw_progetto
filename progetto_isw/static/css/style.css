@@ -10,9 +10,6 @@ button a {
     color: white;
 }
 
-#cercaSub{
-    color : red;
-}
 
 .whiteBack{
     background-color: white;
@@ -56,6 +53,10 @@ button a {
 .wrapper {
     width: 70%;
     margin: auto;
+}
+
+.booki{
+
 }
 
 .wrapper-form {
