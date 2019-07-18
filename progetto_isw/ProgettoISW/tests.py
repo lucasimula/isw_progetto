@@ -705,13 +705,15 @@ class TestSalva(TestCase):
         prenotare = Prenotazione(email='agl@gmail.com', camera=camera, checkIn=datetime.date(2019, 9, 28),
                                  checkOut=datetime.date(2019, 9, 30))
         prenotare.save()
-
+        camera2 = Camera(numero=50, nLetti=3, prezzo=50, servizi='Wi-fi, Colazione in camera', hotel=hotel1)
+        camera2.save()
         self.albergatore = albergatore
         self.camera = camera
+        self.camera2 = camera2
         self.request_factory = RequestFactory()
         self.middleware = SessionMiddleware()
 
-    def testResult(self):
+    def testControllaPrenotazione(self):
         # Riempimento form
         form_prenotazione = {'email': 'pippopluto@gmail.com'}
 
@@ -719,11 +721,12 @@ class TestSalva(TestCase):
         data.update({
             "checkinDT": '2020-09-05',
             "checkoutDT": '2020-09-06',
+            "idCam": str(self.camera2.id)
         })
         data.save()
-
         # Invio form alla pagina
-        self.client.post('/prenotazione/?numeroCamera=' + str(self.camera.id), form_prenotazione)
+        self.client.get('/confermaPrenotazione/', form_prenotazione)
 
-        contaLePrenotazioni = Prenotazione.objects.filter().count()
+
+        contaLePrenotazioni = Prenotazione.objects.all().count()
         self.assertEqual(contaLePrenotazioni, 2)

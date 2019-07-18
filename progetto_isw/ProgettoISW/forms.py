@@ -41,7 +41,7 @@ class FormLogin(forms.Form):
     username = forms.CharField(label="Username", required=True, max_length=100,
                                widget=forms.TextInput(attrs={"placeholder": "Nome", "class": "form-control"}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Password", "class": "form-control"}))
-
+    passwordCorretta = False
     def clean_username(self):
         # Viene controllato che l'username sia presente nel DB
         username = self.cleaned_data["username"]

@@ -294,8 +294,8 @@ def prenotazione(request):
            request.session['checkinDT'], cameraDaPrenotare.hotel.indirizzo, request.session['checkoutDT']]
     lista.append(tmp)
     context = {'cameraDaPrenotare': lista}
-    request.session['idCam'] = cameraDaPrenotare.id
-    return redirect(request, "confermaPrenotazione.html", {'form': FormConferma(), 'cameraDaPrenotare': lista})
+    request.session['idCam'] =numeroCamera
+    return render(request, "confermaPrenotazione.html", {'form': FormConferma(), 'cameraDaPrenotare': lista})
 
 
 def confermaPrenotazione(request):
@@ -303,11 +303,10 @@ def confermaPrenotazione(request):
     checkoutDT = request.session['checkoutDT']
     if request.method == 'GET':
         form = FormConferma(request.GET)
-    if form.is_valid():
-        emailPrenotazione = form.cleaned_data['email']
-        request.session['emailPrenotazione'] = emailPrenotazione
-        if (emailPrenotazione != None):
-            numeroCamera = request.session['idCam']
+        if form.is_valid():
+            emailPrenotazione = form.cleaned_data['email']
+            if (emailPrenotazione != None):
+                numeroCamera = request.session['idCam']
 
             if(numeroCamera is not None):
                 cameraPrenotata = Camera.objects.get(id=numeroCamera)
@@ -315,7 +314,7 @@ def confermaPrenotazione(request):
                 prenot = Prenotazione(email=emailPrenotazione, camera=cameraPrenotata, checkIn=checkinDT, checkOut=checkoutDT)
                 # salva prenotazione
                 prenot.save()
-        return redirect('/home/')
-    else:
-        return render(request, "cercaB.html", {'form': FormRicerca()})
+                return redirect('/home/')
+
+    return render(request, "cercaB.html", {'form': FormRicerca()})
 
