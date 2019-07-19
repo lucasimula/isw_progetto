@@ -2,6 +2,7 @@ import datetime
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, render_to_response
+from django.contrib import messages
 from django.template.defaultfilters import safe
 from django.urls import reverse
 from .forms import *
@@ -189,6 +190,11 @@ def aggiungiCamera(request):
             for h in Hotel.objects.all():
                 if h.id == int(idHotel):
                     hotelFK = h
+
+                    for c in Camera.objects.all():
+                        if c.hotel == hotelFK and c.numero == numero:
+                            messages.add_message(request, messages.ERROR, 'Esiste già una camera con quel numero.')
+
                     camera = Camera(hotel=hotelFK, numero=int(numero),
                                    nLetti=int(nLetti), prezzo=float(prezzo), servizi=str(servizi))
                     camera.save()
