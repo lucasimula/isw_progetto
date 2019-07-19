@@ -201,6 +201,12 @@ class TestRegistrazione(TestCase):
 
         self.assertTrue(len(listaAlbergatori), 1)
 
+    def testRegistratiCampiErrati(self):
+        form = {'nome': 'paolino', 'cognome': 'paperino', 'email': 'emailErrata', 'citta': 'Escalaplano', 'indirizzo': 'via Roma 1',
+                     'username': 'username1', 'password':'password1', 'confermaPassword':'password1'}
+
+        self.assertFalse(form.is_valid())
+
 
 class TestLogin(TestCase):
     """ Classe contenente i TA della user story 2 """
