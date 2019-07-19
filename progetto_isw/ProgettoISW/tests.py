@@ -6,7 +6,7 @@ import datetime
 
 
 class TestHotel(TestCase):
-    def test_hotel(self):
+    def testHotel(self):
         albergatore = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
                                   username='marcococco', email='marcococco@gmail.com',
                                   citta='Cagliari', indirizzo='Via Scano 51')
@@ -29,7 +29,7 @@ class TestHotel(TestCase):
 
 
 class TestCamera(TestCase):
-    def test_camera(self):
+    def testCamera(self):
         albergatore = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
                                   username='marcococco', email='marcococco@gmail.com',
                                   citta='Cagliari', indirizzo='Via Scano 51')
@@ -94,28 +94,8 @@ class TestRegistrazione(TestCase):
         self.request_factory = RequestFactory()
         self.middleware = SessionMiddleware()
 
-    def test_campi_mancanti(self):
-        """Verifica che un form di registrazione incompleto non consenta la registrazione"""
 
-        request = self.request_factory.get('/registrazione/', follow=True) # si ottiene della request
-        self.middleware.process_request(request)
-
-        request.session.save()        # Creazione della sessione
-
-        # Riempimento del form
-        form_data = {'nome': "Enzo",
-                     'cognome': "Scano",
-                     'email': "enzoscano@gmail.com",
-                     'citta': "Cagliari",
-                     'indirizzo': "Via Cocco Ortu 99",
-                     'username': "enzoscano",
-                     'password': "buongiorno",
-                     'confermaPassword': "buongiorno"}
-
-        form = FormRegistrazione(data=form_data)
-        self.assertTrue(form.is_valid(), msg=form.errors)         # Verifica
-
-    def test_registrazione_avvenuta(self):
+    def testRegistrazioneAvvenuta(self):
         """ Verifica che un hotel keeper registrato possa accedere alla sua home """
 
         request = self.request_factory.get('/home/', follow=True)        # Si crea la request
@@ -129,7 +109,7 @@ class TestRegistrazione(TestCase):
 
         self.assertEquals(response.status_code, 200)    # Si verifica che sia avvenuto l'accesso
 
-    def test_registrazione_fallita(self):
+    def testRegistrazioneFallita(self):
         """ Verifica che un hotel keeper non registrato non possa accedere alla home"""
 
         # Creazione request
@@ -147,7 +127,7 @@ class TestRegistrazione(TestCase):
         # Verifica accesso negato e redirect
         self.assertEquals(response.status_code, 302)
 
-    def test_controllo_stesso_username(self):
+    def testControlloStessoUsername(self):
         """ Verifica che sia negata l'iscrizione se l'username specificato esiste già """
 
         # Lista di appoggio
@@ -161,7 +141,7 @@ class TestRegistrazione(TestCase):
         session.save()
 
         # Riempimento del form
-        form_data = {'nome': "Enzo",
+        form = {'nome': "Enzo",
                      'cognome': "Scano",
                      'email': "enzoscano@gmail.com",
                      'citta': "Cagliari",
@@ -170,7 +150,7 @@ class TestRegistrazione(TestCase):
                      'password': "buongiorno",
                      'confermaPassword': "buongiorno"}
 
-        form = FormRegistrazione(data=form_data)
+        form = FormRegistrazione(data=form)
 
         # verifica che sia negata la validazione del form
         self.assertFalse(form.is_valid(), form.errors)
@@ -182,7 +162,7 @@ class TestRegistrazione(TestCase):
         self.assertTrue(len(listaAlbergatori), 1)
 
         # Riempimento del form
-        form_data = {'nome': "Enzo",
+        form = {'nome': "Enzo",
                      'cognome': "Scano",
                      'email': "enzoscano@gmail.com",
                      'citta': "Cagliari",
@@ -191,7 +171,7 @@ class TestRegistrazione(TestCase):
                      'password': "buongiorno",
                      'confermaPassword': "buongiorno"}
 
-        form = FormRegistrazione(data=form_data)
+        form = FormRegistrazione(data=form)
 
         # Conteggio e verifica
         listaAlbergatori = []
@@ -219,7 +199,7 @@ class TestLogin(TestCase):
         self.request_factory = RequestFactory()
         self.middleware = SessionMiddleware()
 
-    def test_login(self):
+    def testLogin(self):
         """ Verifica l'accesso di un utente proprietario di un albergo"""
         # Riempimento form
         form_data = {'username': 'albachiara', 'password': 'albachiara'}
@@ -228,7 +208,7 @@ class TestLogin(TestCase):
         # Verifica
         self.assertTrue(loginForm.is_valid(), loginForm.errors)
 
-    def test_redirect_utente_loggato(self):
+    def testRedirecUtenteLoggato(self):
         """ Verifica che un hotel keeper loggato non abbia accesso alla pagina di login
         e che venga reindirizzato verso la pagina diversa"""
 
@@ -272,7 +252,7 @@ class TestHomeAlbergatore(TestCase):
         self.request_factory = RequestFactory()
         self.middleware = SessionMiddleware()
 
-    def test_visualizzazione_prenotazioni(self):
+    def testVisualizzazionePrenotazioni(self):
         """ Verifica che un hotel keeper con prenotazioni le visualizzi nella sua home """
 
         # Creazione della request
@@ -327,7 +307,7 @@ class TestListaHotel(TestCase):
         self.request_factory = RequestFactory()
         self.middleware = SessionMiddleware()
 
-    def test_visualizzazione_lista_hotel(self):
+    def testVisualizzazioneListaHotel(self):
         """ Verifica che un hotel keeper che possiede hotel ne visualizzi la lista """
 
         # Creazione request
@@ -381,7 +361,7 @@ class TestAggiungiHotel(TestCase):
         self.request_factory = RequestFactory()
         self.middleware = SessionMiddleware()
 
-    def test_campi_mancanti(self):
+    def testCampiMancanti(self):
         """ Verifica che non venga consentita l'aggiunta di un hotel se il form è incompleto """
 
         # Creazione request
@@ -404,7 +384,7 @@ class TestAggiungiHotel(TestCase):
         # Verifica
         self.assertTrue(form.is_valid(), msg=form.errors)
 
-    def test_hotel_aggiunto(self):
+    def testHotelAggiunto(self):
         """ Verifica che un hotel sia stato aggiunto correttamente """
 
         # Lista temporanea
@@ -429,19 +409,19 @@ class TestAggiungiHotel(TestCase):
 
 
         # Riempimento form
-        form_data = {'nome': "Caesar's Hotel",
+        form= {'nome': "Caesar's Hotel",
                      'descrizione': "L'hotel preferito da Giulio Cesare",
                      'citta': "Cagliari",
                      'indirizzo': "Via Charles Darwin 2"}
 
-        form = FormAggiungiHotel(data=form_data)
+        form = FormAggiungiHotel(data=form)
 
         # Verifica che il form sia valido
         self.assertTrue(form.is_valid())
 
 
         # Invia il form in POST all'url di aggiunta hotel
-        self.client.post('/aggiungiHotel/', form_data)
+        self.client.post('/aggiungiHotel/', form)
 
         # Verifica della corretta aggiunta dell'hotel
         listaHotel = []
@@ -475,7 +455,7 @@ class TestGestioneHotel(TestCase):
         self.request_factory = RequestFactory()
         self.middleware = SessionMiddleware()
 
-    def test_visualizzazione_dati(self):
+    def testVisualizzazioneDati(self):
         """ Verifica che l'hotel keeper visualizzi i dati dell'hotel e delle camere che contiene"""
 
         # Creazione request
@@ -519,7 +499,7 @@ class TestAggiungiCamera(TestCase):
         self.request_factory = RequestFactory()
         self.middleware = SessionMiddleware()
 
-    def test_campi_mancanti(self):
+    def testCampiMancanti(self):
         """ Verifica che non sia accettato un form incompleto"""
         request = self.request_factory.get('/aggiungiCamera/', follow=True)
         self.middleware.process_request(request)
@@ -539,7 +519,7 @@ class TestAggiungiCamera(TestCase):
 
         self.assertTrue(form.is_valid(), msg=form.errors)
 
-    def test_camera_aggiunta(self):
+    def testCameraAggiunta(self):
         """ Verifica che una camera venga correttamente aggiunta """
 
         # Lista di appoggio
