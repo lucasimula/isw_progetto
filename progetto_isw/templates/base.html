@@ -10,7 +10,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-light bg-light justify-content">
+    <nav class="navbar navbar-light justify-content">
         {% block tasto-sinistro %}{% endblock %}
         {% if request.session.nomeAlbergatore is None %}
             <button id="registrazione" class="btn btn-primary" type="button">
@@ -28,6 +28,9 @@
             </button>
         {% endif %}
     </nav>
+
+
+    <div class="linea_separazione"></div>
     {% block content %}{% endblock %}
 </body>
 </html>

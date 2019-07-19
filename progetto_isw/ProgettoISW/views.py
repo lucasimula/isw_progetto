@@ -194,6 +194,7 @@ def aggiungiCamera(request):
                     for c in Camera.objects.all():
                         if c.hotel == hotelFK and c.numero == numero:
                             messages.add_message(request, messages.ERROR, 'Esiste già una camera con quel numero.')
+                            return render(request, 'aggiungiCamera.html', {'form': form, 'id': hotel.id})
 
                     camera = Camera(hotel=hotelFK, numero=int(numero),
                                    nLetti=int(nLetti), prezzo=float(prezzo), servizi=str(servizi))

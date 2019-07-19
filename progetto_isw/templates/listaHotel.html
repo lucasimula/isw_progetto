@@ -9,25 +9,27 @@
     <main>
 
         <h1 class="maintitle">Lista Hotel</h1>
-        <table class="table table-striped table-hover back">
-            <thead>
-                <tr>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Descrizione</th>
-                    <th scope="col">Città</th>
-                    <th scope="col">Indirizzo</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for h in hotel %}
-                <tr>
-                    <th scope="row"><a href="/gestioneHotel/?id={{ h.id }}">{{ h.nome }}</a></th>
-                    <td>{{ h.descrizione }}</td>
-                    <td>{{ h.citta }}</td>
-                    <td>{{ h.indirizzo }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="wrapper">
+            <table class="table table-striped table-hover back">
+                <thead>
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Descrizione</th>
+                        <th scope="col">Città</th>
+                        <th scope="col">Indirizzo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for h in hotel %}
+                    <tr>
+                        <th scope="row"><a href="/gestioneHotel/?id={{ h.id }}">{{ h.nome }}</a></th>
+                        <td>{{ h.descrizione }}</td>
+                        <td>{{ h.citta }}</td>
+                        <td>{{ h.indirizzo }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </main>
 {% endblock %}
