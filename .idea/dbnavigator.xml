@@ -26,30 +26,18 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="289d588b-2d1b-49f6-a95b-edf19701770e">
-      <console name="Connection" type="STANDARD" schema="" session="Main"><![CDATA[alter table ProgettoISW_albergatore
-add column 
-indirizzo varchar(500)]]></console>
-      <console name="Connection 1" type="STANDARD" schema="" session="Main"><![CDATA[alter table ProgettoISW_albergatore 
-add column cognome varchar(128)]]></console>
+    <connection id="58ad4f99-a124-4f68-bc45-5149d7fcab4e">
+      <console name="Connection" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="289d588b-2d1b-49f6-a95b-edf19701770e" />
-  </component>
-  <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="289d588b-2d1b-49f6-a95b-edf19701770e" dataset=".ProgettoISW_camera" active-filter-id="" />
-    <filter-actions connection-id="289d588b-2d1b-49f6-a95b-edf19701770e" dataset=".auth_user" active-filter-id="" />
-    <filter-actions connection-id="289d588b-2d1b-49f6-a95b-edf19701770e" dataset=".ProgettoISW_albergatore" active-filter-id="EMPTY_FILTER" />
+    <connection id="58ad4f99-a124-4f68-bc45-5149d7fcab4e" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
-  </component>
-  <component name="DBNavigator.Project.FileConnectionMappingManager">
-    <mapping file-url="file://$PROJECT_DIR$/progetto_isw/db.sqlite3" connection-id="f9b01d59-0572-415f-8ae7-2b09de05c0a0" session-id="MAIN" current-schema="" />
   </component>
   <component name="DBNavigator.Project.MethodExecutionManager">
     <method-browser />
@@ -71,7 +59,7 @@ add column cognome varchar(128)]]></console>
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="289d588b-2d1b-49f6-a95b-edf19701770e" active="true">
+      <connection id="58ad4f99-a124-4f68-bc45-5149d7fcab4e" active="true">
         <database>
           <name value="Connection" />
           <description value="" />
@@ -94,7 +82,7 @@ add column cognome varchar(128)]]></console>
           <deprecated-pwd value="" />
         </database>
         <properties>
-          <auto-commit value="true" />
+          <auto-commit value="false" />
         </properties>
         <ssh-settings>
           <active value="false" />
@@ -307,7 +295,7 @@ add column cognome varchar(128)]]></console>
         <enable-reference-spellchecking value="false" />
       </general>
       <confirmations>
-        <save-changes value="false" />
+        <save-changes value="true" />
         <revert-changes value="true" />
       </confirmations>
     </code-editor-settings>

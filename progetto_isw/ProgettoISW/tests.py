@@ -66,6 +66,24 @@ class TestCamera(TestCase):
 
 # NB RIVEDERE TUTTI I COMMENTI
 
+class TestLogout(TestCase):
+    """Classe contenente i TA del Logout"""
+    def setUp(self):
+        albergatore = Albergatore (nome='Marco', cognome='Marras', password='wewe', username='user1', email='m@gmail.com', citta='Milano', indirizzo='via Lugodoro 1')
+        albergatore.save()
+        self.request_factory = RequestFactory()
+        self.middleware = SessionMiddleware()
+        request = self.request_factory.get('/login/', follow=True)
+        data = self.client.session
+        data.update({
+            "nomeAlbergatore": 'user1',
+        })
+        data.save()
+
+    def test_logout_view(self):
+        response = self.client.get('/logout/')
+        self.assertEquals(response.status_code, 302)
+
 class TestRegistrazione(TestCase):
     """ Classe contenente i TA della user story 1 """
     def setUp(self):
