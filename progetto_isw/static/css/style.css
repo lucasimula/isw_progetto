@@ -36,6 +36,13 @@ form{
 
 }
 
+.linea_separazione{
+    color: black;
+    height:1px;
+    background:#717171;
+    border-bottom:1px solid #313030;
+}
+
 .galleria:hover {
   border: 1px solid #777;
 }
