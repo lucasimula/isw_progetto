@@ -5,9 +5,6 @@ from .views import *
 import datetime
 
 
-# Create your tests here.
-
-
 class TestHotel(TestCase):
     def test_hotel(self):
         albergatore = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
@@ -217,7 +214,7 @@ class TestLogin(TestCase):
         self.middleware = SessionMiddleware()
 
     def test_login(self):
-        """verifica l'accesso di un utente proprietario di un albergo"""
+        """ Verifica l'accesso di un utente proprietario di un albergo"""
         # Riempimento form
         form_data = {'username': 'albachiara', 'password': 'albachiara'}
 
@@ -599,13 +596,12 @@ class TestCerca(TestCase):
         hotel = Hotel(albergatore=albergatore, nome='La bellezza',
                       descrizione='Hotel 3 stelle', citta='Sassari', indirizzo='Piazza Italia')
 
-
         hotel.save()
 
         cameraDaPrenotare = Camera(numero=50, nLetti=1, prezzo=35, servizi='Wi-fi', hotel=hotel)
         cameraDaPrenotare.save()
 
-        #albergatore che non ha hotel
+        # albergatore che non ha hotel
         albergatore2 = Albergatore(nome='Giovanna', cognome='Cicci', password='GiovannaCicci',
                                   username='gcicci', email='gcicci@gmail.com',
                                   citta='Cagliari', indirizzo='Via Scano 52')
@@ -619,7 +615,6 @@ class TestCerca(TestCase):
 
         self.request_factory = RequestFactory()
         self.middleware = SessionMiddleware()
-
 
     def testCercaR(self):
         """ Verifica che sia possibile effettuare una ricerca"""
@@ -653,9 +648,7 @@ class TestCerca(TestCase):
         Spiacenti! Non abbiamo camere disponibili per la città da lei indicata.
         con un link per tornare alla pagina di ricerca"""
 
-
         request = self.request_factory.get('/cercaRS/', follow=True)
-
 
         request.GET.__init__(mutable=True)
 
@@ -666,12 +659,10 @@ class TestCerca(TestCase):
 
         self.middleware.process_request(request)
 
-
         request.session.save()
 
         # Invio dati alla view che esegue la ricerca
         response = cercaRS(request)
-
 
         self.assertContains(response, 'Spiacenti! Non abbiamo camere disponibili per la città da lei indicata.')
 
