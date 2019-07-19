@@ -2,6 +2,22 @@
     box-sizing: border-box;
 }
 
+div{
+    text-align: center;
+}
+
+h1{
+    text-align: center;
+}
+
+nav{
+    text-align: center;
+}
+
+form{
+    text-align: center;
+}
+
 #gestione-hotel{
     margin: 20px;
 }
