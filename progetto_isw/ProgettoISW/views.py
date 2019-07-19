@@ -276,6 +276,10 @@ def cercaRS(request):
 
 
 def prenotazione(request):
+    if 'checkinDT' not in request.session:
+        return render(request, "cercaB.html", {'form': FormRicerca()})
+    if request.GET.get('numeroCamera') is None:
+        return render(request, "cercaB.html", {'form': FormRicerca()})
     try:
         numeroCamera = request.GET.get('numeroCamera', None)
     except:
@@ -293,6 +297,9 @@ def prenotazione(request):
 
 
 def confermaPrenotazione(request):
+    if 'checkinDT' not in request.session:
+        return render(request, "cercaB.html", {'form': FormRicerca()})
+
     checkinDT = request.session['checkinDT']
     checkoutDT = request.session['checkoutDT']
     if request.method == 'GET':
