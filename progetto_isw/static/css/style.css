@@ -2,8 +2,19 @@
     box-sizing: border-box;
 }
 
-h1{
+#lista-hotel{
+    margin: 20px;
+}
 
+#aggiungi-hotel{
+    margin: 20px;
+}
+
+.centerThisButtonBro{
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 body {
