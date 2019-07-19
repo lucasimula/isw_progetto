@@ -167,3 +167,7 @@ button a {
     padding: 2%;
 }
 
+.messages {
+    color: red;
+    font-weight: bold;
+}
