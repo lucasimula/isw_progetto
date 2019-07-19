@@ -7,8 +7,8 @@
 {% endblock %}
 {% block content %}
     <main>
-        <div class="wrapper">
-            <h1 id="maintitle">Aggiungi Hotel</h1>
+        <div class="wrapper-form">
+            <h1 id="maintitle" style="text-align: center">Aggiungi Hotel</h1>
             <form id="form-aggiungi-hotel" action="/aggiungiHotel/" method="POST">
                 {% csrf_token %}
                 {% for field in form %}
@@ -18,7 +18,7 @@
                         {{ field }}
                     </div>
                 {% endfor %}
-                <input id="submit" type="submit" value="CONFERMA" class="btn btn-outline-primary centerThisButtonBro" />
+                <input id="submit" type="submit" value="CONFERMA" class="btn btn-outline-primary centraBottone" />
             </form>
         </div>
     </main>

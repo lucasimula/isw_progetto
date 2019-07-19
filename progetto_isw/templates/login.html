@@ -3,7 +3,7 @@
 {% block content %}
     <main>
         <div class="wrapper-form">
-            <h1 id="maintitle">Login</h1>
+            <h1 id="maintitle" style="text-align: center">Login</h1>
             <form id="login" action="/login/" method="POST" style="text-align: center;">
                 {% csrf_token %}
                 {% for field in form %}
