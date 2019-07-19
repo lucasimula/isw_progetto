@@ -4,7 +4,7 @@
 {% block content %}
     <main>
         <div class="wrapper-form">
-            <h1 id="maintitle">Registrazione</h1>
+            <h1 id="maintitle" style="text-align: center">Registrazione</h1>
             <form id="signUp" action="/registrazione/" method="POST" style="text-align: center;">
                 {% csrf_token %}
                 {% for field in form %}
