@@ -696,6 +696,7 @@ class TestCerca(TestCase):
 
             self.assertContains(response, 'Spiacenti! La camera è stata già prenotata')
 
+
 class TestSalva(TestCase):
 
     def setUp(self):
@@ -735,7 +736,6 @@ class TestSalva(TestCase):
         data.save()
         # Invio form alla pagina
         self.client.get('/confermaPrenotazione/', form_prenotazione)
-
 
         contaLePrenotazioni = Prenotazione.objects.all().count()
         self.assertEqual(contaLePrenotazioni, 2)

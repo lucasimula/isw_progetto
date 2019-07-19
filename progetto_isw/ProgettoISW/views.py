@@ -4,7 +4,6 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, render_to_response
 from django.template.defaultfilters import safe
 from django.urls import reverse
-
 from .forms import *
 
 
@@ -231,7 +230,6 @@ def cercaRS(request):
 
                         request.session['checkinDT'] = cercaCheckIn
                         request.session['checkoutDT'] = cercaCheckOut
-
 
                         dataEsiste = 0
 
