@@ -374,12 +374,12 @@ class TestAggiungiHotel(TestCase):
         request.session['nomeAlbergatore'] = self.albergatore.username
 
         # Riempimento form
-        form_data = {'nome': "Caesar's Hotel",
+        forms = {'nome': "Caesar's Hotel",
                      'descrizione': "L'hotel preferito da Giulio Cesare",
                      'citta': "Cagliari",
                      'indirizzo': "Via Charles Darwin 2"}
 
-        form = FormAggiungiHotel(data=form_data)
+        form = FormAggiungiHotel(data=forms)
 
         # Verifica
         self.assertTrue(form.is_valid(), msg=form.errors)
