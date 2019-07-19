@@ -2,8 +2,23 @@
     box-sizing: border-box;
 }
 
-h1{
+#lista-hotel{
+    margin: 20px;
+}
 
+#aggiungi-hotel{
+    margin: 20px;
+}
+
+#aggiungi-camera{
+    margin: 20px;
+}
+
+.centerThisButtonBro{
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 body {
@@ -48,7 +63,7 @@ button a {
     margin-right:10px;
 }
 
-#maintitle {
+.maintitle {
     margin: 10px 0;
     font-weight: lighter;
     text-align: center;
