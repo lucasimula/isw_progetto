@@ -15,7 +15,7 @@
     {% endif %}
     <main>
         <div class="wrapper-form">
-            <h1 id="maintitle" style="text-align: center">Aggiungi Camera</h1>
+            <h1 id="maintitle">Aggiungi Camera</h1>
             <form id="form-aggiungi-camera" action="/aggiungiCamera/" method="POST">
                 {% csrf_token %}
                 {% for field in form %}

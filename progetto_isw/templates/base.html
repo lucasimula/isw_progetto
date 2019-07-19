@@ -10,9 +10,11 @@
 <body>
     <nav class="navbar navbar-light bg-light justify-content">
         {% block tasto-sinistro %}{% endblock %}
-        <button id="registrazione" class="btn btn-primary" type="button">
+        {% if request.session.nomeAlbergatore is None %}
+            <button id="registrazione" class="btn btn-primary" type="button">
                 <a href="/registrazione/" class="whiteText" >Registrati</a>
             </button>
+        {% endif %}
         <a class="navbar-brand booki" href="/home/">Booking</a>
         {% if request.session.nomeAlbergatore is not None %}
             <button id="logout" class="btn btn-primary" type="button">
