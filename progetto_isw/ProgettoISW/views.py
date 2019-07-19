@@ -258,7 +258,7 @@ def cercaRS(request):
                             return render(request, "cercaB.html", {'form':FormRicerca(),'lista2': '1'})
                         else:
 
-                            tmp = [ca.hotel.nome, ca.nLetti, ca.prezzo, ca.servizi, ca.id, ca.hotel.citta]
+                            tmp = [ca.hotel.nome, ca.nLetti, ca.prezzo, ca.servizi, ca.id, ca.hotel.citta, ca.numero]
 
                             if tmp not in lista:
                                 lista.append(tmp)
@@ -285,7 +285,7 @@ def prenotazione(request):
     lista = []
 
     tmp = [cameraDaPrenotare.hotel.nome, cameraDaPrenotare.nLetti, cameraDaPrenotare.prezzo, cameraDaPrenotare.servizi, cameraDaPrenotare.id, cameraDaPrenotare.hotel.citta,
-           request.session['checkinDT'], cameraDaPrenotare.hotel.indirizzo, request.session['checkoutDT']]
+           request.session['checkinDT'], cameraDaPrenotare.hotel.indirizzo, request.session['checkoutDT'], cameraDaPrenotare.numero]
     lista.append(tmp)
     context = {'cameraDaPrenotare': lista}
     request.session['idCam'] = numeroCamera
