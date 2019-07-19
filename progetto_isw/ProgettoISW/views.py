@@ -271,18 +271,8 @@ def cercaRS(request):
         else:
             context = {'lista2': '1'}
 
-        return cercaAl(request, context)
-        #return redirect(request,"/cercaAl", id = context)
+        return render(request, "cercaAl.html", context)
 
-
-
-def cercaAl(request, id):
-    if id is not None:
-
-        return render(request, "cercaAl.html", id)
-    else:
-
-        return redirect('/cercaB/')
 
 
 def prenotazione(request):
