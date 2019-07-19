@@ -1,7 +1,5 @@
 import datetime
-
 from django import forms
-
 from .models import *
 from django.contrib.auth.hashers import make_password, check_password
 
@@ -27,7 +25,7 @@ class FormRegistrazione(forms.Form):
     confermaPassword.widget.attrs.update({'class': 'margin form-control', "placeholder": "Conferma Password"})
 
     def clean_username(self):
-        # Override del metodo clean_data del campo username si controlla che l'username sia disponibile
+        """ Override del metodo clean_data del campo username, si controlla che l'username sia disponibile"""
         username = self.cleaned_data["username"]
 
         if Albergatore.objects.filter(username=username).exists():
@@ -36,7 +34,7 @@ class FormRegistrazione(forms.Form):
             return username
 
     def clean_confermaPassword(self):
-        # Override del metodo clean_data del campo confermaPassword, si controlla che password e confermaPassword siano uguali
+        """"" Override del metodo clean_data del campo confermaPassword, si controlla che password e confermaPassword siano uguali"""
 
         if self.cleaned_data["confermaPassword"] != self.cleaned_data["password"]:
             raise forms.ValidationError('La password non è stata confermata correttamente')
@@ -50,8 +48,9 @@ class FormLogin(forms.Form):
     username = forms.CharField(label="Username", required=True, max_length=100,
                                widget=forms.TextInput(attrs={"placeholder": "Nome", "class": "form-control"}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Password", "class": "form-control"}))
+
     def clean_username(self):
-        # Viene controllato che l'username sia presente nel DB
+        """ Override del metodo clean_data del campo username, si controlla che l'username sia presente nel DB"""
         username = self.cleaned_data["username"]
         if not Albergatore.objects.filter(username=username).exists():
             raise forms.ValidationError("Username non registrato")
@@ -59,8 +58,8 @@ class FormLogin(forms.Form):
             return username
 
     def clean_password(self):
-        # Si controlla la correttezza della password
-        passwordCorretta =False
+        """ Override del metodo clean_data del campo username, si controlla che la password corrisponda"""
+        passwordCorretta = False
         try:
             # Se l'username è registrato si salva l'albergatore con quell'username
             if Albergatore.objects.filter(username=self.cleaned_data["username"]).exists():
@@ -113,6 +112,7 @@ class FormRicerca(forms.Form):
     cercaCheckIn.widget.attrs.update({'class': 'margin form-control '})
     cercaCheckOut = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), initial=datetime.date.today(), label="A:")
     cercaCheckOut.widget.attrs.update({'class': 'margin form-control  '})
+
 
 class FormConferma(forms.Form):
     email = forms.EmailField(required=True, widget=forms.TextInput(attrs={'class': 'form-control centrareBene margin', 'placeholder':'Email'}))
