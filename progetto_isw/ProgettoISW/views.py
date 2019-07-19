@@ -275,8 +275,8 @@ def cercaRS(request):
         #return redirect(request,"/cercaAl", id = context)
 
 
-def cercaAl(request, id):
 
+def cercaAl(request, id):
     if id is not None:
 
         return render(request, "cercaAl.html", id)
