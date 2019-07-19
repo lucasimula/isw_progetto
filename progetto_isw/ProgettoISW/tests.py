@@ -20,15 +20,15 @@ class TestHotel(TestCase):
                       indirizzo='Viale Umberto Ticca')
         hotel.save()
 
-        nAlbergatori = Albergatore.objects.filter(nome='Marco', cognome='Cocco', password='ciao',
+        numeroAlbergatori = Albergatore.objects.filter(nome='Marco', cognome='Cocco', password='ciao',
                                                   username='marcococco', email='marcococco@gmail.com',
                                                   citta='Cagliari', indirizzo='Via Scano 51').count()
-        self.assertEqual(nAlbergatori, 1)
+        self.assertEqual(numeroAlbergatori, 1)
 
-        nHotel = Hotel.objects.filter(albergatore=albergatore, nome='Holiday Inn',
+        numeroHotel = Hotel.objects.filter(albergatore=albergatore, nome='Holiday Inn',
                                       descrizione='Bello e profumato', citta='Cagliari',
                                       indirizzo='Viale Umberto Ticca').count()
-        self.assertEqual(nHotel, 1)
+        self.assertEqual(numeroHotel, 1)
 
 
 class TestCamera(TestCase):
@@ -47,32 +47,32 @@ class TestCamera(TestCase):
                         prezzo='125.0', servizi='Bagno privato, Asciugacapelli')
         camera.save()
 
-        nAlbergatori = Albergatore.objects.filter(nome='Marco', cognome='Cocco', password='ciao',
+        numeroAlbergatori = Albergatore.objects.filter(nome='Marco', cognome='Cocco', password='ciao',
                                                   username='marcococco', email='marcococco@gmail.com',
                                                   citta='Cagliari', indirizzo='Via Scano 51').count()
-        self.assertEqual(nAlbergatori, 1)
+        self.assertEqual(numeroAlbergatori, 1)
 
-        nHotel = Hotel.objects.filter(albergatore=albergatore, nome='Holiday Inn',
+        numeroHotel = Hotel.objects.filter(albergatore=albergatore, nome='Holiday Inn',
                                       descrizione='Bello e profumato', citta='Cagliari',
                                       indirizzo='Viale Umberto Ticca').count()
-        self.assertEqual(nHotel, 1)
+        self.assertEqual(numeroHotel, 1)
 
-        nCamere = Camera.objects.filter(hotel=hotel, numero='101', nLetti='4',
+        numeroCamere = Camera.objects.filter(hotel=hotel, numero='101', nLetti='4',
                                         prezzo='125.0', servizi='Bagno privato, Asciugacapelli').count()
-        self.assertEqual(nCamere, 1)
-
+        self.assertEqual(numeroCamere, 1)
 
 # Test di accettazione
-
-# NB RIVEDERE TUTTI I COMMENTI
 
 class TestLogout(TestCase):
     """Classe contenente i TA del Logout"""
     def setUp(self):
-        albergatore = Albergatore (nome='Marco', cognome='Marras', password='wewe', username='user1', email='m@gmail.com', citta='Milano', indirizzo='via Lugodoro 1')
+        albergatore = Albergatore(nome='Marco', cognome='Marras', password='wewe', username='user1',
+                                  email='m@gmail.com', citta='Milano', indirizzo='via Lugodoro 1')
         albergatore.save()
+
         self.request_factory = RequestFactory()
         self.middleware = SessionMiddleware()
+
         request = self.request_factory.get('/login/', follow=True)
         data = self.client.session
         data.update({
@@ -80,12 +80,13 @@ class TestLogout(TestCase):
         })
         data.save()
 
-    def test_logout_view(self):
+    def testLogout(self):
         response = self.client.get('/logout/')
         self.assertEquals(response.status_code, 302)
 
+
 class TestRegistrazione(TestCase):
-    """ Classe contenente i TA della user story 1 """
+    """Classe contenente i TA della registrazione"""
     def setUp(self):
         albergatore = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
                                   username='marcococco', email='marcococco@gmail.com',
@@ -97,13 +98,12 @@ class TestRegistrazione(TestCase):
         self.middleware = SessionMiddleware()
 
     def test_campi_mancanti(self):
-        """ Verifica che un form di registrazione incompleto non consenta la registrazione """
+        """Verifica che un form di registrazione incompleto non consenta la registrazione"""
 
-        # Ottenimento della request
-        request = self.request_factory.get('/registrazione/', follow=True)
+        request = self.request_factory.get('/registrazione/', follow=True) # si ottiene della request
         self.middleware.process_request(request)
-        # Creazione della sessione
-        request.session.save()
+
+        request.session.save()        # Creazione della sessione
 
         # Riempimento del form
         form_data = {'nome': "Enzo",
@@ -116,27 +116,21 @@ class TestRegistrazione(TestCase):
                      'confermaPassword': "buongiorno"}
 
         form = FormRegistrazione(data=form_data)
-
-        # Verifica
-        self.assertTrue(form.is_valid(), msg=form.errors)
+        self.assertTrue(form.is_valid(), msg=form.errors)         # Verifica
 
     def test_registrazione_avvenuta(self):
         """ Verifica che un hotel keeper registrato possa accedere alla sua home """
 
-        # Creazione request
-        request = self.request_factory.get('/home/', follow=True)
+        request = self.request_factory.get('/home/', follow=True)        # Si crea la request
         self.middleware.process_request(request)
-        # Creazione sessione
-        request.session.save()
 
-        # Simulazione login
-        request.session['nomeAlbergatore'] = 'marcococco'
+        request.session.save() # Si crea sessione
 
-        # Esecuzione della vista che gestisce la home dell'albergatore
-        response = homeAlbergatore(request)
+        request.session['nomeAlbergatore'] = 'marcococco' # Si simula login
 
-        # Verifica l'accesso
-        self.assertEquals(response.status_code, 200)
+        response = homeAlbergatore(request)         # Si esegue la view della homeAlbergatore
+
+        self.assertEquals(response.status_code, 200)    # Si verifica che sia avvenuto l'accesso
 
     def test_registrazione_fallita(self):
         """ Verifica che un hotel keeper non registrato non possa accedere alla home"""
@@ -417,15 +411,15 @@ class TestAggiungiHotel(TestCase):
         request = self.request_factory.get('/aggiungiHotel/', follow=True)
         self.middleware.process_request(request)
 
-        key_sessione = self.albergatore.username
+        chiave_sessione = self.albergatore.username
         session = self.client.session
-        session['nomeAlbergatore'] = key_sessione
+        session['nomeAlbergatore'] = chiave_sessione
         session.save()
 
         # Verifica del numero di hotel presenti prima dell'aggiunta
-        for h in Hotel.objects.all():
-            if h.albergatore.username == self.albergatore.username:
-                listaHotel.append(h)
+        for hotel in Hotel.objects.all():
+            if hotel.albergatore.username == self.albergatore.username:
+                listaHotel.append(hotel)
 
         self.assertEqual(len(listaHotel), 2)
 
@@ -450,7 +444,7 @@ class TestAggiungiHotel(TestCase):
         listaHotel = []
 
         for h in Hotel.objects.all():
-            if (h.albergatore.username == self.albergatore.username):
+            if h.albergatore.username == self.albergatore.username:
                 listaHotel.append(h)
 
         self.assertEqual(len(listaHotel), 3)
@@ -608,7 +602,7 @@ class TestCerca(TestCase):
 
         hotel.save()
 
-        cameraDaPrenotare= Camera(numero=50, nLetti=1, prezzo=35, servizi='Wi-fi', hotel=hotel)
+        cameraDaPrenotare = Camera(numero=50, nLetti=1, prezzo=35, servizi='Wi-fi', hotel=hotel)
         cameraDaPrenotare.save()
 
         #albergatore che non ha hotel
@@ -681,7 +675,7 @@ class TestCerca(TestCase):
 
         self.assertContains(response, 'Spiacenti! Non abbiamo camere disponibili per la città da lei indicata.')
 
-        def testRicercaNonTrovataData(self):
+    def testRicercaNonTrovataData(self):
             """ Se la ricerca non viene visualizzata perché non vengono trovate date disponibili"""
 
             request = self.request_factory.get('/cercaRS/', follow=True)

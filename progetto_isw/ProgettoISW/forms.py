@@ -73,13 +73,12 @@ class FormLogin(forms.Form):
         if check_password(self.cleaned_data['password'], albergatore.password):
             passwordCorretta = True
         else: # assegno un valore True nel caso la password non criptata sia uguale a quella sul DB (non criptata)
-            if (str(self.cleaned_data["password"]) == albergatore.password):
+            if str(self.cleaned_data["password"]) == albergatore.password:
                 passwordCorretta = True
 
         if passwordCorretta:
             password = albergatore.password
         else:
-
             raise forms.ValidationError('Password errata!')
 
         return password

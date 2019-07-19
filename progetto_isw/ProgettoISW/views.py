@@ -6,7 +6,6 @@ from django.template.defaultfilters import safe
 from django.urls import reverse
 
 from .forms import *
-# Create your views here.
 
 
 def registrazione(request):
@@ -64,6 +63,7 @@ def login(request):
 
 
 def logout(request):
+    # Se un albergatore è loggato si elimina il nome dalla sessione
     if 'nomeAlbergatore' in request.session:
         del request.session['nomeAlbergatore']
 
@@ -74,6 +74,7 @@ def logout(request):
 
 
 def home(request):
+    # Se un albergatore è loggato si apre la sua home personale
     if 'nomeAlbergatore' in request.session:
         return redirect('/homeAlbergatore/')
 
@@ -81,6 +82,7 @@ def home(request):
 
 
 def homeAlbergatore(request):
+    # Si recuperano le informazioni da visualizzare nella home personale
     if 'nomeAlbergatore' in request.session:
         for a in Albergatore.objects.all():
             if a.username == request.session['nomeAlbergatore']:
