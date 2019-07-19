@@ -6,7 +6,7 @@
     margin: 20px;
 }
 
-.gallery {
+.galleria {
     margin:40px;
     text-align: center;
     border: 1px solid #ccc;
@@ -14,17 +14,17 @@
     width: 180px;
 }
 
-.photo{
+.foto{
     margin-right: auto;
     margin-right: auto;
 
 }
 
-.gallery:hover {
+.galleria:hover {
   border: 1px solid #777;
 }
 
-.gallery img {
+.galleria img {
   width: 100%;
   height: auto;
 }
