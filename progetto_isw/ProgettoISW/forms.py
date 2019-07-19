@@ -97,9 +97,9 @@ class FormAggiungiHotel(forms.Form):
 
 
 class FormAggiungiCamera(forms.Form):
-    numero = forms.IntegerField(required=True, widget=forms.TextInput(attrs={"class": "form-control"}))
-    nLetti = forms.IntegerField(required=True, widget=forms.TextInput(attrs={"class": "form-control"}))
-    prezzo = forms.FloatField(required=True, widget=forms.TextInput(attrs={"class": "form-control"}))
+    numero = forms.IntegerField(required=True, widget=forms.TextInput(attrs={"placeholder": "Numero stanza","class": "form-control"}))
+    nLetti = forms.IntegerField(required=True, widget=forms.TextInput(attrs={"placeholder": "Numero letti","class": "form-control"}))
+    prezzo = forms.FloatField(required=True, widget=forms.TextInput(attrs={"placeholder": "Prezzo","class": "form-control"}))
     servizi = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Servizi", "class": "form-control"}))
     
 
