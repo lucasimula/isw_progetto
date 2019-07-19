@@ -93,7 +93,6 @@ def homeAlbergatore(request):
                         elencoPrenotazioni.append(p)
 
                 return render(request, "homeAlbergatore.html", {'prenotazioni': elencoPrenotazioni})
-
         return redirect('/home/')
     else:
         return redirect('/home/')
@@ -218,11 +217,11 @@ def cercaRS(request):
             cercaCheckIn = request.GET.get('cercaCheckIn', None)
             cercaCheckOut = request.GET.get('cercaCheckOut', None)
 
-            if (cercaCheckIn != None and cercaCheckOut != None and cercaCitta != None and cercaLetti != None):
+            if cercaCheckIn != None and cercaCheckOut != None and cercaCitta != None and cercaLetti != None:
 
                 for ca in Camera.objects.all():
 
-                    if (ca.hotel.citta == cercaCitta and str(ca.nLetti) == cercaLetti):
+                    if ca.hotel.citta == cercaCitta and str(ca.nLetti) == cercaLetti:
 
                         listIn = cercaCheckIn.split("-")
                         listOut = cercaCheckOut.split("-")
@@ -234,23 +233,22 @@ def cercaRS(request):
                         request.session['checkoutDT'] = cercaCheckOut
 
 
-                        dataEsiste=0
+                        dataEsiste = 0
 
                         for item in Prenotazione.objects.all():
-                            if(item.camera.id == ca.id):
+                            if item.camera.id == ca.id:
                                 #viene controllato se la data di checIn o checkOut inserita è compresa in quelle prenotate
                                 #e viceversa
-                                if(checkinDT >=item.checkIn and checkinDT <=item.checkOut):
-                                    dataEsiste= dataEsiste + 1
-                                if(item.checkIn >= checkinDT and item.checkIn <=checkoutDT):
+                                if checkinDT >= item.checkIn and checkinDT <= item.checkOut:
+                                    dataEsiste = dataEsiste + 1
+                                if item.checkIn >= checkinDT and item.checkIn <= checkoutDT:
+                                    dataEsiste = dataEsiste + 1
+                                if checkoutDT >= item.checkIn and checkoutDT <= item.checkOut:
+                                    dataEsiste = dataEsiste + 1
+                                if item.checkOut >= checkinDT and item.checkOut <= checkoutDT:
                                     dataEsiste = dataEsiste + 1
 
-                                if (checkoutDT >=item.checkIn and checkoutDT <= item.checkOut):
-                                    dataEsiste = dataEsiste + 1
-                                if (item.checkOut >= checkinDT and item.checkOut <= checkoutDT):
-                                    dataEsiste = dataEsiste + 1
-
-                        if(dataEsiste>0):
+                        if dataEsiste > 0:
 
                             return render(request, "cercaB.html", {'form':FormRicerca(),'lista2': '1'})
                         else:
@@ -260,14 +258,11 @@ def cercaRS(request):
                             if tmp not in lista:
                                 lista.append(tmp)
 
-                        if (checkoutDT < checkinDT):
+                        if checkoutDT < checkinDT:
                             return render(request, "cercaB.html", {'form':FormRicerca()})
-
 
         if len(lista) > 0:
             context = {'lista': lista}
-
-
         else:
             context = {'lista2': '1'}
 
@@ -298,7 +293,7 @@ def prenotazione(request):
            request.session['checkinDT'], cameraDaPrenotare.hotel.indirizzo, request.session['checkoutDT']]
     lista.append(tmp)
     context = {'cameraDaPrenotare': lista}
-    request.session['idCam'] =numeroCamera
+    request.session['idCam'] = numeroCamera
     return render(request, "confermaPrenotazione.html", {'form': FormConferma(), 'cameraDaPrenotare': lista})
 
 
@@ -309,10 +304,10 @@ def confermaPrenotazione(request):
         form = FormConferma(request.GET)
         if form.is_valid():
             emailPrenotazione = form.cleaned_data['email']
-            if (emailPrenotazione != None):
+            if emailPrenotazione != None:
                 numeroCamera = request.session['idCam']
 
-            if(numeroCamera is not None):
+            if numeroCamera is not None:
                 cameraPrenotata = Camera.objects.get(id=numeroCamera)
 
                 prenot = Prenotazione(email=emailPrenotazione, camera=cameraPrenotata, checkIn=checkinDT, checkOut=checkoutDT)
