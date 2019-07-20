@@ -10,7 +10,7 @@ class TestLogout(TestCase):
     """Classe contenente i TA del Logout"""
     def setUp(self):
         albergatore = Albergatore(nome='Marco', cognome='Marras', password='wewe', username='user1',
-                                  email='m@gmail.com', citta='Milano', indirizzo='via Lugodoro 1')
+                                  email='m@gmail.com')
         albergatore.save()
 
         self.request_factory = RequestFactory()
@@ -33,8 +33,7 @@ class TestRegistrazione(TestCase):
     """Classe contenente i TA della registrazione"""
     def setUp(self):
         albergatore = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
-                                  username='marcococco', email='marcococco@gmail.com',
-                                  citta='Cagliari', indirizzo='Via Scano 51')
+                                  username='marcococco', email='marcococco@gmail.com')
         albergatore.save()
 
         self.albergatore = albergatore
@@ -75,8 +74,6 @@ class TestRegistrazione(TestCase):
         form = {'nome': "Enzo",
                      'cognome': "Scano",
                      'email': "enzoscano@gmail.com",
-                     'citta': "Cagliari",
-                     'indirizzo': "Via Cocco Ortu 99",
                      'username': "marcococco",
                      'password': "buongiorno",
                      'confermaPassword': "buongiorno"}
@@ -96,8 +93,6 @@ class TestRegistrazione(TestCase):
         form = {'nome': "Enzo",
                      'cognome': "Scano",
                      'email': "enzoscano@gmail.com",
-                     'citta': "Cagliari",
-                     'indirizzo': "Via Cocco Ortu 99",
                      'username': "enzoscano",
                      'password': "buongiorno",
                      'confermaPassword': "buongiorno"}
@@ -113,7 +108,7 @@ class TestRegistrazione(TestCase):
         self.assertTrue(len(listaAlbergatori), 1)
 
     def testRegistratiCampiErrati(self):
-        form = {'nome': 'paolino', 'cognome': 'paperino', 'email': 'emailErrata', 'citta': 'Escalaplano', 'indirizzo': 'via Roma 1',
+        form = {'nome': 'paolino', 'cognome': 'paperino', 'email': 'emailErrata',
                      'username': 'username1', 'password':'password1', 'confermaPassword':'password1'}
 
         formReg = FormRegistrazione(data=form)
@@ -124,8 +119,7 @@ class TestLogin(TestCase):
     """ Classe contenente i TA della user story di Login """
     def setUp(self):
         albergatore = Albergatore(nome='Alba', cognome='Rossi', password='albachiara',
-                                  username='albachiara', email='albachiaraRossi@gmail.com',
-                                  citta='Cagliari', indirizzo='via Luce 10')
+                                  username='albachiara', email='albachiaraRossi@gmail.com')
         albergatore.save()
         self.albergatore = albergatore
         self.request_factory = RequestFactory()
@@ -180,8 +174,7 @@ class TestLogin(TestCase):
 class TestHomeAlbergatore(TestCase):
     def setUp(self):
         albergatore = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
-                                   username='marcococco', email='marcococco@gmail.com',
-                                   citta='Cagliari', indirizzo='Via Scano 51')
+                                   username='marcococco', email='marcococco@gmail.com')
         albergatore.save()
 
         hotel = Hotel(albergatore=albergatore, nome='Holiday Inn',
@@ -224,8 +217,7 @@ class TestHomeAlbergatore(TestCase):
 class TestListaHotel(TestCase):
     def setUp(self):
         albergatore1 = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
-                                   username='marcococco', email='marcococco@gmail.com',
-                                   citta='Cagliari', indirizzo='Via Scano 51')
+                                   username='marcococco', email='marcococco@gmail.com')
         albergatore1.save()
 
         hotel = Hotel(albergatore=albergatore1, nome='Holiday Inn',
@@ -247,8 +239,7 @@ class TestListaHotel(TestCase):
         hote2.save()
 
         albergatore2 = Albergatore(nome='Enzo', cognome='Scano', password='buongiorno',
-                                   username='enzoscano', email='enzoscano@gmail.com',
-                                   citta='Cagliari', indirizzo='Via Cocco Ortu 99')
+                                   username='enzoscano', email='enzoscano@gmail.com')
         albergatore2.save()
 
         self.albergatoreConHotel = albergatore1
@@ -279,8 +270,7 @@ class TestListaHotel(TestCase):
 class TestAggiungiHotel(TestCase):
     def setUp(self):
         albergatore1 = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
-                                   username='marcococco', email='marcococco@gmail.com',
-                                   citta='Cagliari', indirizzo='Via Scano 51')
+                                   username='marcococco', email='marcococco@gmail.com')
         albergatore1.save()
 
         hotel = Hotel(albergatore=albergatore1, nome='Holiday Inn',
@@ -302,8 +292,7 @@ class TestAggiungiHotel(TestCase):
         hotel2.save()
 
         albergatore2 = Albergatore(nome='Enzo', cognome='Scano', password='buongiorno',
-                                   username='enzoscano', email='enzoscano@gmail.com',
-                                   citta='Cagliari', indirizzo='Via Cocco Ortu 99')
+                                   username='enzoscano', email='enzoscano@gmail.com')
         albergatore2.save()
 
         self.albergatore = albergatore1
@@ -383,8 +372,7 @@ class TestAggiungiHotel(TestCase):
 class TestGestioneHotel(TestCase):
     def setUp(self):
         albergatore = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
-                                  username='marcococco', email='marcococco@gmail.com',
-                                  citta='Cagliari', indirizzo='Via Scano 51')
+                                  username='marcococco', email='marcococco@gmail.com')
         albergatore.save()
 
         hotel = Hotel(albergatore=albergatore, nome='Holiday Inn',
@@ -427,8 +415,7 @@ class TestGestioneHotel(TestCase):
 class TestAggiungiCamera(TestCase):
     def setUp(self):
         albergatore = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
-                                  username='marcococco', email='marcococco@gmail.com',
-                                  citta='Cagliari', indirizzo='Via Scano 51')
+                                  username='marcococco', email='marcococco@gmail.com')
         albergatore.save()
 
         hotel = Hotel(albergatore=albergatore, nome='Holiday Inn',
@@ -523,8 +510,7 @@ class TestCerca(TestCase):
     """ Classe contenente i TA della user story 8 """
     def setUp(self):
         albergatore = Albergatore(nome='Giovanni', cognome='Cocco', password='GiovanniCocco',
-                                  username='gcocco', email='gcocco@gmail.com',
-                                  citta='Cagliari', indirizzo='Via Scano 51')
+                                  username='gcocco', email='gcocco@gmail.com')
         albergatore.save()
         hotel = Hotel(albergatore=albergatore, nome='La bellezza',
                       descrizione='Hotel 3 stelle', citta='Sassari', indirizzo='Piazza Italia')
@@ -536,8 +522,7 @@ class TestCerca(TestCase):
 
         # albergatore che non ha hotel
         albergatore2 = Albergatore(nome='Giovanna', cognome='Cicci', password='GiovannaCicci',
-                                  username='gcicci', email='gcicci@gmail.com',
-                                  citta='Cagliari', indirizzo='Via Scano 52')
+                                  username='gcicci', email='gcicci@gmail.com')
         albergatore2.save()
 
         prenotare = Prenotazione(email='ag@gmail.com', camera=cameraDaPrenotare, checkIn=datetime.date(2019, 8, 28),
@@ -625,8 +610,7 @@ class TestSalva(TestCase):
 
     def setUp(self):
         albergatore = Albergatore(nome='Giovanni', cognome='Cullu', password='GiovanniCullu',
-                                  username='gCullu', email='gCullu@gmail.com',
-                                  citta='Oristano', indirizzo='Via Scano 53')
+                                  username='gCullu', email='gCullu@gmail.com')
         albergatore.save()
 
         hotel1 = Hotel(albergatore=albergatore, nome='Il fico',
