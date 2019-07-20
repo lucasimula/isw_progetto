@@ -258,7 +258,7 @@ def cercaRS(request):
                             return render(request, "cercaB.html", {'form':FormRicerca(),'lista2': '1'})
                         else:
 
-                            tmp = [ca.hotel.nome, ca.nLetti, ca.prezzo, ca.servizi, ca.id, ca.hotel.citta]
+                            tmp = [ca.hotel.nome, ca.nLetti, ca.prezzo, ca.servizi, ca.id, ca.hotel.citta, ca.numero]
 
                             if tmp not in lista:
                                 lista.append(tmp)
@@ -271,21 +271,15 @@ def cercaRS(request):
         else:
             context = {'lista2': '1'}
 
-        return cercaAl(request, context)
-        #return redirect(request,"/cercaAl", id = context)
+        return render(request, "cercaAl.html", context)
 
-
-
-def cercaAl(request, id):
-    if id is not None:
-
-        return render(request, "cercaAl.html", id)
-    else:
-
-        return redirect('/cercaB/')
 
 
 def prenotazione(request):
+    if 'checkinDT' not in request.session:
+        return render(request, "cercaB.html", {'form': FormRicerca()})
+    if request.GET.get('numeroCamera') is None:
+        return render(request, "cercaB.html", {'form': FormRicerca()})
     try:
         numeroCamera = request.GET.get('numeroCamera', None)
     except:
@@ -295,7 +289,7 @@ def prenotazione(request):
     lista = []
 
     tmp = [cameraDaPrenotare.hotel.nome, cameraDaPrenotare.nLetti, cameraDaPrenotare.prezzo, cameraDaPrenotare.servizi, cameraDaPrenotare.id, cameraDaPrenotare.hotel.citta,
-           request.session['checkinDT'], cameraDaPrenotare.hotel.indirizzo, request.session['checkoutDT']]
+           request.session['checkinDT'], cameraDaPrenotare.hotel.indirizzo, request.session['checkoutDT'], cameraDaPrenotare.numero]
     lista.append(tmp)
     context = {'cameraDaPrenotare': lista}
     request.session['idCam'] = numeroCamera
@@ -303,6 +297,9 @@ def prenotazione(request):
 
 
 def confermaPrenotazione(request):
+    if 'checkinDT' not in request.session:
+        return render(request, "cercaB.html", {'form': FormRicerca()})
+
     checkinDT = request.session['checkinDT']
     checkoutDT = request.session['checkoutDT']
     if request.method == 'GET':
