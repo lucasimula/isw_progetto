@@ -59,8 +59,7 @@ class TestRegistrazione(TestCase):
     def testControlloStessoUsername(self):
         """ Verifica che un utente non possa registrarsi se l'username specificato esiste già """
 
-        # Lista di appoggio
-        listaAlbergatori = []
+        listaAlbergatori = []  # Si usa una lista di appoggio per controllare i dati
 
         request = self.request_factory.get('/registrazione/', follow=True)  # Si crea la request
         self.middleware.process_request(request)
@@ -242,11 +241,9 @@ class TestListaHotel(TestCase):
 
         request.session['nomeAlbergatore'] = self.albergatoreConHotel.username  # Si simula il login
 
-        # Esecuzione della vista che gestisce la lista hotel
-        response = listaHotel(request)
+        response = listaHotel(request)  # Si esegue la view listaHotel
 
-        # Verifica che gli hotel vengano visualizzati
-        self.assertContains(response, 'Holiday Inn')
+        self.assertContains(response, 'Holiday Inn')  # Si verifica che la pagina contenga i dati degli hotel
         self.assertContains(response, 'T Hotel')
 
 
@@ -301,13 +298,12 @@ class TestAggiungiHotel(TestCase):
 
         form = FormAggiungiHotel(data=forms)
 
-        self.assertTrue(form.is_valid(), msg=form.errors)  # Verifica la validazione del form
+        self.assertTrue(form.is_valid(), msg=form.errors)  # Si verifica la validazione del form
 
     def testHotelAggiunto(self):
         """ Verifica che un hotel sia stato aggiunto correttamente """
 
-        # Lista temporanea
-        listaHotel = []
+        listaHotel = []  # Si usa una lista di appoggio per controllare i dati
 
         request = self.request_factory.get('/aggiungiHotel/', follow=True)  # Si crea la request
         self.middleware.process_request(request)
@@ -317,12 +313,11 @@ class TestAggiungiHotel(TestCase):
         session['nomeAlbergatore'] = chiave_sessione
         session.save()
 
-        # Verifica del numero di hotel presenti prima dell'aggiunta
         for hotel in Hotel.objects.all():
             if hotel.albergatore.username == self.albergatore.username:
                 listaHotel.append(hotel)
 
-        self.assertEqual(len(listaHotel), 2)
+        self.assertEqual(len(listaHotel), 2)  # Si verifica il numero di hotel presenti inizialmente
 
         formData = {'nome': "Caesar's Hotel",  # Si riempie il form
                      'descrizione': "L'hotel preferito da Giulio Cesare",
@@ -331,19 +326,17 @@ class TestAggiungiHotel(TestCase):
 
         form = FormAggiungiHotel(data=formData)
 
-        self.assertTrue(form.is_valid())  # Verifica la validazione del form
+        self.assertTrue(form.is_valid())  # Si verifica la validazione del form
 
-        # Invia il form in POST all'url di aggiunta hotel
-        self.client.post('/aggiungiHotel/', formData)
+        self.client.post('/aggiungiHotel/', formData)  # Si inviano i dati del form tramite POST
 
-        # Verifica della corretta aggiunta dell'hotel
         listaHotel = []
 
         for h in Hotel.objects.all():
             if h.albergatore.username == self.albergatore.username:
                 listaHotel.append(h)
 
-        self.assertEqual(len(listaHotel), 3)
+        self.assertEqual(len(listaHotel), 3)  # Si verifica l'aggiunta del nuovo hotel
 
 
 class TestGestioneHotel(TestCase):
@@ -377,7 +370,6 @@ class TestGestioneHotel(TestCase):
 
         request.session['nomeAlbergatore'] = self.albergatore.username  # Si simula il login
 
-        # Esecuzione della vista che gestisce i dettagli dell'hotel
         response = gestioneHotel(request)
 
         # Verifica che la pagina contenga i dati dell'hotel
@@ -431,8 +423,7 @@ class TestAggiungiCamera(TestCase):
     def testCameraAggiunta(self):
         """ Verifica che una camera venga aggiunta correttamente """
 
-        # Lista di appoggio
-        listaCamere = []
+        listaCamere = []  # Si usa una lista di appoggio per controllare i dati
 
         request = self.request_factory.get('/aggiungiCamera/?id=' + str(self.hotel.id), follow=True)  # Si crea la request
         self.middleware.process_request(request)
@@ -465,8 +456,7 @@ class TestAggiungiCamera(TestCase):
                      'prezzo': "180.0",
                      'servizi': "Colazione inclusa, Bagno privato, TV, Asciugacapelli"}
 
-        # Invio form all'url che gestisce l'aggiunta della camera
-        self.client.post('/aggiungiCamera/', form_data)
+        self.client.post('/aggiungiCamera/', form_data)    # Si inviano i dati del form tramite POST
 
         # Conteggio camere dopo l'aggiunta e verifica
         listaCamere = []
@@ -524,8 +514,7 @@ class TestCerca(TestCase):
 
         request.session.save()  # Si crea la sessione
 
-        # Invio dei dati alla view che effettua la ricerca
-        response = cercaRS(request)
+        response = cercaRS(request)    # Si esegue la view cercaRS
 
         # Verifica corrispondenze trovate
         self.assertContains(response, 'La bellezza')
@@ -550,13 +539,12 @@ class TestCerca(TestCase):
 
         request.session.save()
 
-        # Invio dati alla view che esegue la ricerca
-        response = cercaRS(request)
+        response = cercaRS(request)  # Si esegue la view cercaRS
 
         self.assertContains(response, 'Spiacenti! Non abbiamo camere disponibili per la città da lei indicata.')
 
     def testRicercaNonTrovataData(self):
-        """ Se la ricerca non viene visualizzata perché non vengono trovate date disponibili """
+        """ Verifica che un utente non visualizzi risultati se le date scelte sono occupate """
 
         request = self.request_factory.get('/cercaRS/', follow=True)
 
@@ -571,8 +559,7 @@ class TestCerca(TestCase):
 
         request.session.save()
 
-        # Invio dati alla view che esegue la ricerca
-        response = cercaRS(request)
+        response = cercaRS(request)  # Si esegue la view cercaRS
 
         self.assertContains(response, 'Spiacenti! La camera è stata già prenotata')
 
