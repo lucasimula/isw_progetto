@@ -4,60 +4,6 @@ from .models import *
 from .views import *
 import datetime
 
-
-class TestHotel(TestCase):
-    def testHotel(self):
-        albergatore = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
-                                  username='marcococco', email='marcococco@gmail.com',
-                                  citta='Cagliari', indirizzo='Via Scano 51')
-        albergatore.save()
-
-        hotel = Hotel(albergatore=albergatore, nome='Holiday Inn',
-                      descrizione='Bello e profumato', citta='Cagliari',
-                      indirizzo='Viale Umberto Ticca')
-        hotel.save()
-
-        numeroAlbergatori = Albergatore.objects.filter(nome='Marco', cognome='Cocco', password='ciao',
-                                                  username='marcococco', email='marcococco@gmail.com',
-                                                  citta='Cagliari', indirizzo='Via Scano 51').count()
-        self.assertEqual(numeroAlbergatori, 1)
-
-        numeroHotel = Hotel.objects.filter(albergatore=albergatore, nome='Holiday Inn',
-                                      descrizione='Bello e profumato', citta='Cagliari',
-                                      indirizzo='Viale Umberto Ticca').count()
-        self.assertEqual(numeroHotel, 1)
-
-
-class TestCamera(TestCase):
-    def testCamera(self):
-        albergatore = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
-                                  username='marcococco', email='marcococco@gmail.com',
-                                  citta='Cagliari', indirizzo='Via Scano 51')
-        albergatore.save()
-
-        hotel = Hotel(albergatore=albergatore, nome='Holiday Inn',
-                      descrizione='Bello e profumato', citta='Cagliari',
-                      indirizzo='Viale Umberto Ticca')
-        hotel.save()
-
-        camera = Camera(hotel=hotel, numero='101', nLetti='4',
-                        prezzo='125.0', servizi='Bagno privato, Asciugacapelli')
-        camera.save()
-
-        numeroAlbergatori = Albergatore.objects.filter(nome='Marco', cognome='Cocco', password='ciao',
-                                                  username='marcococco', email='marcococco@gmail.com',
-                                                  citta='Cagliari', indirizzo='Via Scano 51').count()
-        self.assertEqual(numeroAlbergatori, 1)
-
-        numeroHotel = Hotel.objects.filter(albergatore=albergatore, nome='Holiday Inn',
-                                      descrizione='Bello e profumato', citta='Cagliari',
-                                      indirizzo='Viale Umberto Ticca').count()
-        self.assertEqual(numeroHotel, 1)
-
-        numeroCamere = Camera.objects.filter(hotel=hotel, numero='101', nLetti='4',
-                                        prezzo='125.0', servizi='Bagno privato, Asciugacapelli').count()
-        self.assertEqual(numeroCamere, 1)
-
 # Test di accettazione
 
 class TestLogout(TestCase):
@@ -77,23 +23,6 @@ class TestLogout(TestCase):
         })
         data.save()
 
-    def testUtenteNonRegistrato(self):
-        """ Verifica che un utente non registrato non possa accedere alla home personale degli albergatori"""
-
-        # Creazione request
-        request = self.request_factory.get('/home/', follow=True)
-        self.middleware.process_request(request)
-        # Creazione sessione
-        request.session.save()
-
-        # Simulazione login
-        request.session['nomeAlbergatore'] = 'lorenzopalla'
-
-        # Esecuzione della vista che gestisce la home dell'albergatore
-        response = homeAlbergatore(request)
-
-        # Verifica accesso negato e redirect
-        self.assertEquals(response.status_code, 302)
 
     def testLogout(self):
         response = self.client.get('/logout/')
@@ -211,6 +140,24 @@ class TestLogin(TestCase):
         # Verifica
         self.assertTrue(loginForm.is_valid(), loginForm.errors)
 
+    def testUtenteNonRegistrato(self):
+        """ Verifica che un utente non registrato non possa accedere alla home personale degli albergatori"""
+
+        # Creazione request
+        request = self.request_factory.get('/home/', follow=True)
+        self.middleware.process_request(request)
+        # Creazione sessione
+        request.session.save()
+
+        # Simulazione login
+        request.session['nomeAlbergatore'] = 'lorenzopalla'
+
+        # Esecuzione della vista che gestisce la home dell'albergatore
+        response = homeAlbergatore(request)
+
+        # Verifica accesso negato e redirect
+        self.assertEquals(response.status_code, 302)
+
     def testUtenteLoggato(self):
         """ Verifica che un albergatore già loggato non abbia accesso alla pagina di login"""
 
@@ -255,7 +202,7 @@ class TestHomeAlbergatore(TestCase):
         self.middleware = SessionMiddleware()
 
     def testVisualizzazionePrenotazioni(self):
-        """ Verifica che un hotel keeper con prenotazioni le visualizzi nella sua home """
+        """ Verifica che un albergatore visualizzi le prenotazioni delle camere dei suoi hotel """
 
         # Creazione della request
         request = self.request_factory.get('/home/')
@@ -263,7 +210,7 @@ class TestHomeAlbergatore(TestCase):
         # Creazione della sessione
         request.session.save()
 
-        # Simulazione hotel keeper loggato
+        # Simulazione login albergatore
         request.session['nomeAlbergatore'] = self.albergatore.username
 
         # Esecuzione della view che gestisce la home dell'albergatore
@@ -310,7 +257,7 @@ class TestListaHotel(TestCase):
         self.middleware = SessionMiddleware()
 
     def testVisualizzazioneListaHotel(self):
-        """ Verifica che un hotel keeper che possiede hotel ne visualizzi la lista """
+        """ Verifica che un albergatore visualizzi correttamente la lista dei suoi hotel """
 
         # Creazione request
         request = self.request_factory.get('/listaHotel/')
@@ -318,7 +265,7 @@ class TestListaHotel(TestCase):
         # Creazione sessione
         request.session.save()
 
-        # Simulazione hotel keeper loggato
+        # Simulazione login albergatore
         request.session['nomeAlbergatore'] = self.albergatoreConHotel.username
 
         # Esecuzione della vista che gestisce la lista hotel
@@ -363,8 +310,8 @@ class TestAggiungiHotel(TestCase):
         self.request_factory = RequestFactory()
         self.middleware = SessionMiddleware()
 
-    def testCampiMancanti(self):
-        """ Verifica che non venga consentita l'aggiunta di un hotel se il form è incompleto """
+    def testHotelCampiMancanti(self):
+        """ Verifica che non venga consentita l'aggiunta di un hotel se il form è compilato scorrettamente """
 
         # Creazione request
         request = self.request_factory.get('/aggiungiHotel/', follow=True)
@@ -372,7 +319,7 @@ class TestAggiungiHotel(TestCase):
         # Creazione sessione
         request.session.save()
 
-        # Simulazione hotel keeper loggato
+        # Simulazione login albergatore
         request.session['nomeAlbergatore'] = self.albergatore.username
 
         # Riempimento form
@@ -408,10 +355,8 @@ class TestAggiungiHotel(TestCase):
 
         self.assertEqual(len(listaHotel), 2)
 
-
-
         # Riempimento form
-        formData= {'nome': "Caesar's Hotel",
+        formData = {'nome': "Caesar's Hotel",
                      'descrizione': "L'hotel preferito da Giulio Cesare",
                      'citta': "Cagliari",
                      'indirizzo': "Via Charles Darwin 2"}
@@ -457,7 +402,7 @@ class TestGestioneHotel(TestCase):
         self.request_factory = RequestFactory()
         self.middleware = SessionMiddleware()
 
-    def testVisualizzazioneDati(self):
+    def testVisualizzazioneDatiHotel(self):
         """ Verifica che l'hotel keeper visualizzi i dati dell'hotel e delle camere che contiene"""
 
         # Creazione request
@@ -501,14 +446,14 @@ class TestAggiungiCamera(TestCase):
         self.request_factory = RequestFactory()
         self.middleware = SessionMiddleware()
 
-    def testCampiMancanti(self):
+    def testCameraCampiMancanti(self):
         """ Verifica che non sia accettato un form incompleto"""
         request = self.request_factory.get('/aggiungiCamera/', follow=True)
         self.middleware.process_request(request)
         # Creazione sessione
         request.session.save()
 
-        # Simulazione hotel keeper loggato
+        # Simulazione login albergatore
         request.session['nomeAlbergatore'] = self.albergatore.username
         request.session['idHotel'] = self.hotel.id
 
@@ -604,7 +549,7 @@ class TestCerca(TestCase):
         self.request_factory = RequestFactory()
         self.middleware = SessionMiddleware()
 
-    def testCercaR(self):
+    def testRicerca(self):
         """ Verifica che sia possibile effettuare una ricerca"""
 
         # Creazione request
