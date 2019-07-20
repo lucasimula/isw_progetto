@@ -6,8 +6,9 @@ import datetime
 
 # Test di accettazione
 
+
 class TestLogout(TestCase):
-    """Classe contenente i TA del Logout"""
+    """ Classe contenente i TA della user story Logout """
     def setUp(self):
         albergatore = Albergatore(nome='Marco', cognome='Marras', password='wewe', username='user1',
                                   email='m@gmail.com')
@@ -23,14 +24,13 @@ class TestLogout(TestCase):
         })
         data.save()
 
-
     def testLogout(self):
         response = self.client.get('/logout/')
         self.assertEquals(response.status_code, 302)
 
 
 class TestRegistrazione(TestCase):
-    """Classe contenente i TA della registrazione"""
+    """ Classe contenente i TA della user story Registrazione """
     def setUp(self):
         albergatore = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
                                   username='marcococco', email='marcococco@gmail.com')
@@ -40,57 +40,49 @@ class TestRegistrazione(TestCase):
         self.request_factory = RequestFactory()
         self.middleware = SessionMiddleware()
 
-
     def testRegistrazioneAvvenuta(self):
-        """ Verifica che un hotel keeper registrato possa accedere alla sua home """
+        """ Verifica che un albergatore registrato possa accedere alla sua home """
 
-        request = self.request_factory.get('/home/', follow=True)        # Si crea la request
+        request = self.request_factory.get('/home/', follow=True)  # Si crea la request
         self.middleware.process_request(request)
 
-        request.session.save() # Si crea sessione
+        request.session.save()  # Si crea la sessione
 
-        request.session['nomeAlbergatore'] = 'marcococco' # Si simula login
+        request.session['nomeAlbergatore'] = 'marcococco'  # Si simula il login
 
-        response = homeAlbergatore(request)         # Si esegue la view della homeAlbergatore
+        response = homeAlbergatore(request)  # Si esegue la view della homeAlbergatore
 
-        self.assertEquals(response.status_code, 200)    # Si verifica che sia avvenuto l'accesso
-
-
+        self.assertEquals(response.status_code, 200)  # Si verifica che sia avvenuto l'accesso
 
     def testControlloStessoUsername(self):
-        """ Verifica che sia negata l'iscrizione se l'username specificato esiste già """
+        """ Verifica che un utente non possa registrarsi se l'username specificato esiste già """
 
         # Lista di appoggio
         listaAlbergatori = []
 
-        # Creazione request
-        request = self.request_factory.get('/registrazione/', follow=True)
+        request = self.request_factory.get('/registrazione/', follow=True)  # Si crea la request
         self.middleware.process_request(request)
-        # Creazione sessione
-        session = self.client.session
+
+        session = self.client.session # Si crea la sessione
         session.save()
 
-        # Riempimento del form
-        form = {'nome': "Enzo",
+        form_data = {'nome': "Enzo",  # Si riempie il form
                      'cognome': "Scano",
                      'email': "enzoscano@gmail.com",
                      'username': "marcococco",
                      'password': "buongiorno",
                      'confermaPassword': "buongiorno"}
 
-        form = FormRegistrazione(data=form)
+        form = FormRegistrazione(data=form_data)
 
-        # verifica che sia negata la validazione del form
-        self.assertFalse(form.is_valid(), form.errors)
+        self.assertFalse(form.is_valid(), form.errors)  # Si verifica che sia negata la validazione del form
 
-        # Conta gli utenti registrati e verifica che non ne siano stati aggiunti
-        for a in Albergatore.objects.all():
+        for a in Albergatore.objects.all():  # Si contano gli utenti registrati
             listaAlbergatori.append(a)
 
-        self.assertTrue(len(listaAlbergatori), 1)
+        self.assertTrue(len(listaAlbergatori), 1)  # Si verifica che non siano stati aggiunti utenti
 
-        # Riempimento del form
-        form = {'nome': "Enzo",
+        form = {'nome': "Enzo",  # Si riempie il form
                      'cognome': "Scano",
                      'email': "enzoscano@gmail.com",
                      'username': "enzoscano",
@@ -99,24 +91,23 @@ class TestRegistrazione(TestCase):
 
         form = FormRegistrazione(data=form)
 
-        # Conteggio e verifica
         listaAlbergatori = []
 
-        for a in Albergatore.objects.all():
+        for a in Albergatore.objects.all():  # Si contano gli utenti registrati
             listaAlbergatori.append(a)
 
-        self.assertTrue(len(listaAlbergatori), 1)
+        self.assertTrue(len(listaAlbergatori), 1)  # Si verifica che non siano stati aggiunti utenti
 
     def testRegistratiCampiErrati(self):
-        form = {'nome': 'paolino', 'cognome': 'paperino', 'email': 'emailErrata',
-                     'username': 'username1', 'password':'password1', 'confermaPassword':'password1'}
+        form = {'nome': 'paolino', 'cognome': 'paperino', 'email': 'emailErrata',  # Si riempie il form
+                     'username': 'username1', 'password':'password1', 'confermaPassword': 'password1'}
 
         formReg = FormRegistrazione(data=form)
-        self.assertFalse(formReg.is_valid())
+        self.assertFalse(formReg.is_valid())  # Si verifica che sia negata la validazione del form
 
 
 class TestLogin(TestCase):
-    """ Classe contenente i TA della user story di Login """
+    """ Classe contenente i TA della user story Login """
     def setUp(self):
         albergatore = Albergatore(nome='Alba', cognome='Rossi', password='albachiara',
                                   username='albachiara', email='albachiaraRossi@gmail.com')
@@ -126,49 +117,39 @@ class TestLogin(TestCase):
         self.middleware = SessionMiddleware()
 
     def testLogin(self):
-        """ Verifica l'accesso di un utente proprietario di un albergo"""
-        # Riempimento form
-        form_data = {'username': 'albachiara', 'password': 'albachiara'}
-
+        """ Verifica l'accesso di un utente proprietario di un albergo """
+        form_data = {'username': 'albachiara', 'password': 'albachiara'} # Si riempie il form
         loginForm = FormLogin(data=form_data)
-        # Verifica
-        self.assertTrue(loginForm.is_valid(), loginForm.errors)
+
+        self.assertTrue(loginForm.is_valid(), loginForm.errors)  # Si veirifica la validazione del form
 
     def testUtenteNonRegistrato(self):
-        """ Verifica che un utente non registrato non possa accedere alla home personale degli albergatori"""
+        """ Verifica che un utente non registrato non possa accedere alla home personale degli albergatori """
 
-        # Creazione request
-        request = self.request_factory.get('/home/', follow=True)
+        request = self.request_factory.get('/home/', follow=True)  # Si crea la request
         self.middleware.process_request(request)
-        # Creazione sessione
-        request.session.save()
 
-        # Simulazione login
-        request.session['nomeAlbergatore'] = 'lorenzopalla'
+        request.session.save()  # Si crea la sessione
 
-        # Esecuzione della vista che gestisce la home dell'albergatore
-        response = homeAlbergatore(request)
+        request.session['nomeAlbergatore'] = 'lorenzopalla'  # Si simula il login
 
-        # Verifica accesso negato e redirect
-        self.assertEquals(response.status_code, 302)
+        response = homeAlbergatore(request)  # Si esegue la view homeAlbergatore
+
+        self.assertEquals(response.status_code, 302)  # Si verifica che l'utente non reigstrato sia reindirizzato
 
     def testUtenteLoggato(self):
-        """ Verifica che un albergatore già loggato non abbia accesso alla pagina di login"""
+        """ Verifica che un albergatore già loggato non abbia accesso alla pagina di login """
 
-        # Creazione della request
-        request = self.request_factory.get('/login/', follow=True)
+        request = self.request_factory.get('/login/', follow=True)   # Si crea la request
         self.middleware.process_request(request)
-        # Creazione della sessione
-        request.session.save()
 
-        # Simulazione albergatore loggato
-        request.session['nomeAlbergatore'] = 'marcococco'
+        request.session.save()  # Si crea la sessione
 
-        # Esecuzione della vista di login
-        response = login(request)
+        request.session['nomeAlbergatore'] = 'marcococco'  # Si simula il login
 
-        # Verifica il redirect
-        self.assertEquals(response.status_code, 302)
+        response = login(request)  # Si esegue la view login
+
+        self.assertEquals(response.status_code, 302)  # Si verifica che l'utente reigstrato sia reindirizzato
 
 
 class TestHomeAlbergatore(TestCase):
@@ -197,20 +178,16 @@ class TestHomeAlbergatore(TestCase):
     def testVisualizzazionePrenotazioni(self):
         """ Verifica che un albergatore visualizzi le prenotazioni delle camere dei suoi hotel """
 
-        # Creazione della request
-        request = self.request_factory.get('/home/')
+        request = self.request_factory.get('/home/')  # Si crea la request
         self.middleware.process_request(request)
-        # Creazione della sessione
-        request.session.save()
 
-        # Simulazione login albergatore
-        request.session['nomeAlbergatore'] = self.albergatore.username
+        request.session.save()  # Si crea la sessione
 
-        # Esecuzione della view che gestisce la home dell'albergatore
-        response = homeAlbergatore(request)
+        request.session['nomeAlbergatore'] = self.albergatore.username   # Si simula il login
 
-        # Verifica che la pagina contenga la prenotazione
-        self.assertContains(response, 'lorenzomilia@gmail.com')
+        response = homeAlbergatore(request)  # Si esegue la view homeAlbergatore
+
+        self.assertContains(response, 'lorenzomilia@gmail.com')  # Si verifica che la pagina contenga i dati della prenotazione
         self.assertContains(response, 'Holiday Inn')
 
 
@@ -250,11 +227,10 @@ class TestListaHotel(TestCase):
     def testVisualizzazioneListaHotel(self):
         """ Verifica che un albergatore visualizzi correttamente la lista dei suoi hotel """
 
-        # Creazione request
-        request = self.request_factory.get('/listaHotel/')
+        request = self.request_factory.get('/listaHotel/')  # Si crea la request
         self.middleware.process_request(request)
-        # Creazione sessione
-        request.session.save()
+
+        request.session.save()  # Si crea la sessione
 
         # Simulazione login albergatore
         request.session['nomeAlbergatore'] = self.albergatoreConHotel.username
@@ -302,8 +278,7 @@ class TestAggiungiHotel(TestCase):
     def testHotelCampiMancanti(self):
         """ Verifica che non venga consentita l'aggiunta di un hotel se il form è compilato scorrettamente """
 
-        # Creazione request
-        request = self.request_factory.get('/aggiungiHotel/', follow=True)
+        request = self.request_factory.get('/aggiungiHotel/', follow=True)  # Si crea la request
         self.middleware.process_request(request)
         # Creazione sessione
         request.session.save()
@@ -328,8 +303,7 @@ class TestAggiungiHotel(TestCase):
         # Lista temporanea
         listaHotel = []
 
-        # Creazione request
-        request = self.request_factory.get('/aggiungiHotel/', follow=True)
+        request = self.request_factory.get('/aggiungiHotel/', follow=True)  # Si crea la request
         self.middleware.process_request(request)
 
         chiave_sessione = self.albergatore.username
@@ -393,8 +367,7 @@ class TestGestioneHotel(TestCase):
     def testVisualizzazioneDatiHotel(self):
         """ Verifica che l'hotel keeper visualizzi i dati dell'hotel e delle camere che contiene"""
 
-        # Creazione request
-        request = self.request_factory.get('/gestioneHotel/?id=' + str(self.hotel.id), follow=True)
+        request = self.request_factory.get('/gestioneHotel/?id=' + str(self.hotel.id), follow=True)  # Si crea la request
         self.middleware.process_request(request)
         # Creazione sessione
         request.session.save()
@@ -459,8 +432,7 @@ class TestAggiungiCamera(TestCase):
         # Lista di appoggio
         listaCamere = []
 
-        # Creazione request
-        request = self.request_factory.get('/aggiungiCamera/?id=' + str(self.hotel.id), follow=True)
+        request = self.request_factory.get('/aggiungiCamera/?id=' + str(self.hotel.id), follow=True)  # Si crea la request
         self.middleware.process_request(request)
 
         # Scrittura in sessione dei dati necessari alla vista
@@ -535,10 +507,9 @@ class TestCerca(TestCase):
         self.middleware = SessionMiddleware()
 
     def testRicerca(self):
-        """ Verifica che sia possibile effettuare una ricerca"""
+        """ Verifica che un utente possa effettuare una ricerca """
 
-        # Creazione request
-        request = self.request_factory.get('/cercaRS/', follow=True)
+        request = self.request_factory.get('/cercaRS/', follow=True)  # Si crea la request
 
         # Creazione valori in GET
         request.GET.__init__(mutable=True)
