@@ -17,8 +17,7 @@ def registrazione(request):
             nome = registrazioneF.cleaned_data['nome']
             cognome = registrazioneF.cleaned_data['cognome']
             email = registrazioneF.cleaned_data['email']
-            citta = registrazioneF.cleaned_data['citta']
-            indirizzo = registrazioneF.cleaned_data['indirizzo']
+
             username = registrazioneF.cleaned_data['username']
             password = registrazioneF.cleaned_data['password']
             confermaPassword = registrazioneF.cleaned_data['confermaPassword']
@@ -26,8 +25,7 @@ def registrazione(request):
             # Si crea l'albergatore
             nuovoAlbergatore = Albergatore(nome=str(nome), cognome=str(cognome),
                                            email=str(email), username=str(username),
-                                           password=str(confermaPassword), citta=str(citta),
-                                           indirizzo=str(indirizzo))
+                                           password=str(confermaPassword))
             nuovoAlbergatore.save()
             # Viene salvato l'username come variabile di sessione
             request.session['nomeAlbergatore'] = username
