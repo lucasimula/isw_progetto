@@ -9,6 +9,7 @@ import datetime
 
 class TestLogout(TestCase):
     """ Classe contenente i TA della user story Logout """
+
     def setUp(self):
         albergatore = Albergatore(nome='Marco', cognome='Marras', password='wewe', username='user1',
                                   email='m@gmail.com')
@@ -31,6 +32,7 @@ class TestLogout(TestCase):
 
 class TestRegistrazione(TestCase):
     """ Classe contenente i TA della user story Registrazione """
+
     def setUp(self):
         albergatore = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
                                   username='marcococco', email='marcococco@gmail.com')
@@ -108,6 +110,7 @@ class TestRegistrazione(TestCase):
 
 class TestLogin(TestCase):
     """ Classe contenente i TA della user story Login """
+
     def setUp(self):
         albergatore = Albergatore(nome='Alba', cognome='Rossi', password='albachiara',
                                   username='albachiara', email='albachiaraRossi@gmail.com')
@@ -117,7 +120,8 @@ class TestLogin(TestCase):
         self.middleware = SessionMiddleware()
 
     def testLogin(self):
-        """ Verifica l'accesso di un utente proprietario di un albergo """
+        """ Verifica che un albergatore possa effettuare l'accesso """
+
         form_data = {'username': 'albachiara', 'password': 'albachiara'} # Si riempie il form
         loginForm = FormLogin(data=form_data)
 
@@ -153,6 +157,8 @@ class TestLogin(TestCase):
 
 
 class TestHomeAlbergatore(TestCase):
+    """ Classe contenente i TA della user story Home Albergatore """
+
     def setUp(self):
         albergatore = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
                                    username='marcococco', email='marcococco@gmail.com')
@@ -192,6 +198,8 @@ class TestHomeAlbergatore(TestCase):
 
 
 class TestListaHotel(TestCase):
+    """ Classe contenente i TA della user story Lista Hotel """
+
     def setUp(self):
         albergatore1 = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
                                    username='marcococco', email='marcococco@gmail.com')
@@ -232,8 +240,7 @@ class TestListaHotel(TestCase):
 
         request.session.save()  # Si crea la sessione
 
-        # Simulazione login albergatore
-        request.session['nomeAlbergatore'] = self.albergatoreConHotel.username
+        request.session['nomeAlbergatore'] = self.albergatoreConHotel.username  # Si simula il login
 
         # Esecuzione della vista che gestisce la lista hotel
         response = listaHotel(request)
@@ -244,6 +251,8 @@ class TestListaHotel(TestCase):
 
 
 class TestAggiungiHotel(TestCase):
+    """ Classe contenente i TA della user story Aggiungi Hotel """
+
     def setUp(self):
         albergatore1 = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
                                    username='marcococco', email='marcococco@gmail.com')
@@ -280,22 +289,19 @@ class TestAggiungiHotel(TestCase):
 
         request = self.request_factory.get('/aggiungiHotel/', follow=True)  # Si crea la request
         self.middleware.process_request(request)
-        # Creazione sessione
-        request.session.save()
 
-        # Simulazione login albergatore
-        request.session['nomeAlbergatore'] = self.albergatore.username
+        request.session.save()  # Si crea la sessione
 
-        # Riempimento form
-        forms = {'nome': "Caesar's Hotel",
-                     'descrizione': "L'hotel preferito da Giulio Cesare",
-                     'citta': "Cagliari",
-                     'indirizzo': "Via Charles Darwin 2"}
+        request.session['nomeAlbergatore'] = self.albergatore.username  # Si simula il login
+
+        forms = {'nome': "Caesar's Hotel",  # Si riempie il form
+                 'descrizione': "L'hotel preferito da Giulio Cesare",
+                 'citta': "Cagliari",
+                 'indirizzo': "Via Charles Darwin 2"}
 
         form = FormAggiungiHotel(data=forms)
 
-        # Verifica
-        self.assertTrue(form.is_valid(), msg=form.errors)
+        self.assertTrue(form.is_valid(), msg=form.errors)  # Verifica la validazione del form
 
     def testHotelAggiunto(self):
         """ Verifica che un hotel sia stato aggiunto correttamente """
@@ -318,17 +324,14 @@ class TestAggiungiHotel(TestCase):
 
         self.assertEqual(len(listaHotel), 2)
 
-        # Riempimento form
-        formData = {'nome': "Caesar's Hotel",
+        formData = {'nome': "Caesar's Hotel",  # Si riempie il form
                      'descrizione': "L'hotel preferito da Giulio Cesare",
                      'citta': "Cagliari",
                      'indirizzo': "Via Charles Darwin 2"}
 
         form = FormAggiungiHotel(data=formData)
 
-        # Verifica che il form sia valido
-        self.assertTrue(form.is_valid())
-
+        self.assertTrue(form.is_valid())  # Verifica la validazione del form
 
         # Invia il form in POST all'url di aggiunta hotel
         self.client.post('/aggiungiHotel/', formData)
@@ -369,11 +372,10 @@ class TestGestioneHotel(TestCase):
 
         request = self.request_factory.get('/gestioneHotel/?id=' + str(self.hotel.id), follow=True)  # Si crea la request
         self.middleware.process_request(request)
-        # Creazione sessione
-        request.session.save()
 
-        # Simulazione hotel keeper loggato
-        request.session['nomeAlbergatore'] = self.albergatore.username
+        request.session.save()  # Si crea la sessione
+
+        request.session['nomeAlbergatore'] = self.albergatore.username  # Si simula il login
 
         # Esecuzione della vista che gestisce i dettagli dell'hotel
         response = gestioneHotel(request)
@@ -407,15 +409,15 @@ class TestAggiungiCamera(TestCase):
         self.middleware = SessionMiddleware()
 
     def testCameraCampiMancanti(self):
-        """ Verifica che non sia accettato un form incompleto"""
+        """ Verifica che non sia accettato un form incompleto """
+
         request = self.request_factory.get('/aggiungiCamera/', follow=True)
         self.middleware.process_request(request)
-        # Creazione sessione
-        request.session.save()
 
-        # Simulazione login albergatore
-        request.session['nomeAlbergatore'] = self.albergatore.username
-        request.session['idHotel'] = self.hotel.id
+        request.session.save()  # Si crea la sessione
+
+        request.session['nomeAlbergatore'] = self.albergatore.username  # Si simula il login
+        request.session['idHotel'] = self.hotel.id    # Si simula l'inserimento dell'id dell'hotel in sessione
 
         form_data = {'numero': "202",
                      'nLetti': "2",
@@ -424,10 +426,10 @@ class TestAggiungiCamera(TestCase):
 
         form = FormAggiungiCamera(data=form_data)
 
-        self.assertTrue(form.is_valid(), msg=form.errors)
+        self.assertTrue(form.is_valid(), msg=form.errors)  # Verifica la validazione del form
 
     def testCameraAggiunta(self):
-        """ Verifica che una camera venga correttamente aggiunta """
+        """ Verifica che una camera venga aggiunta correttamente """
 
         # Lista di appoggio
         listaCamere = []
@@ -435,23 +437,21 @@ class TestAggiungiCamera(TestCase):
         request = self.request_factory.get('/aggiungiCamera/?id=' + str(self.hotel.id), follow=True)  # Si crea la request
         self.middleware.process_request(request)
 
-        # Scrittura in sessione dei dati necessari alla vista
-        key_sessione1 = str(self.albergatore.username)
+        key_sessione1 = str(self.albergatore.username)  # Si crea la sessione e si inseriscono i parametri necessari
         key_sessione2 = str(self.hotel.id)
         session = self.client.session
         session['nomeAlbergatore'] = key_sessione1
         session['idHotel'] = key_sessione2
         session.save()
 
-        form_data = {'numero': "202",
+        form_data = {'numero': "202",  # Si riempie il form
                      'nLetti': "2",
                      'prezzo': "62.0",
                      'servizi': "Colazione inclusa, Asciugacapelli"}
 
         form = FormAggiungiCamera(data=form_data)
 
-        # Verifica il form
-        self.assertTrue(form.is_valid())
+        self.assertTrue(form.is_valid())  # Verifica la validazione del form
 
         # Conteggio camere prima dell'aggiunta e verifica
         for c in Camera.objects.all():
@@ -480,6 +480,7 @@ class TestAggiungiCamera(TestCase):
 
 class TestCerca(TestCase):
     """ Classe contenente i TA della user story 8 """
+
     def setUp(self):
         albergatore = Albergatore(nome='Giovanni', cognome='Cocco', password='GiovanniCocco',
                                   username='gcocco', email='gcocco@gmail.com')
@@ -498,7 +499,7 @@ class TestCerca(TestCase):
         albergatore2.save()
 
         prenotare = Prenotazione(email='ag@gmail.com', camera=cameraDaPrenotare, checkIn=datetime.date(2019, 8, 28),
-                          checkOut=datetime.date(2019, 8, 31))
+                                 checkOut=datetime.date(2019, 8, 31))
         prenotare.save()
 
         self.albergatoreConH = albergatore
@@ -521,8 +522,7 @@ class TestCerca(TestCase):
 
         self.middleware.process_request(request)
 
-        # Creazione sessione
-        request.session.save()
+        request.session.save()  # Si crea la sessione
 
         # Invio dei dati alla view che effettua la ricerca
         response = cercaRS(request)
@@ -535,7 +535,7 @@ class TestCerca(TestCase):
         """ Se la ricerca non viene visualizzata perché non vengono trovate camere per quella città
         viene visualizzato un messaggio :
         Spiacenti! Non abbiamo camere disponibili per la città da lei indicata.
-        con un link per tornare alla pagina di ricerca"""
+        con un link per tornare alla pagina di ricerca """
 
         request = self.request_factory.get('/cercaRS/', follow=True)
 
@@ -556,25 +556,25 @@ class TestCerca(TestCase):
         self.assertContains(response, 'Spiacenti! Non abbiamo camere disponibili per la città da lei indicata.')
 
     def testRicercaNonTrovataData(self):
-            """ Se la ricerca non viene visualizzata perché non vengono trovate date disponibili"""
+        """ Se la ricerca non viene visualizzata perché non vengono trovate date disponibili """
 
-            request = self.request_factory.get('/cercaRS/', follow=True)
+        request = self.request_factory.get('/cercaRS/', follow=True)
 
-            request.GET.__init__(mutable=True)
+        request.GET.__init__(mutable=True)
 
-            request.GET['cercaCitta'] = 'Sassari'
-            request.GET['cercaLetti'] = '1'
-            request.GET['cercaCheckIn'] = '2019-08-29'
-            request.GET['cercaCheckOut'] = '2019-08-30'
+        request.GET['cercaCitta'] = 'Sassari'
+        request.GET['cercaLetti'] = '1'
+        request.GET['cercaCheckIn'] = '2019-08-29'
+        request.GET['cercaCheckOut'] = '2019-08-30'
 
-            self.middleware.process_request(request)
+        self.middleware.process_request(request)
 
-            request.session.save()
+        request.session.save()
 
-            # Invio dati alla view che esegue la ricerca
-            response = cercaRS(request)
+        # Invio dati alla view che esegue la ricerca
+        response = cercaRS(request)
 
-            self.assertContains(response, 'Spiacenti! La camera è stata già prenotata')
+        self.assertContains(response, 'Spiacenti! La camera è stata già prenotata')
 
 
 class TestSalva(TestCase):
@@ -603,8 +603,7 @@ class TestSalva(TestCase):
         self.middleware = SessionMiddleware()
 
     def testControllaPrenotazione(self):
-        # Riempimento form
-        form_prenotazione = {'email': 'pippopluto@gmail.com'}
+        form_prenotazione = {'email': 'pippopluto@gmail.com'}  # Si riempie il form
 
         data = self.client.session
         data.update({
@@ -613,8 +612,8 @@ class TestSalva(TestCase):
             "idCam": str(self.camera2.id)
         })
         data.save()
-        # Invio form alla pagina
-        self.client.get('/confermaPrenotazione/', form_prenotazione)
+
+        self.client.get('/confermaPrenotazione/', form_prenotazione)  # Si inviano i dati del form alla pagina
 
         contaLePrenotazioni = Prenotazione.objects.all().count()
         self.assertEqual(contaLePrenotazioni, 2)
