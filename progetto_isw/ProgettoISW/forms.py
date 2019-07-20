@@ -12,10 +12,6 @@ class FormRegistrazione(forms.Form):
     cognome.widget.attrs.update({'class': 'margin form-control', "placeholder": "Cognome"})
     email = forms.EmailField(label="Email", required=True)
     email.widget.attrs.update({'class': 'margin form-control', "placeholder": "Email"})
-    citta = forms.CharField(label="Città")
-    citta.widget.attrs.update({'class': 'margin form-control', "placeholder": "Città"})
-    indirizzo = forms.CharField(label="Indirizzo")
-    indirizzo.widget.attrs.update({'class': 'margin form-control', "placeholder": "Indirizzo"})
 
     username = forms.CharField(label="Username", required=True)
     username.widget.attrs.update({'class': 'margin form-control', "placeholder": "Username"})
