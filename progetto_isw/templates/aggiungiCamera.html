@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 {% block titolo %} Home Albergatore {% endblock %}
 {% block tasto-sinistro %}
-    <button id="gestione-hotel" class="btn btn-primary" type="button">
-            <a href="/gestioneHotel/">Gestione Hotel</a>
-    </button>
+    <form action="/gestioneHotel/">
+        <input type="submit" id="gestione-hotel" class="btn btn-primary" value="Gestione Hotel">
+    </form>
+
 {% endblock %}
 {% block content %}
     {% if messages %}

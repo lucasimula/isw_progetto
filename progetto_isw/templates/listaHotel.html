@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block titolo %} Lista Hotel {% endblock %}
 {% block tasto-sinistro %}
-    <button id="aggiungi-hotel" class="btn btn-primary" type="button">
-            <a href="/aggiungiHotel/">Aggiungi Hotel</a>
-        </button>
+    <form action="/aggiungiHotel/">
+        <input type="submit" id="aggiungi-hotel" class="btn btn-primary" value="Aggiungi Hotel">
+    </form>
 {% endblock %}
 {% block content %}
     <main>

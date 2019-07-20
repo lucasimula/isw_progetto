@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 {% block titolo %} Gestione Hotel {% endblock %}
 {% block tasto-sinistro %}
-    <button id="aggiungi-camera" class="btn btn-primary" type="button">
-            <a href="/aggiungiCamera/?id={{ hotel.id }}">Aggiungi Camera</a>
-    </button>
+    <form action="/aggiungiCamera/?id={{hotel.id}}">
+        <input type="submit" id="aggiungi-camera" class="btn btn-primary" value="Aggiungi Camera">
+    </form>
+
 {% endblock %}
 {% block content %}
     <main>
