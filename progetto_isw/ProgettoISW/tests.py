@@ -77,6 +77,24 @@ class TestLogout(TestCase):
         })
         data.save()
 
+    def testUtenteNonRegistrato(self):
+        """ Verifica che un utente non registrato non possa accedere alla home personale degli albergatori"""
+
+        # Creazione request
+        request = self.request_factory.get('/home/', follow=True)
+        self.middleware.process_request(request)
+        # Creazione sessione
+        request.session.save()
+
+        # Simulazione login
+        request.session['nomeAlbergatore'] = 'lorenzopalla'
+
+        # Esecuzione della vista che gestisce la home dell'albergatore
+        response = homeAlbergatore(request)
+
+        # Verifica accesso negato e redirect
+        self.assertEquals(response.status_code, 302)
+
     def testLogout(self):
         response = self.client.get('/logout/')
         self.assertEquals(response.status_code, 302)
@@ -109,23 +127,7 @@ class TestRegistrazione(TestCase):
 
         self.assertEquals(response.status_code, 200)    # Si verifica che sia avvenuto l'accesso
 
-    def testRegistrazioneFallita(self):
-        """ Verifica che un hotel keeper non registrato non possa accedere alla home"""
 
-        # Creazione request
-        request = self.request_factory.get('/home/', follow=True)
-        self.middleware.process_request(request)
-        # Creazione sessione
-        request.session.save()
-
-        # Simulazione login
-        request.session['nomeAlbergatore'] = 'lorenzopalla'
-
-        # Esecuzione della vista che gestisce la home dell'hotel keeper
-        response = homeAlbergatore(request)
-
-        # Verifica accesso negato e redirect
-        self.assertEquals(response.status_code, 302)
 
     def testControlloStessoUsername(self):
         """ Verifica che sia negata l'iscrizione se l'username specificato esiste già """
@@ -190,7 +192,7 @@ class TestRegistrazione(TestCase):
 
 
 class TestLogin(TestCase):
-    """ Classe contenente i TA della user story 2 """
+    """ Classe contenente i TA della user story di Login """
     def setUp(self):
         albergatore = Albergatore(nome='Alba', cognome='Rossi', password='albachiara',
                                   username='albachiara', email='albachiaraRossi@gmail.com',
@@ -209,9 +211,8 @@ class TestLogin(TestCase):
         # Verifica
         self.assertTrue(loginForm.is_valid(), loginForm.errors)
 
-    def testRedirecUtenteLoggato(self):
-        """ Verifica che un hotel keeper loggato non abbia accesso alla pagina di login
-        e che venga reindirizzato verso la pagina diversa"""
+    def testUtenteLoggato(self):
+        """ Verifica che un albergatore già loggato non abbia accesso alla pagina di login"""
 
         # Creazione della request
         request = self.request_factory.get('/login/', follow=True)
@@ -219,7 +220,7 @@ class TestLogin(TestCase):
         # Creazione della sessione
         request.session.save()
 
-        # Simulaazione hotel keeper loggato
+        # Simulazione albergatore loggato
         request.session['nomeAlbergatore'] = 'marcococco'
 
         # Esecuzione della vista di login
