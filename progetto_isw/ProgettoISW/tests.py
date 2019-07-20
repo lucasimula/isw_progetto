@@ -185,7 +185,8 @@ class TestRegistrazione(TestCase):
         form = {'nome': 'paolino', 'cognome': 'paperino', 'email': 'emailErrata', 'citta': 'Escalaplano', 'indirizzo': 'via Roma 1',
                      'username': 'username1', 'password':'password1', 'confermaPassword':'password1'}
 
-        self.assertFalse(form.is_valid())
+        formReg = FormRegistrazione(data=form)
+        self.assertFalse(formReg.is_valid())
 
 
 class TestLogin(TestCase):
@@ -409,19 +410,19 @@ class TestAggiungiHotel(TestCase):
 
 
         # Riempimento form
-        form= {'nome': "Caesar's Hotel",
+        formData= {'nome': "Caesar's Hotel",
                      'descrizione': "L'hotel preferito da Giulio Cesare",
                      'citta': "Cagliari",
                      'indirizzo': "Via Charles Darwin 2"}
 
-        form = FormAggiungiHotel(data=form)
+        form = FormAggiungiHotel(data=formData)
 
         # Verifica che il form sia valido
         self.assertTrue(form.is_valid())
 
 
         # Invia il form in POST all'url di aggiunta hotel
-        self.client.post('/aggiungiHotel/', form)
+        self.client.post('/aggiungiHotel/', formData)
 
         # Verifica della corretta aggiunta dell'hotel
         listaHotel = []
