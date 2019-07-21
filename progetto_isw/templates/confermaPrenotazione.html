@@ -37,7 +37,7 @@
                 {% csrf_token %}
                 {% for field in form %}
                     <div>
-                        {{ field.errors }}
+
                         {{ field }}
                     </div>
                 {% endfor %}

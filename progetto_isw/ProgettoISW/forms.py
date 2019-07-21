@@ -62,6 +62,7 @@ class FormLogin(forms.Form):
                 albergatore = Albergatore.objects.get(username=self.cleaned_data["username"])
 
         except:
+
             raise forms.ValidationError("Utente non registrato")
 
         # Verifica la corrispondenza tra password inserita e quella salvata nel database
