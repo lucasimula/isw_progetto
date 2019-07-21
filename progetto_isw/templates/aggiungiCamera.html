@@ -8,11 +8,11 @@
 {% endblock %}
 {% block content %}
     {% if messages %}
-        <ul class="messages">
+        <div class="colorato">
             {% for message in messages %}
-                <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% if message.tags %} {% endif %} {{ message }}
             {% endfor %}
-        </ul>
+        </div>
     {% endif %}
     <main>
         <div class="wrapper-form">
@@ -21,9 +21,7 @@
                 {% csrf_token %}
                 {% for field in form %}
                     <div class="form-group">
-                        <div class="colorato">
-                            {{ field.errors }}
-                        </div>
+
                         <a>{{ field.label_tag }}</a>
                         {{ field }}
                     </div>
