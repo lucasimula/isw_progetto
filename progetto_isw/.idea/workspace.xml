@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7b637ea0-72ab-435d-a788-f0764a8c59c7" name="Default Changelist" comment="AA">
+    <list default="true" id="7b637ea0-72ab-435d-a788-f0764a8c59c7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/lucas.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProgettoISW/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProgettoISW/tests.py" afterDir="false" />
     </list>
@@ -52,7 +53,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2907">
+            <state relative-caret-position="3026">
               <caret line="178" column="22" selection-start-line="178" selection-start-column="22" selection-end-line="178" selection-end-column="22" />
             </state>
           </provider>
@@ -61,8 +62,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ProgettoISW/tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="508" column="26" lean-forward="true" selection-start-line="508" selection-start-column="26" selection-end-line="508" selection-end-column="26" />
+            <state relative-caret-position="186">
+              <caret line="574" column="23" selection-start-line="574" selection-start-column="23" selection-end-line="574" selection-end-column="23" />
               <folding>
                 <element signature="e#0#64#0" expanded="true" />
               </folding>
@@ -73,7 +74,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/gestioneHotel.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="782">
+            <state relative-caret-position="799">
               <caret line="47" column="51" selection-start-line="47" selection-start-column="51" selection-end-line="47" selection-end-column="51" />
             </state>
           </provider>
@@ -82,7 +83,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ProgettoISW/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1632">
+            <state relative-caret-position="1581">
               <caret line="96" column="112" selection-start-line="96" selection-start-column="112" selection-end-line="96" selection-end-column="112" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
@@ -100,6 +101,21 @@
       <find>test</find>
       <find>si esegue</find>
       <find>creazione r</find>
+      <find>creazione sessione</find>
+      <find>riempimento</find>
+      <find>si verifica</find>
+      <find>simulazione</find>
+      <find>&quot;&quot;&quot;</find>
+      <find>classe</find>
+      <find>form.is_valid</find>
+      <find>post</find>
+      <find>view</find>
+      <find>appoggio</find>
+      <find>lista</find>
+      <find>temp</find>
+      <find>form</find>
+      <find>campima</find>
+      <find>form_data</find>
     </findStrings>
     <replaceStrings>
       <replace>descrizione</replace>
@@ -339,7 +355,8 @@
       <workItem from="1563442517796" duration="5439000" />
       <workItem from="1563461974775" duration="835000" />
       <workItem from="1563544186916" duration="3892000" />
-      <workItem from="1563632451167" duration="1074000" />
+      <workItem from="1563632451167" duration="2780000" />
+      <workItem from="1563702430644" duration="1467000" />
     </task>
     <task id="LOCAL-00001" summary="Migliorate alcune viste e aggiunti primi test">
       <created>1561477394298</created>
@@ -453,7 +470,28 @@
       <option name="project" value="LOCAL" />
       <updated>1563547205982</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Sistemazione commenti test pt1">
+      <created>1563633541689</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1563633541689</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Sistemazione commenti test pt2">
+      <created>1563634135479</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1563634135479</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Sistemazione commenti test pt3">
+      <created>1563634630446</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1563634630446</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -489,13 +527,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41813000" />
+    <option name="totallyTimeSpent" value="44986000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19591528" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19894099" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -581,7 +619,10 @@
     <MESSAGE value="Cambiato id in numero camera" />
     <MESSAGE value="Test messaggio" />
     <MESSAGE value="Sistemati gli errori in aggiungi camera" />
-    <option name="LAST_COMMIT_MESSAGE" value="Sistemati gli errori in aggiungi camera" />
+    <MESSAGE value="Sistemazione commenti test pt1" />
+    <MESSAGE value="Sistemazione commenti test pt2" />
+    <MESSAGE value="Sistemazione commenti test pt3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sistemazione commenti test pt3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/progetto_isw$Test__ProgettoISW_tests_TestRegistrazione_test_registrazione_fallita.coverage" NAME="Test: ProgettoISW.tests.TestRegistrazione.test_registrazione_fallita Coverage Results" MODIFIED="1563119732878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
@@ -713,21 +754,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2907">
+        <state relative-caret-position="3026">
           <caret line="178" column="22" selection-start-line="178" selection-start-column="22" selection-end-line="178" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/gestioneHotel.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
+        <state relative-caret-position="799">
           <caret line="47" column="51" selection-start-line="47" selection-start-column="51" selection-end-line="47" selection-end-column="51" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ProgettoISW/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1632">
+        <state relative-caret-position="1581">
           <caret line="96" column="112" selection-start-line="96" selection-start-column="112" selection-end-line="96" selection-end-column="112" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
@@ -737,8 +778,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ProgettoISW/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="508" column="26" lean-forward="true" selection-start-line="508" selection-start-column="26" selection-end-line="508" selection-end-column="26" />
+        <state relative-caret-position="186">
+          <caret line="574" column="23" selection-start-line="574" selection-start-column="23" selection-end-line="574" selection-end-column="23" />
           <folding>
             <element signature="e#0#64#0" expanded="true" />
           </folding>
