@@ -27,7 +27,7 @@
                                 {% csrf_token %}
                                     {% for field in form %}<br><br>
                                         <div class="form-group">
-                                            {{ field.errors }}
+
                                             <a>{{ field.label_tag }}</a>
                                             {{ field }}
                                         </div>
