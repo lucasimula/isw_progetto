@@ -11,7 +11,6 @@ class Albergatore(models.Model):
     email = models.EmailField(max_length=50)
 
 
-
 class Hotel(models.Model):
     albergatore = models.ForeignKey(Albergatore, on_delete=models.CASCADE)
     nome = models.CharField(max_length=100)

@@ -8,7 +8,6 @@ import datetime
 
 
 class TestLogout(TestCase):
-    """ Classe contenente i TA della user story Logout """
 
     def setUp(self):
         albergatore = Albergatore(nome='Marco', cognome='Marras', password='wewe', username='user1',
@@ -29,11 +28,10 @@ class TestLogout(TestCase):
         """ Verifica che un albergatore loggato possa effettuare il logout """
 
         response = self.client.get('/logout/')
-        self.assertEquals(response.status_code, 302)  # Si controlla che il redirect sia avvenuto
+        self.assertEquals(response.status_code, 302)  # Si controlla che il redirect sia avvenuto correttamente
 
 
 class TestRegistrazione(TestCase):
-    """ Classe contenente i TA della user story Registrazione """
 
     def setUp(self):
         albergatore = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
@@ -45,7 +43,7 @@ class TestRegistrazione(TestCase):
         self.middleware = SessionMiddleware()
 
     def testRegistrazioneAvvenuta(self):
-        """ Verifica che un albergatore registrato possa accedere alla sua home """
+        """ Verifica che un albergatore registrato possa accedere alla sua pagina """
 
         request = self.request_factory.get('/home/', follow=True)  # Si crea la request
         self.middleware.process_request(request)
@@ -59,7 +57,7 @@ class TestRegistrazione(TestCase):
         self.assertEquals(response.status_code, 200)  # Si verifica che sia avvenuto l'accesso
 
     def testControlloStessoUsername(self):
-        """ Verifica che un utente non possa registrarsi se l'username specificato esiste già """
+        """ Verifica che un utente non possa registrarsi se l'username scelto appartiene a un altro utente"""
 
         listaAlbergatori = []  # Si usa una lista di appoggio per controllare i dati
 
@@ -102,7 +100,7 @@ class TestRegistrazione(TestCase):
         self.assertTrue(len(listaAlbergatori), 1)  # Si verifica che non siano stati aggiunti utenti
 
     def testRegistratiCampiErrati(self):
-        """ Verifica che un utente non possa registrarsi se i campi del form sono errati """
+        """ Verifica che un utente non possa registrarsi se i campi del form sono compilati in modo errato """
 
         form_data = {'nome': 'paolino', 'cognome': 'paperino', 'email': 'emailErrata',  # Si riempie il form
                      'username': 'username1', 'password': 'password1', 'confermaPassword': 'password1'}
@@ -112,7 +110,6 @@ class TestRegistrazione(TestCase):
 
 
 class TestLogin(TestCase):
-    """ Classe contenente i TA della user story Login """
 
     def setUp(self):
         albergatore = Albergatore(nome='Alba', cognome='Rossi', password='albachiara',
@@ -123,12 +120,12 @@ class TestLogin(TestCase):
         self.middleware = SessionMiddleware()
 
     def testLogin(self):
-        """ Verifica che un albergatore registrato possa effettuare l'accesso """
+        """ Verifica che un albergatore registrato possa effettuare l'accesso correttamente """
 
         form_data = {'username': 'albachiara', 'password': 'albachiara'}  # Si riempie il form
         loginForm = FormLogin(data=form_data)
 
-        self.assertTrue(loginForm.is_valid(), loginForm.errors)  # Si veirifica la validazione del form
+        self.assertTrue(loginForm.is_valid(), loginForm.errors)  # Si verifica che il form sia validato
 
     def testUtenteNonRegistrato(self):
         """ Verifica che un utente non registrato non possa accedere alla home personale degli albergatori """
@@ -142,7 +139,7 @@ class TestLogin(TestCase):
 
         response = homeAlbergatore(request)  # Si esegue la view homeAlbergatore
 
-        self.assertEquals(response.status_code, 302)  # Si verifica che l'utente non reigstrato sia reindirizzato
+        self.assertEquals(response.status_code, 302)  # Si verifica che l'utente non registrato sia reindirizzato
 
     def testUtenteLoggato(self):
         """ Verifica che un albergatore già loggato non abbia accesso alla pagina di login """
@@ -160,7 +157,6 @@ class TestLogin(TestCase):
 
 
 class TestHomeAlbergatore(TestCase):
-    """ Classe contenente i TA della user story Home Albergatore """
 
     def setUp(self):
         albergatore = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
@@ -201,7 +197,6 @@ class TestHomeAlbergatore(TestCase):
 
 
 class TestListaHotel(TestCase):
-    """ Classe contenente i TA della user story Lista Hotel """
 
     def setUp(self):
         albergatore1 = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
@@ -252,7 +247,6 @@ class TestListaHotel(TestCase):
 
 
 class TestAggiungiHotel(TestCase):
-    """ Classe contenente i TA della user story Aggiungi Hotel """
 
     def setUp(self):
         albergatore1 = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
@@ -344,7 +338,6 @@ class TestAggiungiHotel(TestCase):
 
 
 class TestGestioneHotel(TestCase):
-    """ Classe contenente i TA della user story Gestione Hotel """
 
     def setUp(self):
         albergatore = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
@@ -378,14 +371,13 @@ class TestGestioneHotel(TestCase):
 
         response = gestioneHotel(request)
 
-        self.assertContains(response, 'Holiday Inn')  # Si verifica che la risposta conteng i dati dell'hotel
+        self.assertContains(response, 'Holiday Inn')  # Si verifica che la risposta contenga i dati dell'hotel
         self.assertContains(response, '101')
         self.assertContains(response, '4')
         self.assertContains(response, '125.0')
 
 
 class TestAggiungiCamera(TestCase):
-    """ Classe contenente i TA della user story Aggiungi Camera """
 
     def setUp(self):
         albergatore = Albergatore(nome='Marco', cognome='Cocco', password='ciao',
@@ -474,7 +466,6 @@ class TestAggiungiCamera(TestCase):
 
 
 class TestCerca(TestCase):
-    """ Classe contenente i TA della user story Ricerca Camera """
 
     def setUp(self):
         albergatore = Albergatore(nome='Giovanni', cognome='Cocco', password='GiovanniCocco',
@@ -564,7 +555,6 @@ class TestCerca(TestCase):
 
 
 class TestSalva(TestCase):
-    """ Classe contenente i TA della user story Prenotazione """
 
     def setUp(self):
         albergatore = Albergatore(nome='Giovanni', cognome='Cullu', password='GiovanniCullu',
