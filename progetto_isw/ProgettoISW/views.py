@@ -10,10 +10,10 @@ from .forms import *
 
 def registrazione(request):
     if request.method == "POST":
-        # Assegnamento a registrazioneF il form RegistratiForm
-        registrazioneF = FormRegistrazione(request.POST)
-        if registrazioneF.is_valid():
-            # Se non ci sono errori nel form si creano variabili per contenere i dati inseriti
+
+        registrazioneF = FormRegistrazione(request.POST)        # Assegnamento a registrazioneF il form RegistratiForm
+        if registrazioneF.is_valid():            # Se non ci sono errori nel form si creano variabili per contenere i dati inseriti
+
             nome = registrazioneF.cleaned_data['nome']
             cognome = registrazioneF.cleaned_data['cognome']
             email = registrazioneF.cleaned_data['email']
@@ -22,15 +22,14 @@ def registrazione(request):
             password = registrazioneF.cleaned_data['password']
             confermaPassword = registrazioneF.cleaned_data['confermaPassword']
 
-            # Si crea l'albergatore
-            nuovoAlbergatore = Albergatore(nome=str(nome), cognome=str(cognome),
+            nuovoAlbergatore = Albergatore(nome=str(nome), cognome=str(cognome),            # Si crea l'albergatore
                                            email=str(email), username=str(username),
                                            password=str(confermaPassword))
             nuovoAlbergatore.save()
-            # Viene salvato l'username come variabile di sessione
-            request.session['nomeAlbergatore'] = username
-            # L'albergatore appena creato è indirizzato alla sua homepage
-            return redirect('/homeAlbergatore/')
+
+            request.session['nomeAlbergatore'] = username            # Viene salvato l'username come variabile di sessione
+
+            return redirect('/homeAlbergatore/')            # L'albergatore appena creato è indirizzato alla sua homepage
     else:
         registrazioneF = FormRegistrazione()
     return render(request, "registrazione.html/", {"form": registrazioneF})
@@ -38,31 +37,31 @@ def registrazione(request):
 
 def login(request):
     if request.method == "POST":
-        # Assegnamento a loginForm il form LoginForm
-        loginF = FormLogin(request.POST)
-        # Si controlla se il form ha generato errori
-        if loginF.is_valid():
-            # Si assegna a una variabile username il valore dell'username messo nel form
-            username = loginF.cleaned_data['username']
-            # Si controlla se esiste un albergatore con quel username
-            if Albergatore.objects.filter(username=username).exists():
-                # Se esiste viene settato il suo nome come variabile di sessione
-                request.session['nomeAlbergatore'] = username
+
+        loginF = FormLogin(request.POST)        # Assegnamento a loginForm il form LoginForm
+
+        if loginF.is_valid():        # Si controlla se il form ha generato errori
+
+            username = loginF.cleaned_data['username']            # Si assegna a una variabile username il valore dell'username messo nel form
+
+            if Albergatore.objects.filter(username=username).exists():            # Si controlla se esiste un albergatore con quel username
+
+                request.session['nomeAlbergatore'] = username                # Se esiste viene settato il suo nome come variabile di sessione
 
                 return redirect('/homeAlbergatore/')
     else:
-        # Se l'albergatore è già loggato verrà reindirizzato alla sua home
-        if 'nomeAlbergatore' in request.session:
+
+        if 'nomeAlbergatore' in request.session:        # Se l'albergatore è già loggato verrà reindirizzato alla sua home
             return redirect("/homeAlbergatore/")
         else:
-            # Se il form non contiene niente
-            loginF = FormLogin()
+
+            loginF = FormLogin()            # Se il form non contiene niente
     return render(request, "login.html", {"form": loginF})
 
 
 def logout(request):
-    # Se un albergatore è loggato si elimina il nome dalla sessione
-    if 'nomeAlbergatore' in request.session:
+
+    if 'nomeAlbergatore' in request.session:    # Se un albergatore è loggato si elimina il nome dalla sessione
         del request.session['nomeAlbergatore']
 
     if 'idHotel' in request.session:
@@ -72,21 +71,21 @@ def logout(request):
 
 
 def home(request):
-    # Se un albergatore è loggato si apre la sua home personale
-    if 'nomeAlbergatore' in request.session:
+
+    if 'nomeAlbergatore' in request.session:     # Se un albergatore è loggato si apre la sua home personale
         return redirect('/homeAlbergatore/')
 
     return redirect('/home/')
 
 
 def homeAlbergatore(request):
-    # Si recuperano le informazioni da visualizzare nella home personale
+
     if 'nomeAlbergatore' in request.session:
         for a in Albergatore.objects.all():
             if a.username == request.session['nomeAlbergatore']:
                 albergatore = a
                 elencoPrenotazioni = []
-                for p in Prenotazione.objects.all():
+                for p in Prenotazione.objects.all():     # Si recuperano le informazioni da visualizzare nella home personale
                     if p.camera.hotel.albergatore.username == albergatore.username:
                         elencoPrenotazioni.append(p)
 
@@ -239,9 +238,8 @@ def cercaRS(request):
                         dataEsiste = 0
 
                         for item in Prenotazione.objects.all():
-                            if item.camera.id == ca.id:
-                                #viene controllato se la data di checIn o checkOut inserita è compresa in quelle prenotate
-                                #e viceversa
+                            if item.camera.id == ca.id:                        # Viene controllato se la data di checIn o checkOut inserita è compresa in quelle prenotate e viceversa
+
                                 if checkinDT >= item.checkIn and checkinDT <= item.checkOut:
                                     dataEsiste = dataEsiste + 1
                                 if item.checkIn >= checkinDT and item.checkIn <= checkoutDT:
@@ -272,7 +270,6 @@ def cercaRS(request):
         return render(request, "cercaAl.html", context)
 
 
-
 def prenotazione(request):
     if 'checkinDT' not in request.session:
         return render(request, "cercaB.html", {'form': FormRicerca()})
@@ -282,8 +279,8 @@ def prenotazione(request):
         numeroCamera = request.GET.get('numeroCamera', None)
     except:
         numeroCamera = None
-    #viene utilizzato l'id per distinguere le camere in modo univoco
-    cameraDaPrenotare = Camera.objects.get(id=numeroCamera)
+
+    cameraDaPrenotare = Camera.objects.get(id=numeroCamera)    # Viene utilizzato l'id per distinguere le camere in modo univoco
     lista = []
 
     tmp = [cameraDaPrenotare.hotel.nome, cameraDaPrenotare.nLetti, cameraDaPrenotare.prezzo, cameraDaPrenotare.servizi, cameraDaPrenotare.id, cameraDaPrenotare.hotel.citta,
@@ -311,7 +308,7 @@ def confermaPrenotazione(request):
                 cameraPrenotata = Camera.objects.get(id=numeroCamera)
 
                 prenot = Prenotazione(email=emailPrenotazione, camera=cameraPrenotata, checkIn=checkinDT, checkOut=checkoutDT)
-                # salva prenotazione
+
                 prenot.save()
                 return redirect('/home/')
 
