@@ -6,7 +6,6 @@ import datetime
 
 # Test di accettazione
 
-
 class TestLogout(TestCase):
 
     def setUp(self):
@@ -479,8 +478,7 @@ class TestCerca(TestCase):
         cameraDaPrenotare = Camera(numero=50, nLetti=1, prezzo=35, servizi='Wi-fi', hotel=hotel)
         cameraDaPrenotare.save()
 
-        # albergatore che non ha hotel
-        albergatore2 = Albergatore(nome='Giovanna', cognome='Cicci', password='GiovannaCicci',
+        albergatore2 = Albergatore(nome='Giovanna', cognome='Cicci', password='GiovannaCicci',        # Albergatore che non ha hotel
                                    username='gcicci', email='gcicci@gmail.com')
         albergatore2.save()
 
