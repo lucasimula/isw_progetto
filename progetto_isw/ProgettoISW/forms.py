@@ -41,6 +41,7 @@ class FormRegistrazione(forms.Form):
 
 
 class FormLogin(forms.Form):
+    # Variabili da inserire
     username = forms.CharField(label="Username", required=True, max_length=100,
                                widget=forms.TextInput(attrs={"placeholder": "Nome", "class": "form-control"}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Password", "class": "form-control"}))
@@ -68,7 +69,7 @@ class FormLogin(forms.Form):
         # Verifica la corrispondenza tra password inserita e quella salvata nel database
         if check_password(self.cleaned_data['password'], albergatore.password):
             passwordCorretta = True
-        else: # assegno un valore True nel caso la password non criptata sia uguale a quella sul DB (non criptata)
+        else:  # Assegno un valore True nel caso la password non criptata sia uguale a quella sul DB (non criptata)
             if str(self.cleaned_data["password"]) == albergatore.password:
                 passwordCorretta = True
 
@@ -81,6 +82,7 @@ class FormLogin(forms.Form):
 
 
 class FormAggiungiHotel(forms.Form):
+    # Variabili da inserire
     nome = forms.CharField(required=True, max_length=100,
                            widget=forms.TextInput(attrs={"placeholder": "Nome", "class": "form-control"}))
     descrizione = forms.CharField(required=True,
@@ -92,6 +94,7 @@ class FormAggiungiHotel(forms.Form):
 
 
 class FormAggiungiCamera(forms.Form):
+    # Variabili da inserire
     numero = forms.IntegerField(required=True, widget=forms.TextInput(attrs={"placeholder": "Numero stanza","class": "form-control"}))
     nLetti = forms.IntegerField(required=True, widget=forms.TextInput(attrs={"placeholder": "Numero letti","class": "form-control"}))
     prezzo = forms.FloatField(required=True, widget=forms.TextInput(attrs={"placeholder": "Prezzo","class": "form-control"}))
@@ -99,12 +102,13 @@ class FormAggiungiCamera(forms.Form):
     
 
 class FormRicerca(forms.Form):
-    SCELTA = (('0','Numero posti letto'),('1', '1'),('2', '2'),('3', '3'),('4', '4'),('5', '5'))
+    # Variabili da inserire
+    SCELTA = (('0', 'Numero posti letto'), ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'))
     cercaCitta = forms.CharField(label='', required=True, max_length=100,
-                                 widget=forms.TextInput(attrs={"placeholder": "Città","class": "form-control"}))
+                                 widget=forms.TextInput(attrs={"placeholder": "Città", "class": "form-control"}))
     cercaCitta.widget.attrs.update({'class': 'margin form-control'})
     cercaLetti = forms.ChoiceField(required=True, label="", widget=forms.Select, choices=SCELTA)
-    cercaLetti.widget.attrs.update({'class':'btn btn-default dropdown-toggle whiteBack margin'})
+    cercaLetti.widget.attrs.update({'class': 'btn btn-default dropdown-toggle whiteBack margin'})
     cercaCheckIn = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), initial=datetime.date.today(), label="Da:")
     cercaCheckIn.widget.attrs.update({'class': 'margin form-control '})
     cercaCheckOut = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), initial=datetime.date.today(), label="A:")
@@ -112,6 +116,7 @@ class FormRicerca(forms.Form):
 
 
 class FormConferma(forms.Form):
-    email = forms.EmailField(required=True, widget=forms.TextInput(attrs={'class': 'form-control centrareBene margin', 'placeholder':'Email'}))
+    # Variabili da inserire
+    email = forms.EmailField(required=True, widget=forms.TextInput(attrs={'class': 'form-control centrareBene margin', 'placeholder': 'Email'}))
 
 
