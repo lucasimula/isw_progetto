@@ -5,7 +5,6 @@ from django.contrib.auth.hashers import make_password, check_password
 
 
 class FormRegistrazione(forms.Form):
-    # Variabili da inserire
     nome = forms.CharField(label="Nome", required=True, max_length=100, )
     nome.widget.attrs.update({'class': 'margin form-control', "placeholder": "Nome"})
     cognome = forms.CharField(label="Cognome", required=True, max_length=100)
@@ -34,14 +33,13 @@ class FormRegistrazione(forms.Form):
 
         if self.cleaned_data["confermaPassword"] != self.cleaned_data["password"]:
             raise forms.ValidationError('La password non è stata confermata correttamente')
-        # La password viene criptata per essere salvata
-        passwordCriptata = make_password(password=self.cleaned_data["password"])
+
+        passwordCriptata = make_password(password=self.cleaned_data["password"])        # La password viene criptata per essere salvata
 
         return passwordCriptata
 
 
 class FormLogin(forms.Form):
-    # Variabili da inserire
     username = forms.CharField(label="Username", required=True, max_length=100,
                                widget=forms.TextInput(attrs={"placeholder": "Nome", "class": "form-control"}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Password", "class": "form-control"}))
@@ -58,16 +56,15 @@ class FormLogin(forms.Form):
         """ Override del metodo clean_data del campo username, si controlla che la password corrisponda"""
         passwordCorretta = False
         try:
-            # Se l'username è registrato si salva l'albergatore con quell'username
-            if Albergatore.objects.filter(username=self.cleaned_data["username"]).exists():
+
+            if Albergatore.objects.filter(username=self.cleaned_data["username"]).exists():            # Se l'username è registrato si salva l'albergatore con quell'username
                 albergatore = Albergatore.objects.get(username=self.cleaned_data["username"])
 
         except:
 
             raise forms.ValidationError("Utente non registrato")
 
-        # Verifica la corrispondenza tra password inserita e quella salvata nel database
-        if check_password(self.cleaned_data['password'], albergatore.password):
+        if check_password(self.cleaned_data['password'], albergatore.password):        # Verifica la corrispondenza tra password inserita e quella salvata nel database
             passwordCorretta = True
         else:  # Assegno un valore True nel caso la password non criptata sia uguale a quella sul DB (non criptata)
             if str(self.cleaned_data["password"]) == albergatore.password:
@@ -82,7 +79,6 @@ class FormLogin(forms.Form):
 
 
 class FormAggiungiHotel(forms.Form):
-    # Variabili da inserire
     nome = forms.CharField(required=True, max_length=100,
                            widget=forms.TextInput(attrs={"placeholder": "Nome", "class": "form-control"}))
     descrizione = forms.CharField(required=True,
@@ -94,7 +90,6 @@ class FormAggiungiHotel(forms.Form):
 
 
 class FormAggiungiCamera(forms.Form):
-    # Variabili da inserire
     numero = forms.IntegerField(required=True, widget=forms.TextInput(attrs={"placeholder": "Numero stanza","class": "form-control"}))
     nLetti = forms.IntegerField(required=True, widget=forms.TextInput(attrs={"placeholder": "Numero letti","class": "form-control"}))
     prezzo = forms.FloatField(required=True, widget=forms.TextInput(attrs={"placeholder": "Prezzo","class": "form-control"}))
@@ -102,7 +97,6 @@ class FormAggiungiCamera(forms.Form):
     
 
 class FormRicerca(forms.Form):
-    # Variabili da inserire
     SCELTA = (('0', 'Numero posti letto'), ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'))
     cercaCitta = forms.CharField(label='', required=True, max_length=100,
                                  widget=forms.TextInput(attrs={"placeholder": "Città", "class": "form-control"}))
@@ -116,7 +110,6 @@ class FormRicerca(forms.Form):
 
 
 class FormConferma(forms.Form):
-    # Variabili da inserire
     email = forms.EmailField(required=True, widget=forms.TextInput(attrs={'class': 'form-control centrareBene margin', 'placeholder': 'Email'}))
 
 
